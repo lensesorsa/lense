@@ -32,7 +32,7 @@ try {
             $_SESSION['role'] = $row['role'];
             // $_SESSION['user_id']=$row['user_id'];
             $count = $count + 1;
-        }
+        }    
         if ($count == 0) {
             $loginErr = "invalid user";
         } elseif ($_SESSION['name'] == $name && $_SESSION['password'] == $password && $_SESSION['role'] == 'nurse') {
