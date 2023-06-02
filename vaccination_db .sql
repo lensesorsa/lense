@@ -39,7 +39,6 @@ CREATE TABLE `child` (
 --
 -- Dumping data for table `child`
 --
-
 INSERT INTO `child` (`c_id`, `DOB`, `gender`, `HIV_status`, `name`, `blood_type`) VALUES
 (1, '2023-05-23', 'M', '-', 'yomi', ''),
 (2, '2023-05-23', 'M', '-', 'yomi', ''),

@@ -12,7 +12,7 @@
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/Style.css">
    <ink rel="shortcut icon" href="images/ye.jpg">
-</head>
+</head>   
 <style>
    table {
       border-collapse: collapse;
