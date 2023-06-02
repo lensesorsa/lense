@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body style="background-color:lightblue">
 <?php @include 'header.php'; ?>
 <section class="footer">
    <div class="box-container">

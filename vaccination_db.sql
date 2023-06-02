@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2023 at 02:13 PM
+-- Generation Time: Jun 02, 2023 at 09:31 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -39,6 +39,7 @@ CREATE TABLE `child` (
 --
 -- Dumping data for table `child`
 --
+
 INSERT INTO `child` (`c_id`, `DOB`, `gender`, `HIV_status`, `name`, `blood_type`) VALUES
 (1, '2023-05-23', 'M', '-', 'yomi', ''),
 (2, '2023-05-23', 'M', '-', 'yomi', ''),
@@ -54,8 +55,16 @@ INSERT INTO `child` (`c_id`, `DOB`, `gender`, `HIV_status`, `name`, `blood_type`
 CREATE TABLE `generalinformation` (
   `content_id` int(11) NOT NULL,
   `content` varchar(1000) DEFAULT NULL,
-  `date` date DEFAULT NULL
+  `date` date DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `generalinformation`
+--
+
+INSERT INTO `generalinformation` (`content_id`, `content`, `date`, `title`) VALUES
+(1, 'the quick brown fox jumps over the lazy dog', '2023-06-02', 'story');
 
 -- --------------------------------------------------------
 
@@ -192,20 +201,19 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `password` varchar(30) DEFAULT NULL,
-  `role` varchar(20) DEFAULT NULL,
-  `new_password` varchar(30) DEFAULT NULL
+  `role` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `name`, `password`, `role`, `new_password`) VALUES
-(1, 'lense', '1234', 'nurseclerk', 'qwert'),
-(2, 'endale', '1234', 'parent', 'abcdef'),
-(3, 'endale', '1234', 'parent', 'abcdef'),
-(4, 'lema', '1234', 'parent', 'qwert'),
-(5, 'lema', '1234', 'parent', 'qwert');
+INSERT INTO `users` (`user_id`, `name`, `password`, `role`) VALUES
+(1, 'lense', '1234', 'nurseclerk'),
+(2, 'endale', '1234', 'parent'),
+(3, 'endale', '1234', 'parent'),
+(4, 'lema', 'qwert', 'parent'),
+(5, 'lema', 'qwert', 'parent');
 
 -- --------------------------------------------------------
 
@@ -374,7 +382,7 @@ ALTER TABLE `child`
 -- AUTO_INCREMENT for table `generalinformation`
 --
 ALTER TABLE `generalinformation`
-  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `content_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `nurse`

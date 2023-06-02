@@ -21,8 +21,6 @@
 
       <div class="box">
          <a href="childprofile.php"> <i class="fas fa-angle-right"></i> childprofile</a>
-         <a href="vaccinemanagement.php"> <i class="fas fa-angle-right"></i> vaccine management</a>
-         <a href="schedule.php"> <i class="fas fa-angle-right"></i> schedule</a>
          <a href="generatereport.php"> <i class="fas fa-angle-right"></i> generate report</a>
          <a href="immunize.php"> <i class="fas fa-angle-right"></i> immunize</a>
          <a href="appoint.php"> <i class="fas fa-angle-right"></i> appoint</a>

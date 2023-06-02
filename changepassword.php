@@ -8,15 +8,9 @@ try {
     $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $new_password = $new_password2 = $password = $passErr = $name = "";
-
+    $passErr = $matchErr = $name = "";
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST['password'])) {
-            $passwordErr = "Password is required";
-        } else {
-            $password = $_POST['password'];
-        }
-
         if (empty($_POST['newpassword'])) {
             $passErr = "New password is required";
         } else {
@@ -30,17 +24,17 @@ try {
         }
 
         if ($new_password != $new_password2) {
-            $passErr = "Passwords do not match. Please re-enter your new password.";
+            $matchErr = "Passwords do not match. Please re-enter your new password.";
         } else {
-            $passErr = "";
+            // $passErr = "";
             if (isset($_POST['update'])) {
-                $sql1 = "UPDATE users SET new_password='$new_password' WHERE name='{$_SESSION['name']}'";
+                $sql1 = "UPDATE users SET password='$new_password' WHERE name='{$_SESSION['name']}'";
                 $conn->exec($sql1);
             } else {
-                $updateErr = "Sign in first";
+                $updateErr = "get registered in first";
             }
 
-            $sq = "SELECT * FROM users WHERE user_id = '{$_SESSION['user_id']}' AND new_password IS NOT NULL";
+            $sq = "SELECT * FROM users WHERE user_id = '{$_SESSION['user_id']}' AND password IS NOT NULL";
             $result = $conn->query($sq);
             $count = 0;
 
@@ -93,11 +87,6 @@ try {
          <form action="" method="post">
             <div class="flex">
                <div class="inputBox">
-                  <span>Previous Password</span>
-                  <span class="error" style="color: red;"><?php echo $passErr; ?></span>
-                  <input type="password" placeholder="Enter old password" name="password" required>
-               </div><br>
-               <div class="inputBox">
                   <span>New Password</span>
                   <span class="error" style="color: red;"><?php echo $passErr; ?></span>
                   <input type="password" placeholder="Enter the new password" name="newpassword" required>
@@ -105,6 +94,7 @@ try {
                <div class="inputBox">
                   <span>Confirm New Password</span>
                   <span class="error" style="color: red;"><?php echo $passErr; ?></span>
+                  <span class="error" style="color: red;"><?php echo $matchErr; ?></span>
                   <input type="password" placeholder="Re-enter the new password" name="newpassword2" required>
                </div><br>
                <input type="submit" value="Update" name="update" class="btn">
@@ -115,4 +105,4 @@ try {
    <!-- Rest of the code remains the same -->
 </body>
 
-</html>  
+</html>

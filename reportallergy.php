@@ -37,7 +37,7 @@ try {
 
             $statement->execute();
 
-            echo "Records inserted successfully.";
+            // echo "Records inserted successfully."; //make it allert
         }
     }
 } catch (PDOException $e) {
