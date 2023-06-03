@@ -48,11 +48,17 @@ try
        
     }
     $sql ="INSERT INTO variable_child_information(weight,z_score,date) VALUES ('$weight','$z_score',curdate());
-            insert into schedule(date)values('$date');
+            -- insert into schedule(date)values('$date');
             insert into vaccination_record(date,vaccine_type)values(curdate(),'$v_type')";
-            
-    $conn->exec($sql);
+            $update = "UPDATE schedule SET v_type = '$fv_type', date = '$date' WHERE c_id = {$session['c_id']}";
+            $conn->exec($sql);
+            $conn->exec($update);
+
+    $update="update vaccine set ammount=ammount-1 where v_type='$v_type'";
+    $conn->exec($update);
+
     $conn = null; 
+
 } 
 }
     catch (PDOException $e) {
