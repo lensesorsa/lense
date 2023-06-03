@@ -30,7 +30,6 @@ try {
          $_SESSION['password'] = $row['password'];
          $_SESSION['role'] = $row['role'];
          $_SESSION['user_id'] = $row['user_id'];
-         $_SESSION['new_password'] = $row['new_password'];
 
          $count = $count + 1;
       }
@@ -41,7 +40,7 @@ try {
       } elseif ($_SESSION['name'] == $name && $_SESSION['password'] == $password && $_SESSION['role'] == 'nurseclerk') {
          header("location:nurseclerk.php");
       }elseif($_SESSION['name']==$name&&$_SESSION['role']=='parent'&& $_SESSION['password'] == $password){
-         if($_SESSION['newpassword']==null)
+         if($_SESSION['password']==1234)
          {
             header("location:changepassword.php");
 

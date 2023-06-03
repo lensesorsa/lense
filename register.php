@@ -116,8 +116,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         echo "Error inserting data into parent table: " . $e->getMessage();
     }
-}
 
+    try {
+        $stmt = $conn->prepare("INSERT INTO schedule (c_id) VALUES (:c_id)");
+        $stmt->bindParam(':c_id', $c_id);
+        $stmt->execute();
+        //echo "Data inserted successfully"; allert 
+    } catch (PDOException $e) {
+        echo "Error inserting data into parent table: " . $e->getMessage();
+    }
+
+    $insert ="INSERT INTO users(name,password,role) VALUES ('$f_name',1234,'parent')";
+    $conn->exec($insert);
+}
 
 
 // Close the database connection

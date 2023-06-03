@@ -67,7 +67,7 @@
     }
 </style>
 
-<body>
+<body style="background-image:none; background-color:lightblue">
     <div class="container">
         <?php @include 'header.php'; ?>
 

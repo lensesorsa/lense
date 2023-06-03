@@ -69,6 +69,7 @@
 
                // Select all rows from the "schedule" table
                $stmt = $conn->query("SELECT * FROM schedule");//where child is his own session
+               //$select = $conn->query("SELECT c_id FROM parent where f_name=$_SESSION['name']");//where child is his own session
 
                // Display the results in an HTML table with borders and clickable rows
                echo "<table>";

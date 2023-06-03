@@ -13,6 +13,49 @@
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 </head>
+<style>
+   body {
+      background-color: lightblue;
+      font-family: Arial, sans-serif;
+   }
+   table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+   }
+   th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+   }
+   th {
+      background-color: #f2f2f2;
+      font-size: 18px;
+      text-transform: uppercase;
+      }
+   td {
+      font-size: 16px;
+     }
+     button {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 5%;
+   }
+   button:hover {
+      background-color: #3e8e41;
+  }
+</style>
 
 <body style="background-image:none; background-color:lightblue">
    <div class="container">
@@ -40,12 +83,15 @@
                   echo "<td>" . $row["c_id"] . "</td>";
                   echo "<td>" . $row["v_type"] . "</td>";
                   echo "<td>" . $row["time"] . "</td>";
+                  echo '<td><button onclick="window.location.href = \'immunize.php\';">immunize</button></td>';
                   //echo "<td>" . $row["c_name"] . "</td>";
                   echo "</tr>";
                }
                echo "</table>";
 
                $conn = null; // Close the database connection
+               $_SESSION_start();
+               $_SESSION['c_id']=$row["c_id"];
             } catch (PDOException $e) {
                echo "Error: " . $e->getMessage();
             }
