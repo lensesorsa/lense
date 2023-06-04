@@ -34,7 +34,8 @@
 <body style="background-image:none; background-color:lightblue">
    <div class="container">
       <?php @include 'header.php'; ?>
-      
+      <h1 class="heading">Allergy report</h1>
+
       <section class="contact">
          <fieldset style="width: 10;">
             <?php
@@ -77,7 +78,7 @@
 
                // Display the results in an HTML table with borders
                echo "<table>";
-               echo "<tr><th>s_ID</th><th>rash</th><th>vomit</th><th>fever</th><th>c_id</th></tr>";
+               echo "<tr><th>s_ID</th><th>rash</th><th>vomit</th><th>fever</th><th>c_id</th><th>Action</th></tr>";
                while ($row = $stmt->fetch()) {
                   echo "<tr id='row_" . $row["s_id"] . "'>";
                   echo "<td>" . $row["s_id"] . "</td>";

@@ -70,6 +70,7 @@
 <body style="background-image:none; background-color:lightblue">
     <div class="container">
         <?php @include 'header.php'; ?>
+        <h1 class="heading">Add content</h1>
 
         <fieldset>
             <?php

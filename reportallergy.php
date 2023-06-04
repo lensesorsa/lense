@@ -60,7 +60,7 @@ try {
     <div class="container">
         <?php @include 'header.php'; ?>
         <section class="contact">
-            <h1 class="heading">Contact Us</h1>
+            <h1 class="heading">report allergy</h1>
             <form action="" method="post">
                 <div class="flex">
                     <div class="inputBox">

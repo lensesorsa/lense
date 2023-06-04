@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +19,7 @@
       background-color: lightblue;
       font-family: Arial, sans-serif;
    }
+
    table {
       border-collapse: collapse;
       width: 100%;
@@ -27,21 +29,26 @@
       border-radius: 10px;
       overflow: hidden;
    }
-   th, td {
+
+   th,
+   td {
       text-align: left;
       padding: 12px;
       border-bottom: 1px solid #ddd;
    }
+
    th {
       background-color: #f2f2f2;
       font-size: 18px;
       text-transform: uppercase;
-   
+
 
    }
+
    td {
       font-size: 16px;
    }
+
    button {
       display: inline-block;
       padding: 8px 12px;
@@ -54,55 +61,128 @@
       transition: background-color 0.3s ease;
       margin: 5%;
    }
+
    button:hover {
       background-color: #3e8e41;
-  }
-
+   }
 </style>
 
 <body>
    <div class="container">
       <?php @include 'header.php'; ?>
-      
-      <fieldset>    
+      <h1 class="heading"> schedule</h1>
+
+      <fieldset>
          <?php
-            $host = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "vaccination_db";
-            try {
-               $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-               $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+         $host = "localhost";
+         $username = "root";
+         $password = "";
+         $dbname = "vaccination_db";
+         $c_id=$n_id=$time="";
+         $idErr = $timeErr = "";
+         try {
+            $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-               // Select all rows from the "schedule" table
-               $stmt = $conn->query("SELECT * FROM schedule");
+            // Select all rows from the "schedule" table
+            $stmt = $conn->query("SELECT * FROM schedule where time is  null");
+            //  $stmt=$db->prepare('UPDATE mytable SET time =? WHERE id =?');
 
-               // Display the results in an HTML table with styled buttons
-               echo "<table>";
-               echo "<tr><th>Child Name</th><th>Date</th><th>Time</th><th>Vaccine Type</th><th>Action</th></tr>";
-               while ($row = $stmt->fetch()) {
-                  echo "<tr>";
-                  echo "<td>" . $row["c_id"] . "</td>";
-                  echo "<td>" . $row["date"] . "</td>";
-                  echo "<td>" . $row["time"] . "</td>";
-                  echo "<td>" . $row["v_type"] . "</td>";
-                  echo "<td><button>update time</button><button>update nurse</button></td>";
-                  echo "</tr>";
-               }
-               echo "</table>";
+            // $stmt = $conn->prepare("SELECT child.name , schedule.time AS time , schedule.date As date 
+            //             FROM schedule 
+            //             INNER JOIN child ON schedule.s_id = schedule.c_id");
+            $stmt->execute();
 
-               $conn = null;// Close the database connection
-            } catch (PDOException $e) {
-               echo "Error: " . $e->getMessage();
+            // Display the results in an HTML table with styled buttons
+            echo "<table>";
+            echo "<tr><th>Child Name</th><th>Date</th><th>Time</th><th>Vaccine Type</th><th>nurse name</th></tr>";
+            while ($row = $stmt->fetch()) {
+               echo "<tr>";
+               echo "<td>" . $row["c_id"] . "</td>";
+               echo "<td>" . $row["date"] . "</td>";
+               echo '<td class= "time">' . $row["time"] . "</td>";
+               echo "<td>" . $row["v_type"] . "</td>";
+               echo "<td>" . $row["n_id"] . "</td>";
+
+               // echo "<td><button onclick=\"handleButtonClick({$row['c_id']})\">update time </button> <button onclick=\"handleButtonClick({$row['c_id']})\">update nurse </button></td>";
+
+               // echo "<td><button>update time</button><button>update nurse</button></td>";
+               echo "</tr>";
             }
-          ?>
-      </fieldset>
+            echo "</table>";
+
+            //$c_id=$_POST['c_id'];
+            //$time=$_POST['time'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["c_id"])) {
+        $idErr = " id is required";
+    } else {
+        $c_id = $_POST["c_id"];
+        
+    }
+    if (empty($_POST["n_id"])) {
+      $idErr = " id is required";
+  } else {
+      $n_id = $_POST["n_id"];
       
+  }
+  if (empty($_POST["time"])) {
+   $timeErr = " time is required";
+} else {
+   $time = $_POST["time"];
+   
+}
+$update="update schedule set time='$time', n_id='$n_id' where c_id='$c_id'";
+$conn->exec($update);
+}
+
+            $conn = null; // Close the database connection
+         } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+         }
+         ?>
+      </fieldset>
+
+
+
+      <fieldset>
+         <section class="contact">
+
+            <form action="" method="post">
+
+               <div class="flex">
+
+                  <div class="inputBox">
+                     <span>child's id</span>
+                     <span class="error" style="color: red;"><?php echo $idErr; ?></span>
+                     <input type="text" placeholder="enter child's id" name="c_id" required>
+                  </div>
+                  <div class="inputBox">
+                     <span>nurse's id</span>
+                     <span class="error" style="color: red;"><?php echo $idErr; ?></span>
+                     <input type="text" placeholder="enter nurse's id" name="n_id" required>
+                  </div>
+                  <div class="inputBox">
+                     <span>time</span>
+                     <span class="error" style="color: red;"><?php echo $timeErr; ?></span>
+                     <input type="time" placeholder="enter time of vaccination" name="time" required>
+                  </div>
+                  <input type="submit" value="update" name="update" class="btn">
+               </div>
+            </form>
+         </section>
+
+      </fieldset>
+
       <?php @include 'footer.php'; ?>
    </div>
    <!-- swiper js link  -->
    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
    <!-- custom js file link  -->
    <script src="js/script.js"></script>
+
+
 </body>
+
+
 </html>

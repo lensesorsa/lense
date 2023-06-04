@@ -5,6 +5,8 @@ $password = "";
 try {
    $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   session_start();
+   
    $nameErr = $passwordErr = $loginErr = "";
    $name = $password = "";
    if (isset($_POST['login'])) {
@@ -21,7 +23,9 @@ try {
       } else {
          $password = $_POST["password"];
       }
-      session_start();
+      session_start(); // Start the session
+// //}
+     // session_start();
       $sq = "SELECT *FROM users WHERE name='" . $name . "' AND password='" . $password . "'";
       $result = $conn->query($sq);
       $count = 0;

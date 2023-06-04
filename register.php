@@ -6,8 +6,8 @@ $password = "";
 try {
     $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $nameErr = $emailErr = $noErr = $passwordErr = $addressErr = $messageErr = $updateErr = $dateErr = $genderErr = $blood_typeErr = $HIVErr = "";
-    $name = $email = $number = $date = $address = $password = $gender = $HIV = $blood_type = "";
+    $nameErr = $emailErr = $noErr = $passwordErr = $addressErr = $messageErr = $updateErr = $dateErr = $genderErr = $blood_typeErr = $HIVErr = $woredaErr = $kebeleErr = $housenoErr= "";
+    $name = $email = $number = $date = $address = $password = $gender = $HIV = $blood_type = $woreda= $kebele =$house_no = "";
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
@@ -63,10 +63,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $number = (($_POST["number"]));
     }
-    if (empty($_POST['address'])) {
-        $addressErr = " is required";
+    if (empty($_POST['woreda'])) {
+        $woredaErr = " is required";
     } else {
-        $address = $_POST['address'];
+        $woreda = $_POST['woreda'];
+    }
+    if (empty($_POST['kebele'])) {
+        $kebeleErr = " is required";
+    } else {
+        $kebele = $_POST['kebele'];
+    }
+    if (empty($_POST['house_no'])) {
+        $house_no = " is required";
+    } else {
+        $house_no = $_POST['house_no'];
     }
     if (empty($_POST['password'])) {
         $passwordErr = " field is required";
@@ -104,15 +114,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     //insert parent table
     try {
-        $stmt = $conn->prepare("INSERT INTO parent (f_name,m_name,address,email,number,c_id) VALUES (:f_name,:m_name,:address,:email,:number,:c_id)");
+        $stmt = $conn->prepare("INSERT INTO parent (f_name,m_name,email,number,c_id,woreda,kebele,house_no) VALUES (:f_name,:m_name,:email,:number,:c_id,:woreda,:kebele,:house_no)");
         $stmt->bindParam(':f_name', $f_name);
         $stmt->bindParam(':m_name', $m_name);
-        $stmt->bindParam(':address', $address);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':number', $number);
         $stmt->bindParam(':c_id', $c_id);
+        $stmt->bindParam(':woreda', $woreda);
+        $stmt->bindParam(':kebele', $kebele);
+        $stmt->bindParam(':house_no', $house_no);
+
+
+
         $stmt->execute();
-        echo "Data inserted successfully";
+        //echo "Data inserted successfully"; allert
     } catch (PDOException $e) {
         echo "Error inserting data into parent table: " . $e->getMessage();
     }
@@ -127,8 +142,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $insert ="INSERT INTO users(name,password,role) VALUES ('$f_name',1234,'parent')";
+    $insert1="INSERT INTO schedule(c_id,date,v_type)values('$c_id',curdate(),'BCG')";
     $conn->exec($insert);
-}
+   $conn->exec($insert1);
+} 
 
 
 // Close the database connection
@@ -176,7 +193,7 @@ $conn = null;
 
         <section class="contact">
 
-            <h1 class="heading">contact us</h1>
+            <h1 class="heading">register</h1>
 
             <form action="" method="post">
 
@@ -228,9 +245,18 @@ $conn = null;
                         <input type="number" placeholder="enter your number" name="number" required>
                     </div>
                     <div class="inputBox">
-                        <span>your address</span>
-                        <span class="error" style="color: red;"> <?php echo $addressErr; ?></span>
-                        <textarea name="address" placeholder="enter your address" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
+                        <span>woreda</span>
+                        <span class="error" style="color: red;"> <?php echo $woredaErr; ?></span>
+                        <textarea name="woreda" placeholder="enter your woreda" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
+                    </div>
+                    <div class="inputBox">
+                        <span>kebele</span>
+                        <span class="error" style="color: red;"> <?php echo $kebeleErr; ?></span>
+                        <textarea name="kebele" placeholder="enter your kebele" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
+                    </div><div class="inputBox">
+                        <span>house number</span>
+                        <span class="error" style="color: red;"> <?php echo $housenoErr; ?></span>
+                        <textarea name="house_no" placeholder="enter your house number" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
                     </div>
 
                 </div>

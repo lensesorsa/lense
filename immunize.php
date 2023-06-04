@@ -4,8 +4,11 @@ $username = "root";
 $password = "";
 try 
 {
+
    $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   session_start();
+   $c_id = $_SESSION['c_id'];
 
    $v_typeErr=$fv_typeErr=$weightErr = $ZscoreErr =$dateErr= "";
    $v_type = $fv_type = $weight = $z_score =$date= "";
@@ -38,7 +41,16 @@ try
     {
        $z_score = $_POST["Z_score"];
        
-    } if (empty($_POST["date"])) 
+    }if (empty($_POST["fv_type"])) 
+    {
+       $fv_typeErr = " field is required";
+    }
+    else
+    {
+       $fv_type = $_POST["fv_type"];
+       
+    }  
+    if (empty($_POST["date"])) 
     {
        $dateErr = " field is required";
     }
@@ -47,15 +59,14 @@ try
        $date = $_POST["date"];
        
     }
-    $sql ="INSERT INTO variable_child_information(weight,z_score,date) VALUES ('$weight','$z_score',curdate());
+    $sql ="INSERT INTO variable_child_information(c_id,weight,z_score,date) VALUES ('$c_id','$weight','$z_score',curdate());
             -- insert into schedule(date)values('$date');
-            insert into vaccination_record(date,vaccine_type)values(curdate(),'$v_type')";
-            $update = "UPDATE schedule SET v_type = '$fv_type', date = '$date' WHERE c_id = {$session['c_id']}";
+            insert into vaccination_record(date,vaccine_type,c_id)values(curdate(),'$v_type','$c_id')";
+            $update = "UPDATE schedule SET v_type = '$fv_type', date = '$date' WHERE c_id = '$c_id'";
             $conn->exec($sql);
             $conn->exec($update);
-
-    $update="update vaccine set ammount=ammount-1 where v_type='$v_type'";
-    $conn->exec($update);
+    $update1="update vaccine set ammount=ammount-1 where v_type='$v_type' LIMIT 1";
+    $conn->exec($update1);
 
     $conn = null; 
 

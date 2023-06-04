@@ -23,7 +23,6 @@
          <a href="childprofile.php"> <i class="fas fa-angle-right"></i> childprofile</a>
          <a href="generatereport.php"> <i class="fas fa-angle-right"></i> generate report</a>
          <!-- <a href="immunize.php"> <i class="fas fa-angle-right"></i> immunize</a> -->
-         <a href="appoint.php"> <i class="fas fa-angle-right"></i> appoint</a>
       </div>
       <div>
          <img src="image/nurse.jpg"/>

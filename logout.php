@@ -1,7 +1,9 @@
 <?php
 session_start();
-unset($_SESSION["id"]);
+unset($_SESSION["p_id"]);
+unset($_SESSION["c_id"]);
 unset($_SESSION["name"]);
+unset($_SESSION["password"]);
 header("Location:home.php");
 ?>
 <!-- correct  -->

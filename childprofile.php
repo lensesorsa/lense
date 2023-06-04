@@ -61,6 +61,8 @@
    <div class="container">
       <?php @include 'header.php'; ?>
       <section class="contact">
+      <h1 class="heading">see schedule</h1>
+
          <fieldset style="width: 10;">
             <?php
             $host = "localhost";
@@ -71,9 +73,10 @@
             try {
                $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+               session_start();
 
                // Select all rows from the "users" table
-               $stmt = $conn->query("SELECT * FROM schedule where date=curdate()");
+               $stmt = $conn->query("SELECT * FROM schedule where date=curdate()");//for the specific nurse and time that time is also specified
 
                // Display the results in an HTML table
                echo "<table>";
@@ -86,12 +89,13 @@
                   echo '<td><button onclick="window.location.href = \'immunize.php\';">immunize</button></td>';
                   //echo "<td>" . $row["c_name"] . "</td>";
                   echo "</tr>";
+
+               $_SESSION['c_id'] = $row["c_id"];
                }
                echo "</table>";
 
                $conn = null; // Close the database connection
-               $_SESSION_start();
-               $_SESSION['c_id']=$row["c_id"];
+               
             } catch (PDOException $e) {
                echo "Error: " . $e->getMessage();
             }
