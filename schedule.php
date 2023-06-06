@@ -6,6 +6,15 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>home</title>
+
+      <!-- Add the Bootstrap CSS file -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- Add the jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Add the Bootstrap JS file -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    <!-- swiper css link  -->
@@ -132,6 +141,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $time = $_POST["time"];
    
 }
+$registration_is_successful = true;
+
+    
+// your PHP code for registration goes here
+
+if ($registration_is_successful) {
+    // show modal using JavaScript
+    echo "<script>$(document).ready(function() { $('#myModal').modal('show'); });</script>";
+}
+
 $update="update schedule set time='$time', n_id='$n_id' where c_id='$c_id'";
 $conn->exec($update);
 }
@@ -167,12 +186,44 @@ $conn->exec($update);
                      <span class="error" style="color: red;"><?php echo $timeErr; ?></span>
                      <input type="time" placeholder="enter time of vaccination" name="time" required>
                   </div>
-                  <input type="submit" value="update" name="update" class="btn">
+                  <input type="submit" value="update" name="update" id="update" class="btn">
                </div>
+                <!-- Modal -->
+
+               <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">schedule Successful !!</h4>
+      </div>
+      <div class="modal-body">
+       
+       <!-- <p> successful.</p> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
             </form>
          </section>
-
+         
       </fieldset>
+      <script>
+    $(document).ready(function(){
+        $("#myModal").modal('hide');
+
+        $("#update").click(function(){
+            $("#myModal").modal('show');
+        });
+    });
+</script>
+       
 
       <?php @include 'footer.php'; ?>
    </div>

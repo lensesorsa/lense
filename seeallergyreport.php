@@ -48,37 +48,12 @@
                $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-               if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                  if (isset($_POST["reject"])) {
-                     $sId = $_POST["reject"];
-                     $stmt = $conn->prepare("DELETE FROM symptom WHERE s_id = :sId");
-                     $stmt->bindParam(':sId', $sId);
-                     $stmt->execute();
-                  } elseif (isset($_POST["accept"])) {
-                     $sId = $_POST["accept"];
-                     $stmt = $conn->prepare("SELECT * FROM symptom WHERE s_id = :sId");
-                     $stmt->bindParam(':sId', $sId);
-                     $stmt->execute();
-                     $row = $stmt->fetch();
-
-                     // Move the row to the "variable_child_information" table and update the "allergy" column
-                     $stmt = $conn->prepare("INSERT INTO variable_child_information (allergy) VALUES (:allergy)");
-                     $stmt->bindParam(':allergy', $row['rash']);
-                     $stmt->execute();
-
-                     // Delete the row from the "symptom" table
-                     $stmt = $conn->prepare("DELETE FROM symptom WHERE s_id = :sId");
-                     $stmt->bindParam(':sId', $sId);
-                     $stmt->execute();
-                  }
-               }
-
-               // Select all rows from the "symptom" table
+                              // Select all rows from the "symptom" table
                $stmt = $conn->query("SELECT * FROM symptom");
 
                // Display the results in an HTML table with borders
                echo "<table>";
-               echo "<tr><th>s_ID</th><th>rash</th><th>vomit</th><th>fever</th><th>c_id</th><th>Action</th></tr>";
+               echo "<tr><th>s_ID</th><th>rash</th><th>vomit</th><th>fever</th><th>c_id</th><th>date</th></th><th>Action</th></tr>";
                while ($row = $stmt->fetch()) {
                   echo "<tr id='row_" . $row["s_id"] . "'>";
                   echo "<td>" . $row["s_id"] . "</td>";
@@ -86,6 +61,8 @@
                   echo "<td>" . $row["vomit"] . "</td>";
                   echo "<td>" . $row["fever"] . "</td>";
                   echo "<td>" . $row["c_id"] . "</td>";
+                  echo "<td>" . $row["date"] . "</td>";
+
                   echo "<td>
                            <form method='POST' action=''>
                               <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
@@ -99,8 +76,43 @@
                            </form>
                         </td>";
                   echo "</tr>";
+
+                  $date=$row["date"];
+                  $c_id=$row["c_id"];
                }
                echo "</table>";
+
+              
+
+               if ($_SERVER["REQUEST_METHOD"] == "POST") 
+               {
+                  if (isset($_POST["reject"])) {
+                     $sId = $_POST["reject"];
+                     $stmt = $conn->prepare("DELETE FROM symptom WHERE s_id = :sId");
+                     $stmt->bindParam(':sId', $sId);
+                     $stmt->execute();
+                  } elseif (isset($_POST["accept"])) 
+                  {
+                     $sId = $_POST["accept"];                
+
+                     $select = $conn->query("SELECT vaccine_type FROM vaccination_record WHERE c_id='$c_id' AND date='$date'");
+                     while ($row = $select->fetch()) {
+                        $v_type=$row["vaccine_type"];
+                     }
+                     $dates = date('Y-m-d');
+                     $stmt = $conn->prepare("INSERT INTO variable_child_information (allergy,c_id,date) VALUES (:allergy,:c_id,:date)");
+                     $stmt->bindParam(':allergy', $v_type);
+                     $stmt->bindParam(':c_id', $c_id);
+                     $stmt->bindParam(':date', $dates);
+                     // set $date to the current date in YYYY-MM-DD format
+                     $stmt->execute();
+
+                     // Delete the row from the "symptom" table
+                     $stmt = $conn->prepare("DELETE FROM symptom WHERE s_id = :sId");
+                     $stmt->bindParam(':sId', $sId);
+                     $stmt->execute();
+                  }
+               }
 
                $conn = null; // Close the database connection
             } catch (PDOException $e) {

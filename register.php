@@ -6,8 +6,8 @@ $password = "";
 try {
     $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $nameErr = $emailErr = $noErr = $passwordErr = $addressErr = $messageErr = $updateErr = $dateErr = $genderErr = $blood_typeErr = $HIVErr = $woredaErr = $kebeleErr = $housenoErr= "";
-    $name = $email = $number = $date = $address = $password = $gender = $HIV = $blood_type = $woreda= $kebele =$house_no = "";
+    $nameErr = $emailErr = $noErr = $passwordErr = $addressErr = $messageErr = $updateErr = $dateErr = $genderErr = $blood_typeErr = $HIVErr = $woredaErr = $kebeleErr = $housenoErr = "";
+    $name = $email = $number = $date = $address = $password = $gender = $HIV = $blood_type = $woreda = $kebele = $house_no = "";
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
@@ -94,7 +94,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $blood_type = $_POST['blood_type'];
     }
 
+    $registration_is_successful = true;
 
+    
+    // your PHP code for registration goes here
+    
+    if ($registration_is_successful) {
+        // show modal using JavaScript
+        echo "<script>$(document).ready(function() { $('#myModal').modal('show'); });</script>";
+    }
 
 
 
@@ -141,11 +149,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error inserting data into parent table: " . $e->getMessage();
     }
 
-    $insert ="INSERT INTO users(name,password,role) VALUES ('$f_name',1234,'parent')";
-    $insert1="INSERT INTO schedule(c_id,date,v_type)values('$c_id',curdate(),'BCG')";
+    $insert = "INSERT INTO users(name,password,role) VALUES ('$f_name',1234,'parent')";
+    $insert1 = "INSERT INTO schedule(c_id,date,v_type)values('$c_id',curdate(),'BCG')";
     $conn->exec($insert);
-   $conn->exec($insert1);
-} 
+    $conn->exec($insert1);
+}
 
 
 // Close the database connection
@@ -173,6 +181,16 @@ $conn = null;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>contact</title>
+
+
+    <!-- Add the Bootstrap CSS file -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- Add the jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Add the Bootstrap JS file -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -219,11 +237,7 @@ $conn = null;
                         <span class="error" style="color: red;"> <?php echo $dateErr; ?></span>
                         <input type="date" name="date" min="2022-01-00" max="2050-12-30">
                     </div>
-                    <div class="inputBox">
-                        <span>Gender:</span>
-                        <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
-                        <input type="text" name="gender" placeholder="gender of the child">
-                    </div>
+
                     <div class="inputBox">
                         <span>HIV_status</span>
                         <span class="error" style="color: red;"> <?php echo $HIVErr; ?></span>
@@ -253,16 +267,67 @@ $conn = null;
                         <span>kebele</span>
                         <span class="error" style="color: red;"> <?php echo $kebeleErr; ?></span>
                         <textarea name="kebele" placeholder="enter your kebele" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
-                    </div><div class="inputBox">
+                    </div>
+                    <div class="inputBox">
+                        <span>Gender:</span>
+                        <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
+                        <span>
+                            <input type="radio" name="gender" value="male">
+                            Male
+                        </span>
+
+                        <span>
+                            <input type="radio" name="gender" value="female">
+                            Female
+                        </span>
+
+                        <!-- <input type="text" name="gender" placeholder="gender of the child"> -->
+                    </div>
+                    <div class="inputBox">
                         <span>house number</span>
                         <span class="error" style="color: red;"> <?php echo $housenoErr; ?></span>
                         <textarea name="house_no" placeholder="enter your house number" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
                     </div>
 
                 </div>
-                <input type="submit" value="register" name="register" class="btn">
+                <input type="submit" value="register" name="register" id="register" class="btn">
+
+
+                <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Registration Successful</h4>
+      </div>
+      <div class="modal-body">
+        <p>Your registration has been successful.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
             </form>
+
+
+
         </section>
+
+        <script>
+    $(document).ready(function(){
+        $("#myModal").modal('hide');
+
+        $("#register").click(function(){
+            $("#myModal").modal('show');
+        });
+    });
+</script>
         <?php @include 'footer.php'; ?>
     </div>
     <!-- swiper js link  -->
