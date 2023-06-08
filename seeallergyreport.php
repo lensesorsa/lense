@@ -82,9 +82,7 @@
                }
                echo "</table>";
 
-              
-
-               if ($_SERVER["REQUEST_METHOD"] == "POST") 
+              if ($_SERVER["REQUEST_METHOD"] == "POST") 
                {
                   if (isset($_POST["reject"])) {
                      $sId = $_POST["reject"];

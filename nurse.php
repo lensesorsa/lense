@@ -20,7 +20,8 @@
    <div class="box-container">
 
       <div class="box">
-         <a href="childprofile.php"> <i class="fas fa-angle-right"></i> childprofile</a>
+         <a href="viewschedule.php"> <i class="fas fa-angle-right"></i> view schedule</a>
+         <a href="childprofile.php.php"> <i class="fas fa-angle-right"></i> child profile</a>
          <a href="generatereport.php"> <i class="fas fa-angle-right"></i> generate report</a>
          <!-- <a href="immunize.php"> <i class="fas fa-angle-right"></i> immunize</a> -->
       </div>

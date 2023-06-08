@@ -97,7 +97,7 @@ try {
                   <span class="error" style="color: red;"><?php echo $matchErr; ?></span>
                   <input type="password" placeholder="Re-enter the new password" name="newpassword2" required>
                </div><br>
-               <input type="submit" value="Update" name="update" class="btn">
+               <input type="submit" value="change" name="update" class="btn">
             </div>
          </form>
       </section>

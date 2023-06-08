@@ -176,6 +176,7 @@ $conn = null;
         span.error {
             color: #FF0000;
         }
+        
     </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -208,12 +209,13 @@ $conn = null;
     <div class="container">
 
         <?php @include 'header.php'; ?>
+        <?php @include 'NKnavigation.php'; ?>
 
         <section class="contact">
-
+        
             <h1 class="heading">register</h1>
-
-            <form action="" method="post">
+            
+                       <form action="" method="post">
 
                 <div class="flex">
 
@@ -256,7 +258,7 @@ $conn = null;
                     <div class="inputBox">
                         <span>phone number:</span>
                         <span class="error" style="color: red;"><?php echo $noErr; ?></span>
-                        <input type="number" placeholder="enter your number" name="number" required>
+                        <input type="tel" placeholder="enter your number" name="number" required>
                     </div>
                     <div class="inputBox">
                         <span>woreda</span>
@@ -316,7 +318,13 @@ $conn = null;
             </form>
 
 
-
+ <!-- <div class="box">
+  <a href="register.php"><i class="fas fa-angle-right"></i> register</a>
+  <a href="schedule.php"><i class="fas fa-angle-right"></i> schedule</a>
+  <a href="vaccinemanagement.php"><i class="fas fa-angle-right"></i> manage vaccine</a>
+  <a href="seeallergyreport.php"><i class="fas fa-angle-right"></i> see allergy report</a>
+  <a href="content.php"><i class="fas fa-angle-right"></i> add content</a>
+</div>-->
         </section>
 
         <script>
