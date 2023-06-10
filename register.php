@@ -174,7 +174,8 @@ $conn = null;
 <head>
     <style>
         span.error {
-            color: #FF0000;
+            /* color: #FF0000; */
+            color: #000;
         }
         
     </style>
