@@ -79,6 +79,8 @@
 <body>
    <div class="container">
       <?php @include 'header.php'; ?>
+      <?php @include 'NKnavigation.php'; ?>
+
       <h1 class="heading"> schedule</h1>
 
       <fieldset>
@@ -98,8 +100,8 @@
             //  $stmt=$db->prepare('UPDATE mytable SET time =? WHERE id =?');
 
             // $stmt = $conn->prepare("SELECT child.name , schedule.time AS time , schedule.date As date 
-            //             FROM schedule 
-            //             INNER JOIN child ON schedule.s_id = schedule.c_id");
+            // FROM schedule 
+            // iNNER JOIN child ON schedule.s_id = schedule.c_id");
             $stmt->execute();
 
             // Display the results in an HTML table with styled buttons

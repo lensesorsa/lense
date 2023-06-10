@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+   <title>nurse home</title>
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    <!-- swiper css link  -->
@@ -19,12 +19,8 @@
 
    <div class="box-container">
 
-      <div class="box">
-         <a href="viewschedule.php"> <i class="fas fa-angle-right"></i> view schedule</a>
-         <a href="childprofile.php.php"> <i class="fas fa-angle-right"></i> child profile</a>
-         <a href="generatereport.php"> <i class="fas fa-angle-right"></i> generate report</a>
-         <!-- <a href="immunize.php"> <i class="fas fa-angle-right"></i> immunize</a> -->
-      </div>
+   <?php @include 'nursenavigation.php'; ?>
+
       <div>
          <img src="image/nurse.jpg"/>
       </div>
