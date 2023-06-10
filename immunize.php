@@ -90,7 +90,7 @@ try
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>contact</title>
+   <title>immunize</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -104,10 +104,11 @@ try
 </head>
 
 <body style="background-image:none; background-color:lightblue">
+<?php @include 'header.php'; ?>
 
    <div class="container">
+   <?php @include 'nursenavigation.php'; ?>
 
-      <?php @include 'header.php'; ?>
 
       <section class="contact">
 
@@ -122,15 +123,15 @@ try
                   <select name="v_type">
                      <option value="none"> none</option>
                      <option value="BCG">BCG</option>
-                     <option value="polio 0">polio0</option>
-                     <option value="polio 1">polio1</option>
-                     <option value="polio 2">polio2</option>
-                     <option value="polio 3">polio3</option>
-                     <option value="measles">measles</option>
-                     <option value="rota 1">rota1</option>
-                     <option value="rota 2">rota2</option>
+                     <option value="polio 0">polio 0</option>
+                     <option value="polio 1">polio 1</option>
+                     <option value="polio 2">polio 2</option>
+                     <option value="polio 3">polio 3</option>
+                     <option value="rota 1">rota 1</option>
+                     <option value="rota 2">rota 2</option>
                      <option value="penta">penta</option>
                      <option value="PCV">PCV</option>
+                     <option value="measles">measles</option>
                      <option value="vit_A">vit_A</option>
                   </select>
                </div>

@@ -5,7 +5,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <title>parent home</title>
 </head>
 
 <body style="background-color:lightblue">
@@ -49,10 +49,7 @@
    ?>
    <section class="footer">
       <div class="box-container">
-         <div class="box">
-            <a href="seeschedule.php"> <i class="fas fa-angle-right"></i> see schedule</a>
-            <a href="reportallergy.php"> <i class="fas fa-angle-right"></i> report allergy</a>
-         </div>
+      <?php @include 'parentnavigation.php';?>
          <div>
             <img src="image/parent.jpg" />
          </div>
