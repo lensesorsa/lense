@@ -177,11 +177,12 @@ $conn = null;
             color: #FF0000;
         }
         
+        
     </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contact</title>
+    <title>Register</title>
 
 
     <!-- Add the Bootstrap CSS file -->
@@ -296,11 +297,11 @@ $conn = null;
 
 
                 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog">
+            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
   
-    <!-- Modal content-->
-    <div class="modal-content">
+            <!-- Modal content-->
+        <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Registration Successful</h4>

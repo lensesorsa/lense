@@ -52,40 +52,6 @@
                $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-               // Select all rows from the "symptom" table
-               // $stmt = $conn->query("SELECT * FROM symptom");
-
-               // // Display the results in an HTML table with borders
-               // echo "<table>";
-               // echo "<tr><th>s_ID</th><th>rash</th><th>vomit</th><th>fever</th><th>c_id</th><th>date</th></th><th>Action</th></tr>";
-               // while ($row = $stmt->fetch()) {
-               //    echo "<tr id='row_" . $row["s_id"] . "'>";
-               //    echo "<td>" . $row["s_id"] . "</td>";
-               //    echo "<td>" . $row["rash"] . "</td>";
-               //    echo "<td>" . $row["vomit"] . "</td>";
-               //    echo "<td>" . $row["fever"] . "</td>";
-               //    echo "<td>" . $row["c_id"] . "</td>";
-               //    echo "<td>" . $row["date"] . "</td>";
-
-               //    echo "<td>
-               //             <form method='POST' action=''>
-               //                <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
-               //                <button type='submit'>Reject</button>
-               //             </form>
-               //          </td>";
-               //    echo "<td>
-               //             <form method='POST' action=''>
-               //                <input type='hidden' name='accept' value='" . $row["s_id"] . "'>
-               //                <button type='submit'>Accept</button>
-               //             </form>
-               //          </td>";
-               //    echo "</tr>";
-
-               //    $date=$row["date"];
-               //    $c_id=$row["c_id"];
-               // }
-               // echo "</table>";
-
                $stmt = $conn->query("SELECT * FROM symptom");
 
                // Display the results in an HTML table with borders
