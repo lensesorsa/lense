@@ -309,6 +309,8 @@ $conn = null;
       </div>
       <div class="modal-body">
         <p>Your registration has been successful.</p>
+        <p>thank you.</p>
+        <p>thank you.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
