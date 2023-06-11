@@ -16,7 +16,7 @@
    $username = "root";
    $password = "";
    try {
-      $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
+      $conn = new PDO("mysql:host=$host;dbname=vaccine", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       session_start();
       $f_name = $_SESSION['name'];
@@ -53,9 +53,7 @@
             <a href="seeschedule.php"> <i class="fas fa-angle-right"></i> see schedule</a>
             <a href="reportallergy.php"> <i class="fas fa-angle-right"></i> report allergy</a>
          </div>
-         <div>
-            <img src="image/parent.jpg" />
-         </div>
+         
       </div>
    </section>
    <?php @include 'footer.php'; ?>

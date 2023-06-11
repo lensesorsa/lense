@@ -3,7 +3,7 @@ $host = "localhost";
 $username = "root";
 $password = "";
 try {
-   $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
+   $conn = new PDO("mysql:host=$host;dbname=vaccine", $username, $password);
    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
    session_start();
    
