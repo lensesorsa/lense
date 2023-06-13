@@ -104,12 +104,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <input type="submit" value="Report" name="send" id="send" class="btn">
                 </div>
-            </form>
+            
 
 
 
 
-            <form>
+            
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog">
