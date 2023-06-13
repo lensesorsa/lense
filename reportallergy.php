@@ -85,19 +85,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <?php @include 'header.php'; ?>
         <section class="contact">
-
             <h1 class="heading">Report Allergy</h1>
-
             <form action="" method="post" class="form">
                 <div class="form-group">
                     <label for="symptoms" class="label">Symptoms:</label>
                     <span class="error"><?php echo $symptomErr; ?></span>
                     <div class="checkbox-group">
-
                         <label class="checkbox-label"><input type="checkbox" name="rash" value="1">Rash </label>
                         <label class="checkbox-label"><input type="checkbox" name="fever" value="1"> Fever</label>
                         <label class="checkbox-label"><input type="checkbox" name="vomit" value="1">Vomit </label>
-
                     </div>
                 </div>
                 <div class="form-group">
@@ -108,14 +104,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <input type="submit" value="Report" name="send" id="send" class="btn">
                 </div>
-
             </form>
 
-            
 
 
 
-            
+            <form>
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" role="dialog">
                     <div class="modal-dialog">
