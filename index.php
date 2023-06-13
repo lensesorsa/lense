@@ -128,7 +128,9 @@ if (isset($_GET["search"])) {
                     echo "<td>" . $row['blood_type'] . "</td>";
 
                     echo "<td>" . $row['hiv_status'] . "</td>";
-                    echo "<button>Delete</button>"; 
+
+                    // echo "<button>Delete</button>"; 
+
         }
     } else {
         echo "No results found";
