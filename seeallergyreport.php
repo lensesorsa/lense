@@ -68,7 +68,11 @@
                   echo "<td>" . $row["c_id"] . "</td>";
                   echo "<td>" . $row["date"] . "</td>";
                   echo "<td>
+
+
+
                               <form method='POST' action=''>
+                              <form>
                                  <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
                                  <button type='submit'>Reject</button>
                               </form>
