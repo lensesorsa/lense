@@ -7,6 +7,7 @@ $password = "";
 $dbname = "vaccination_db";
 
 try {
+
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -103,7 +104,9 @@ $conn = null;
                         <th scope="col">smtn</th>
                         <th scope="col">smtn</th>
                         <th scope="col">smtn</th>
-                        </tr>
+                        <!-- <th scope="col">smtn</th> -->
+
+                    </tr>
                     </thead>
                     <tbody> 
                         <tr>
