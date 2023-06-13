@@ -83,7 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body style="background-image:none; background-color:lightblue">
     <div class="container">
-        <?php @include 'header.php'; ?>
+        <?php @include 'phome.php'; ?>
+        <?php @include 'parentnavigation.php'; ?>
+
         <section class="contact">
             <h1 class="heading">Report Allergy</h1>
             <form action="" method="post">

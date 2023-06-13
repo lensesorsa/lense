@@ -59,7 +59,13 @@
 
 <body style="background-image:none; background-color:lightblue">
    <div class="container">
+<<<<<<< Updated upstream
       <?php @include 'header.php'; ?>
+=======
+      <?php @include 'Nhome.php'; ?>
+      <?php @include 'nursenavigation.php'; ?>
+
+>>>>>>> Stashed changes
       <section class="contact">
       <h1 class="heading">see schedule</h1>
 

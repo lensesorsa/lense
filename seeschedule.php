@@ -44,7 +44,9 @@
 <body style="background-color:lightblue">
    <div class="container">
 
-      <?php @include 'header.php'; ?>
+      <?php @include 'Phome.php'; ?>
+      <?php @include 'parentnavigation.php'; ?>
+
       <h1 class="heading">see schedule</h1>
 
       <fieldset>
@@ -82,7 +84,7 @@
 
             //Display the results in an HTML table with borders and clickable rows
             echo "<table>";
-            echo "<tr><th>Child Name</th><th>Vaccine Type</th><th>Time</th></tr>";
+            echo "<tr><th>Child Name</th><th>Vaccine Type</th><th>Time</th><th>date</th></tr>";
             while (($row = $stmt->fetch())&&($rows=$select->fetch())) {
               
                echo "<td>" . $rows["name"] . "</td>";

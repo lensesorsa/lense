@@ -78,7 +78,13 @@
 
 <body>
    <div class="container">
+<<<<<<< Updated upstream
       <?php @include 'header.php'; ?>
+=======
+      <?php @include 'NKheader.php'; ?>
+      <?php @include 'NKnavigation.php'; ?>
+
+>>>>>>> Stashed changes
       <h1 class="heading"> schedule</h1>
 
       <fieldset>
