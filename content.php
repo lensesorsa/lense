@@ -140,7 +140,7 @@
                      <span class="error" style="color: red;"><?php echo $timeErr; ?></span>
                      <input type="time" placeholder="enter time of vaccination" name="time" required>
                   </div> -->
-                        <input type="submit" value="update" name="update" class="btn">
+                        <input type="submit" value="add general information" name="update" class="btn">
                     </div>
                 </form>
             </section>

@@ -14,7 +14,7 @@
    <ink rel="shortcut icon" href="images/ye.jpg">
 </head>
 <body style="background-color:lightblue">
-<?php @include 'header.php'; ?>
+<?php @include 'NKhome.php'; ?>
 <section class="footer">
 
    <div class="box-container">
