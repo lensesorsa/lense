@@ -40,15 +40,17 @@ a:hover {
    max-width: 1000px;
    margin: 0 auto;
    padding: 20px;
+   margin-top: 10px;
 }
 
 .row {
    display: flex;
    flex-direction: row;
+   column-gap:10rem;
 }
 
 .col-3 {
-   width: 25%;
+   width: 20%;
    margin-right: 20px;
 }
 
@@ -60,11 +62,11 @@ a:hover {
 .box {
    background-color: #f2f2f2;
    padding: 20px;
-   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
    height: 100%;
    position: sticky;
    left: 0;
    top: 0;
+   overflow-y: auto;
 }
 
 .box a {
@@ -100,7 +102,7 @@ a:hover {
 }
 
 .content p {
-   font-size: 18px;
+   font-size: 20px;
    line-height: 1.5;
    margin-bottom: 20px;
 }
@@ -120,7 +122,7 @@ a:hover {
    background-color: #0056b3;
 }
 </style>
-<body style="background-color: #f8f9fa;">
+<body style="background-color: lightblue;">
    <?php @include 'header.php'; ?>
    <div class="container">
       <div class="row">
@@ -131,7 +133,7 @@ a:hover {
                <a href="generatereport.php"><i class="fas fa-file-alt"></i> Generate Report</a>
             </div>
          </div>
-         <div class="col-9">
+         <div class="col-9 welcome">
             <div class="content">
                <h1>Welcome to our website!</h1>
                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis quam. Sed id libero vel elit ornare finibus. Aliquam tincidunt justo id nulla fermentum, in aliquet orci ultrices. Aliquamerat volutpat. Vivamus maximus nisi nisi, a interdum nulla dictum sit amet. Nullam consequat libero ut nibh aliquam, non dapibus enim bibendum. Donec at elit ac urna interdum luctus. Donec sed metus tincidunt, aliquam mauris eget, molestie nunc. Sed sitamet odio vel sapien blandit tincidunt. Fusce vulputate nulla diam, eu consequat sem sagittis vel. Donec et enim eu erat bibendum bibendum. Sed in libero vel elit ornare finibus.</p>

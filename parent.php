@@ -8,6 +8,7 @@
    <title>Document</title>
 </head>
 
+
 <body style="background-color:lightblue">
    <?php @include 'header.php';
 

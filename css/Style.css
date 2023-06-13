@@ -2,7 +2,7 @@
 
 :root{
    --blue:#3579c7;
-   --white:#fff;
+   --white:#f1f7f6;
    --black:#222;
    --transparent-white:rgba(255,255,255,.3);
    --border:.2rem solid var(--black);
@@ -47,17 +47,23 @@ span.error{
 }
 
 .container{
-   border-radius: .5rem;
+   /* border-radius: .5rem;
    overflow: hidden;
-   background: var(--transparent-white);
+   background: var(--transparent-white); */
   /* backdrop-filter: blur(.5rem);
    */
-   max-width: 1200px;
+   max-width: 100%;
    margin:10rem auto;
-   box-shadow: var(--box-shadow);
+  
    /* margin-bottom: 15rem; */
 }
 
+.welcome{
+   border-radius: .5rem;
+   overflow: hidden;
+   background: var(--transparent-white);
+   box-shadow: var(--box-shadow);
+}
 .heading{
    text-align: center;
    text-transform: uppercase;
