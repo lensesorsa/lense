@@ -82,8 +82,10 @@ $c_id=$n_id=$time="";
          $idErr = $timeErr = "";
         ?> 
    <div class="container">
-      <?php @include 'header.php'; ?>
+
+      <?php @include 'NKheader.php'; ?>
       <?php @include 'NKnavigation.php'; ?>
+
 
       <h1 class="heading"> schedule</h1>
 
