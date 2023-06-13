@@ -5,7 +5,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+   <title>see schedule</title>
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    <!-- swiper css link  -->
@@ -50,21 +50,7 @@
       <h1 class="heading">see schedule</h1>
 
       <fieldset>
-         <!-- <div> 
-            <div>
-               <h1 class="heading">Schedule</h1>
-
-            </div>
-
-            <div>
-               <h6 class="heading">child name: </h6>
-            </div>
-            <div>
-               <h6 class="heading">Date: </h6>
-            </div>   <div>
-               <h6 class="heading">Time: </h6>
-            </div>
-         </div>-->
+         
          <?php
          $host = "localhost";
          $username = "root";

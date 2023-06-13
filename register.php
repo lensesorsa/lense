@@ -178,11 +178,12 @@ $conn = null;
             color: #000;
         }
         
+        
     </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contact</title>
+    <title>Register</title>
 
 
     <!-- Add the Bootstrap CSS file -->
@@ -209,14 +210,14 @@ $conn = null;
 
     <div class="container">
 
-        <?php @include 'header.php'; ?>
+        <?php @include 'NKhome.php'; ?>
         <?php @include 'NKnavigation.php'; ?>
 
         <section class="contact">
         
             <h1 class="heading">register</h1>
             
-                       <form action="" method="post">
+                <form action="" method="post">
 
                 <div class="flex">
 
@@ -297,17 +298,19 @@ $conn = null;
 
 
                 <!-- Modal -->
-<div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog">
+            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
   
-    <!-- Modal content-->
-    <div class="modal-content">
+            <!-- Modal content-->
+        <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Registration Successful</h4>
       </div>
       <div class="modal-body">
         <p>Your registration has been successful.</p>
+        <p>thank you.</p>
+        <p>thank you.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
