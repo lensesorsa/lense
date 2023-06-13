@@ -59,8 +59,10 @@
 
 <body style="background-image:none; background-color:lightblue">
    <div class="container">
-      <?php @include 'header.php'; ?>
+
+      <?php @include 'Nhome.php'; ?>
       <?php @include 'nursenavigation.php'; ?>
+
 
       <section class="contact">
       <h1 class="heading">see schedule</h1>

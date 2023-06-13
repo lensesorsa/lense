@@ -69,8 +69,13 @@
 
 <body style="background-image:none; background-color:lightblue">
     <div class="container">
-        <?php @include 'header.php'; ?>
+
+        <?php @include 'NKhome.php'; ?>
         <?php @include 'NKnavigation.php'; ?>
+
+
+
+
 
         <h1 class="heading">Add content</h1>
 
@@ -140,7 +145,7 @@
                      <span class="error" style="color: red;"><?php echo $timeErr; ?></span>
                      <input type="time" placeholder="enter time of vaccination" name="time" required>
                   </div> -->
-                        <input type="submit" value="update" name="update" class="btn">
+                        <input type="submit" value="add general information" name="update" class="btn">
                     </div>
                 </form>
             </section>

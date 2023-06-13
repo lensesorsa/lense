@@ -46,7 +46,7 @@
    // $stmt = $conn->query("select c_id from parent where p_id='{$_SESSION['name']}'");
 
 
-   ?>
+?>
    <section class="footer">
       <div class="box-container">
       <?php @include 'parentnavigation.php';?>

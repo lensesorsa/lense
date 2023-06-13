@@ -77,11 +77,71 @@
 </style>
 
 <body>
+   <?php
+$c_id=$n_id=$time="";
+         $idErr = $timeErr = "";
+        ?> 
    <div class="container">
-      <?php @include 'header.php'; ?>
+
+      <?php @include 'NKheader.php'; ?>
       <?php @include 'NKnavigation.php'; ?>
 
+
       <h1 class="heading"> schedule</h1>
+
+      
+
+      <fieldset>
+         <section class="contact">
+
+            <form action="" method="post">
+
+               <div class="flex">
+
+                  <div class="inputBox">
+                     <span>child's id</span>
+                     <span class="error" style="color: red;"><?php echo $idErr; ?></span>
+                     <input type="text" placeholder="enter child's id" name="c_id" required>
+                  </div>
+                  <div class="inputBox">
+                     <span>nurse's id</span>
+                     <span class="error" style="color: red;"><?php echo $idErr; ?></span>
+                     <input type="text" placeholder="enter nurse's id" name="n_id" required>
+                  </div>
+                  <div class="inputBox">
+                     <span>time</span>
+                     <span class="error" style="color: red;"><?php echo $timeErr; ?></span>
+                     <input type="time" placeholder="enter time of vaccination" name="time" required>
+                  </div>
+                  <input type="submit" value="schedule" name="update" id="update" class="btn">
+               </div>
+                <!-- Modal -->
+
+               <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">schedule Successful !!</h4>
+      </div>
+      <div class="modal-body">
+       
+       <!-- <p> successful.</p> -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+            </form>
+         </section>
+         
+      </fieldset>
+
 
       <fieldset>
          <?php
@@ -89,8 +149,6 @@
          $username = "root";
          $password = "";
          $dbname = "vaccination_db";
-         $c_id=$n_id=$time="";
-         $idErr = $timeErr = "";
          try {
             $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -103,17 +161,17 @@
             // FROM schedule 
             // iNNER JOIN child ON schedule.s_id = schedule.c_id");
             $stmt->execute();
-
+            
             // Display the results in an HTML table with styled buttons
+            echo "<h4>Please assign a designated appointment time for each child on this list for their next visit</h4>";
             echo "<table>";
-            echo "<tr><th>Child Name</th><th>Date</th><th>Time</th><th>Vaccine Type</th><th>nurse name</th></tr>";
+            
+            echo "<tr><th>Child ID</th><th>Date</th><th>Vaccine Type</th></tr>";
             while ($row = $stmt->fetch()) {
                echo "<tr>";
                echo "<td>" . $row["c_id"] . "</td>";
                echo "<td>" . $row["date"] . "</td>";
-               echo '<td class= "time">' . $row["time"] . "</td>";
                echo "<td>" . $row["v_type"] . "</td>";
-               echo "<td>" . $row["n_id"] . "</td>";
 
                // echo "<td><button onclick=\"handleButtonClick({$row['c_id']})\">update time </button> <button onclick=\"handleButtonClick({$row['c_id']})\">update nurse </button></td>";
 
@@ -164,58 +222,6 @@ $conn->exec($update);
          ?>
       </fieldset>
 
-
-
-      <fieldset>
-         <section class="contact">
-
-            <form action="" method="post">
-
-               <div class="flex">
-
-                  <div class="inputBox">
-                     <span>child's id</span>
-                     <span class="error" style="color: red;"><?php echo $idErr; ?></span>
-                     <input type="text" placeholder="enter child's id" name="c_id" required>
-                  </div>
-                  <div class="inputBox">
-                     <span>nurse's id</span>
-                     <span class="error" style="color: red;"><?php echo $idErr; ?></span>
-                     <input type="text" placeholder="enter nurse's id" name="n_id" required>
-                  </div>
-                  <div class="inputBox">
-                     <span>time</span>
-                     <span class="error" style="color: red;"><?php echo $timeErr; ?></span>
-                     <input type="time" placeholder="enter time of vaccination" name="time" required>
-                  </div>
-                  <input type="submit" value="update" name="update" id="update" class="btn">
-               </div>
-                <!-- Modal -->
-
-               <div class="modal fade" id="myModal" role="dialog">
-  <div class="modal-dialog">
-  
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">schedule Successful !!</h4>
-      </div>
-      <div class="modal-body">
-       
-       <!-- <p> successful.</p> -->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-    
-  </div>
-</div>
-            </form>
-         </section>
-         
-      </fieldset>
       <script>
     $(document).ready(function(){
         $("#myModal").modal('hide');
