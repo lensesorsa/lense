@@ -16,6 +16,7 @@ try {
   $sql = "SELECT * from child";
   $stmt = $conn->prepare($sql);
 
+  
   $stmt->execute();
   $conn = null;
   ?>
