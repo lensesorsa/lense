@@ -174,7 +174,8 @@ $conn = null;
 <head>
     <style>
         span.error {
-            color: #FF0000;
+            /* color: #FF0000; */
+            color: #000;
         }
         
         
@@ -209,14 +210,14 @@ $conn = null;
 
     <div class="container">
 
-        <?php @include 'header.php'; ?>
+        <?php @include 'NKhome.php'; ?>
         <?php @include 'NKnavigation.php'; ?>
 
         <section class="contact">
         
             <h1 class="heading">register</h1>
             
-                       <form action="" method="post">
+                <form action="" method="post">
 
                 <div class="flex">
 

@@ -23,7 +23,6 @@ try {
       } else {
          $password = $_POST["password"];
       }
-      session_start(); // Start the session
 // //}
      // session_start();
       $sq = "SELECT *FROM users WHERE name='" . $name . "' AND password='" . $password . "'";
