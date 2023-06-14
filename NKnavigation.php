@@ -17,9 +17,9 @@
 <div class="navigation">
     <a href="register.php"> <i class="fas fa-angle-right"></i> register</a><br>
     <a href="schedule.php"> <i class="fas fa-angle-right"></i> schedule</a><br>
-    <a href="vaccinemanagement.php"> <i class="fas fa-angle-right"></i> manage vaccine</a><br>
+    <a href="manage_vaccine.php"> <i class="fas fa-angle-right"></i> manage vaccine</a><br>
     <a href="seeallergyreport.php"> <i class="fas fa-angle-right"></i> see allergy report</a><br>
-    <a href="content.php"> <i class="fas fa-angle-right"></i> add content</a><br>
+    <a href="content.php"> <i class="fas fa-angle-right"></i>Post General Information</a><br>
 </div>
 </body>
 </htlm>
