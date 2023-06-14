@@ -88,7 +88,7 @@ $c_id=$n_id=$time="";
 
 
       <h1 class="heading"> schedule</h1>
-
+      <!-- <h1 class="heading"> schedule</h1> -->
       
 
       <fieldset>
