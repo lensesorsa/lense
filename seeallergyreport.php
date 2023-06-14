@@ -81,6 +81,7 @@
                               <form method='POST' action=''>
                                  <input type='hidden' name='accept' value='" . $row["s_id"] . "'>
                                  <button type='submit'>Accept</button>
+                              
                               </form>
                            </td>";
                   echo "</tr>";
@@ -112,11 +113,15 @@
                      $stmt->execute();
 
                      // Delete the row from the "symptom" table
+
+
                      $stmt = $conn->prepare("DELETE FROM symptom WHERE s_id = :sId");
                      $stmt->bindParam(':sId', $sId);
                      $stmt->execute();
                   }
                }
+
+
 
                $conn = null; // Close the database connection
             } catch (PDOException $e) {
