@@ -87,7 +87,7 @@ $c_id=$n_id=$time="";
       <?php @include 'NKnavigation.php'; ?>
 
 
-      <h1 class="heading"> schedules</h1>
+      <h1 class="heading"> schedule</h1>
 
       
 
