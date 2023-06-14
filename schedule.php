@@ -163,7 +163,7 @@ $c_id=$n_id=$time="";
             $stmt->execute();
             
             // Display the results in an HTML table with styled buttons
-            echo "<h3>a list of children that needs to be given a specific time to come on the next appointment</h3>";
+            echo "<h4>Please assign a designated appointment time for each child on this list for their next visit</h4>";
             echo "<table>";
             
             echo "<tr><th>Child ID</th><th>Date</th><th>Vaccine Type</th></tr>";
