@@ -81,7 +81,7 @@
                               <form method='POST' action=''>
                                  <input type='hidden' name='accept' value='" . $row["s_id"] . "'>
                                  <button type='submit'>Accept</button>
-                                 <button type='submit'>Accept</button>  <button type='submit'>Accept</button>
+                              
                               </form>
                            </td>";
                   echo "</tr>";
