@@ -340,6 +340,7 @@ $conn = null;
         });
     });
 </script>
+
         <?php @include 'footer.php'; ?>
     </div>
     <!-- swiper js link  -->
