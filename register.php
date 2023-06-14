@@ -176,7 +176,36 @@ $conn = null;
         span.error {
             color: #FF0000;
         }
-        * {
+        
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+
+    <!-- Add the Bootstrap CSS file -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- Add the jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Add the Bootstrap JS file -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- swiper css link  -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<style>
+  /* Reset styles */
+* {
    box-sizing: border-box;
    margin: 0;
    padding: 0;
@@ -284,164 +313,121 @@ a:hover {
 .btn:hover {
    background-color: #0056b3;
 }
-        
-    </style>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+</style>
 
-
-    <!-- Add the Bootstrap CSS file -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-<!-- Add the jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Add the Bootstrap JS file -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <!-- swiper css link  -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
 
 <body style="background-image:none; background-color:lightblue">
-<?php @include 'NKhome.php'; ?>
+<?php @include 'header.php'; ?>
 
     <div class="container">
-        <div class="row">
-            <div class="col-3">
-                <div class="box">
-                    <?php @include 'NKnavigation.php'; ?>
-                </div>
+    <div class="row">
+         <div class="col-3">
+            <div class="box">
+                <?php @include 'NKnavigation.php'; ?>
             </div>
-            <div class="col-9">
-                <div class="content">
-                    <section class="cntact"></section>
-                        <h1 class="heading">register</h1>
-                        <form action="" method="post">
-                        <div class="flex">
-                        <div class="inputBox">
+        </div>
+        <div class="col-9">
+            <section class="contact">
+                <h1 class="heading">register</h1>
+                <form action="" method="post">
+                    <div class="flex">
+                    <div class="inputBox">
                         <span>child's name</span>
                         <span class="error" style="color: red;"><?php echo $nameErr; ?></span>
                         <input type="text" placeholder="enter child's name" name="c_name" required>
-                </div>
-                <div class="inputBox">
-                    <span>father's name</span>
-                    <span class="error" style="color: red;"><?php echo $nameErr; ?></span>
-                    <input type="text" placeholder="enter father's name" name="f_name" required>
-                </div>
-                <div class="inputBox">
-                    <span>mother's name</span>
-                    <span class="error" style="color: red;"><?php echo $nameErr; ?></span>
-                    <input type="text" placeholder="enter mother's name" name="m_name" required>
-                </div>
-                <div class="inputBox">
-                    <span>date of birth:</span>
-                    <span class="error" style="color: red;"> <?php echo $dateErr; ?></span>
-                    <input type="date" name="date" min="2022-01-00" max="2050-12-30">
-                </div>
+                    </div>
+                    <div class="inputBox">
+                        <span>father's name</span>
+                        <span class="error" style="color: red;"><?php echo $nameErr; ?></span>
+                        <input type="text" placeholder="enter father's name" name="f_name" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>mother's name</span>
+                        <span class="error" style="color: red;"><?php echo $nameErr; ?></span>
+                        <input type="text" placeholder="enter mother's name" name="m_name" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>date of birth:</span>
+                        <span class="error" style="color: red;"> <?php echo $dateErr; ?></span>
+                        <input type="date" name="date" min="2022-01-00" max="2050-12-30">
+                    </div>
 
-                <div class="inputBox">
-                    <span>HIV_status</span>
-                    <span class="error" style="color: red;"> <?php echo $HIVErr; ?></span>
-                    <input type="text" name="HIV" placeholder="HIV status of the child">
-                </div>
-                <div class="inputBox">
-                    <span>Blood type:</span>
-                    <span class="error" style="color: red;"> <?php echo $blood_typeErr; ?></span>
-                    <input type="text" name="blood_type" placeholder="blood type of the child">
-                </div>
-                <div class="inputBox">
-                    <span>email address: </span>
-                    <span class="error" style="color: red;"> <?php echo $emailErr; ?></span>
-                    <input type="email" placeholder="enter your email" name="email" required>
-                </div>
-                <div class="inputBox">
-                    <span>phone number:</span>
-                    <span class="error" style="color: red;"><?php echo $noErr; ?></span>
-                    <input type="tel" placeholder="enter your number" name="number" required>
-                </div>
-                <div class="inputBox">
-                    <span>woreda</span>
-                    <span class="error" style="color: red;"> <?php echo $woredaErr; ?></span>
-                    <textarea name="woreda" placeholder="enter your woreda" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
-                </div>
-                <div class="inputBox">
-                    <span>kebele</span>
-                    <span class="error" style="color: red;"> <?php echo $kebeleErr; ?></span>
-                    <textarea name="kebele" placeholder="enter your kebele" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
-                </div>
-                <div class="inputBox">
-                    <span>Gender:</span>
-                    <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
-                    <span>
-                        <input type="radio" name="gender" value="male">
-                        Male
-                    </span>
+                    <div class="inputBox">
+                        <span>HIV_status</span>
+                        <span class="error" style="color: red;"> <?php echo $HIVErr; ?></span>
+                        <input type="text" name="HIV" placeholder="HIV status of the child">
+                    </div>
+                    <div class="inputBox">
+                        <span>Blood type:</span>
+                        <span class="error" style="color: red;"> <?php echo $blood_typeErr; ?></span>
+                        <input type="text" name="blood_type" placeholder="blood type of the child">
+                    </div>
+                    <div class="inputBox">
+                        <span>email address: </span>
+                        <span class="error" style="color: red;"> <?php echo $emailErr; ?></span>
+                        <input type="email" placeholder="enter your email" name="email" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>phone number:</span>
+                        <span class="error" style="color: red;"><?php echo $noErr; ?></span>
+                        <input type="tel" placeholder="enter your number" name="number" required>
+                    </div>
+                    <div class="inputBox">
+                        <span>woreda</span>
+                        <span class="error" style="color: red;"> <?php echo $woredaErr; ?></span>
+                        <textarea name="woreda" placeholder="enter your woreda" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
+                    </div>
+                    <div class="inputBox">
+                        <span>kebele</span>
+                        <span class="error" style="color: red;"> <?php echo $kebeleErr; ?></span>
+                        <textarea name="kebele" placeholder="enter your kebele" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
+                    </div>
+                    <div class="inputBox">
+                        <span>Gender:</span>
+                        <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
+                        <span>
+                            <input type="radio" name="gender" value="male">
+                            Male
+                        </span>
 
-                    <span>
-                        <input type="radio" name="gender" value="female">
-                        Female
-                    </span>
+                        <span>
+                            <input type="radio" name="gender" value="female">
+                            Female
+                        </span>
 
-                    <!-- <input type="text" name="gender" placeholder="gender of the child"> -->
-                </div>
-                <div class="inputBox">
-                    <span>house number</span>
-                    <span class="error" style="color: red;"> <?php echo $housenoErr; ?></span>
-                    <textarea name="house_no" placeholder="enter your house number" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
-                </div>
+                        <!-- <input type="text" name="gender" placeholder="gender of the child"> -->
+                    </div>
+                    <div class="inputBox">
+                        <span>house number</span>
+                        <span class="error" style="color: red;"> <?php echo $housenoErr; ?></span>
+                        <textarea name="house_no" placeholder="enter your house number" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
+                    </div>
+                    <input type="submit" value="register" name="register" id="register" class="btn">
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Registration Successful</h4>
+                        <div class="modal-body">
+                            <p>Your registration has been successful.</p>
+                        </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </form>
+            </section>
 
-            </div>
-            <input type="submit" value="register" name="register" id="register" class="btn">
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Registration Successful</h4>
-            <div class="modal-body">
-            <p>Your registration has been successful.</p>
-            <p>thank you.</p>
-            <p>thank you.</p>
         </div>
-  
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  </div>
+    </div>
 </div>
-
-</div>
-</div>
-        </form>
-
-                </div>
-            </div>
-
-        <section class="contact">
-        
-            
- <!-- <div class="box">
-  <a href="register.php"><i class="fas fa-angle-right"></i> register</a>
-  <a href="schedule.php"><i class="fas fa-angle-right"></i> schedule</a>
-  <a href="vaccinemanagement.php"><i class="fas fa-angle-right"></i> manage vaccine</a>
-  <a href="seeallergyreport.php"><i class="fas fa-angle-right"></i> see allergy report</a>
-  <a href="content.php"><i class="fas fa-angle-right"></i> add content</a>
-</div>-->
-        </section>
-
-        <script>
+<?php @include 'footer.php'; ?>
+<script>
     $(document).ready(function(){
         $("#myModal").modal('hide');
 
@@ -450,12 +436,10 @@ a:hover {
         });
     });
 </script>
-        <?php @include 'footer.php'; ?>
     </div>
     <!-- swiper js link  -->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- custom js file link  -->
     <script src="js/script.js"></script>
 </body>
-
 </html>
