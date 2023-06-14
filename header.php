@@ -3,7 +3,7 @@
    <a href="home.php" class="logo"> Jan meda health center</a>
 
    <nav class="navbar">
-      <a href="home.php">home</a>
+      <a href="#">home</a>
       <a href="logout.php">logout</a>
       <a href="changepassword.php">change password</a>
    </nav>
