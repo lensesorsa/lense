@@ -184,6 +184,7 @@ a:hover {
    }
 </style>
 
+
 <body style="background-color: lightblue;">
 <?php @include 'NKheader.php'; ?>
 <div class="container">
@@ -200,6 +201,7 @@ a:hover {
                   $idErr = $timeErr = "";
                ?> 
                <h1 class="heading"> schedule</h1>
+
       <fieldset>
          <section class="contact">
 

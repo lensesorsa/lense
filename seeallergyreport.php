@@ -192,6 +192,7 @@ a:hover {
                               
                            </form>
                         </td>";
+
                   echo "</tr>";
 
                   $date = $row["date"];
