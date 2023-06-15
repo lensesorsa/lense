@@ -80,13 +80,141 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
+<style>
+   /* Reset styles */
+   * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+   }
+
+   /* Global styles */
+   body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+   }
+
+   a {
+      color: #007bff;
+      text-decoration: none;
+   }
+
+   a:hover {
+      color: #0056b3;
+   }
+
+   .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      margin-top: 10px;
+   }
+
+   .row {
+      display: flex;
+      flex-direction: row;
+      column-gap: 10rem;
+   }
+
+   .col-3 {
+      width: 20%;
+      margin-right: 20px;
+   }
+
+   .col-9 {
+      width: 75%;
+   }
+
+   /* Navigation styles */
+   .box {
+      background-color: #f2f2f2;
+      /* padding: 10px; */
+      height: 80%;
+      position: sticky;
+      left: 0;
+      top: 0;
+      margin-top: 7rem;
+      overflow-y: auto;
+   }
+
+   .box a {
+      display: block;
+      margin-bottom: 15px;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      font-size: 18px;
+      transition: background-color 0.2s ease-in-out;
+   }
+
+   .box a:hover {
+      background-color: #007bff;
+      color: #fff;
+   }
+
+   .box a i {
+      margin-right: 10px;
+   }
+
+   /* Content styles */
+   .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+   }
+
+   .content h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+   }
+
+   .content p {
+      font-size: 20px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+   }
+
+   .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-align: center;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: background-color 0.2s ease-in-out;
+   }
+
+   .btn:hover {
+      background-color: #0056b3;
+   }
+</style>
 
 <body style="background-image:none; background-color:lightblue">
     <div class="container">
         <?php @include 'header.php'; ?>
         <section class="contact">
             <h1 class="heading">Report Allergy</h1>
+            <section class="footer">
+         <!-- <div class="box-container"> -->
+            <div class="container">
+               <div class="row">
+                  <div class="col-3">
+                     <div class="box">
+                        <?php @include 'parentnavigation.php'; ?>
+                     </div>
+                  </div>
+                  <div class="col-9 welcome">
+                     <div class="content">
             <form action="" method="post" class="form">
+            <div class="form-group">
+                    <label for="date" class="label">child name:</label>
+                    <!-- <span class="error"><?php echo $dateErr; ?></span> -->
+                    <input type="text" name="date" placeholder="enter your child name" class="input">
+                </div>
                 <div class="form-group">
                     <label for="symptoms" class="label">Symptoms:</label>
                     <span class="error"><?php echo $symptomErr; ?></span>
@@ -107,6 +235,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
 
 
+            
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+      
+   </div>
 
 
             <form>
