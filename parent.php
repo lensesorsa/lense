@@ -61,7 +61,7 @@
    }
 
    .col-9 {
-      width: 75%;
+      width:75%;
    }
 
    /* Navigation styles */

@@ -78,7 +78,7 @@
    }
 
    .col-3 {
-      width: 20%;
+      width: 30%;
       margin-right: 20px;
    }
 
@@ -181,7 +181,7 @@
                               $c_id =  $_SESSION["c_id"];
 
 
-                              $stmt = $conn->query("SELECT c_id, v_type,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
+                              $stmt = $conn->query("SELECT c_id, v_type,date,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
                               $select = $conn->query("SELECT name from child where c_id='$c_id'");
 
                               //Display the results in an HTML table with borders and clickable rows
@@ -191,10 +191,17 @@
 
                                  echo "<td>" . $rows["name"] . "</td>";
                                  echo "<td>" . $row["v_type"] . "</td>";
-                                 echo "<td>" . $row["time"] . "</td>";
-
+                                
+                                 // echo "<td>" . $row["time"] . "</td>";
+                                 if ($row["time"] != null) {
+                                    echo "<td>" . $row["time"] . "</td>";
+                                 } else {
+                                    echo "<td><h2>The schedule is not yet set</h2></td>";
+                                 }
+                                 echo "<td>" . $row["date"] . "</td>";
                                  echo "</tr>";
                               }
+                              
                               echo "</table>";
                               $conn = null; // Close the database connection
                            } catch (PDOException $e) {
