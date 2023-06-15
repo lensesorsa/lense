@@ -14,14 +14,12 @@
    <link rel="stylesheet" href="css/style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-0J1gK7rmOF/sJbq0RqQrGVAfH3f2z3W5sJy3a3HcL9hJ9yTscN+R6J3k5j3lYwoF2+Gg7WbTn7rQoQf4QV3RlA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
 <style>
    table {
       border-collapse: collapse;
       width: 100%;
       margin-bottom: 20px;
    }
-
    th,
    td {
       text-align: left;

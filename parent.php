@@ -154,16 +154,11 @@
       echo $e->getMessage();
    }
    // // Prepare a statement and execute a query
-
    // Fetch the result as an associative array
-
-
    // Assign the result to the session variable
    // $_SESSION['p_id'] = $result['p_id'];
    // $stmt = $conn->query("select c_id from parent where p_id='{$_SESSION['name']}'");
-
-
-   ?>
+  ?>
    <section class="footer">
       <div class="box-container">
          <div class="container">
