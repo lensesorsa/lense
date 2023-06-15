@@ -16,6 +16,9 @@
 
 <style>
    /* Reset styles */
+   .lense{
+   display: flex;
+   }
    * {
       box-sizing: border-box;
       margin: 0;
