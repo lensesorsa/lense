@@ -24,6 +24,114 @@
    <ink rel="shortcut icon" href="images/ye.jpg">
 </head>
 <style>
+   * {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+/* Global styles */
+body {
+   font-family: Arial, sans-serif;
+   font-size: 16px;
+   line-height: 1.5;
+   color: #333;
+}
+
+a {
+   color: #007bff;
+   text-decoration: none;
+}
+
+a:hover {
+   color: #0056b3;
+}
+
+.container {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 20px;
+   margin-top: 10px;
+}
+
+.row {
+   display: flex;
+   flex-direction: row;
+   column-gap:10rem;
+}
+
+.col-3 {
+   width: 20%;
+   margin-right: 20px;
+}
+
+.col-9 {
+   width: 75%;
+}
+
+/* Navigation styles */
+.box {
+   background-color: #f2f2f2;
+   padding: 20px;
+   height: 100%;
+   position: sticky;
+   left: 0;
+   top: 0;
+   overflow-y: auto;
+}
+
+.box a {
+   display: block;
+   margin-bottom: 15px;
+   padding: 10px;
+   color: #333;
+   text-decoration: none;
+   font-size: 18px;
+   transition: background-color 0.2s ease-in-out;
+}
+
+.box a:hover {
+   background-color: #007bff;
+   color: #fff;
+}
+
+.box a i {
+   margin-right: 10px;
+}
+
+/* Content styles */
+.content {
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 40px;
+}
+
+.content h1 {
+   font-size: 48px;
+   font-weight: bold;
+   margin-bottom: 20px;
+}
+
+.content p {
+   font-size: 20px;
+   line-height: 1.5;
+   margin-bottom: 20px;
+}
+
+.btn {
+   display: inline-block;
+   padding: 10px 20px;
+   background-color: #007bff;
+   color: #fff;
+   text-align: center;
+   font-size: 18px;
+   border-radius: 5px;
+   transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+   background-color: #0056b3;
+}
    body {
       background-color: lightblue;
       font-family: Arial, sans-serif;
@@ -76,20 +184,23 @@
    }
 </style>
 
-<body>
-   <?php
-$c_id=$n_id=$time="";
-         $idErr = $timeErr = "";
-        ?> 
-   <div class="container">
 
-      <?php @include 'NKheader.php'; ?>
-      <?php @include 'NKnavigation.php'; ?>
-
-
-      <h1 class="heading"> schedules</h1>
-
-      
+<body style="background-color: lightblue;">
+<?php @include 'NKheader.php'; ?>
+<div class="container">
+      <div class="row">
+         <div class="col-3">
+            <div class="box">
+               <?php @include 'NKnavigation.php'; ?>
+            </div>
+         </div>
+         <div class="col-9 welcome">
+            <div class="content">
+               <?php
+                  $c_id=$n_id=$time="";
+                  $idErr = $timeErr = "";
+               ?> 
+               <h1 class="heading"> schedule</h1>
 
       <fieldset>
          <section class="contact">
@@ -163,7 +274,7 @@ $c_id=$n_id=$time="";
             $stmt->execute();
             
             // Display the results in an HTML table with styled buttons
-            echo "<h4>Please assign a designated appointment time for each child on this list for their next visit</h4>";
+            // echo "<h4>Please assign a designated appointment time for each child on this list for their next visit</h4>";
             echo "<table>";
             
             echo "<tr><th>Child ID</th><th>Date</th><th>Vaccine Type</th></tr>";
@@ -231,6 +342,13 @@ $conn->exec($update);
         });
     });
 </script>
+            </div>
+         </div>
+   
+
+         </div>
+   </div>
+   
        
 
       <?php @include 'footer.php'; ?>

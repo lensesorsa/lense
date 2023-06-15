@@ -15,6 +15,115 @@
     <ink rel="shortcut icon" href="images/ye.jpg">
 </head>
 <style>
+    * {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+/* Global styles */
+body {
+   font-family: Arial, sans-serif;
+   font-size: 16px;
+   line-height: 1.5;
+   color: #333;
+}
+
+a {
+   color: #007bff;
+   text-decoration: none;
+}
+
+a:hover {
+   color: #0056b3;
+}
+
+.container {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 20px;
+   margin-top: 10px;
+}
+
+.row {
+   display: flex;
+   flex-direction: row;
+   column-gap:10rem;
+}
+
+.col-3 {
+   width: 20%;
+   margin-right: 20px;
+}
+
+.col-9 {
+   width: 75%;
+}
+
+/* Navigation styles */
+.box {
+   background-color: #f2f2f2;
+   padding: 20px;
+   height: 100%;
+   position: sticky;
+   left: 0;
+   top: 0;
+   overflow-y: auto;
+}
+
+.box a {
+   display: block;
+   margin-bottom: 15px;
+   padding: 10px;
+   color: #333;
+   text-decoration: none;
+   font-size: 18px;
+   transition: background-color 0.2s ease-in-out;
+}
+
+.box a:hover {
+   background-color: #007bff;
+   color: #fff;
+}
+
+.box a i {
+   margin-right: 10px;
+}
+
+/* Content styles */
+.content {
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 40px;
+}
+
+.content h1 {
+   font-size: 48px;
+   font-weight: bold;
+   margin-bottom: 20px;
+}
+
+.content p {
+   font-size: 20px;
+   line-height: 1.5;
+   margin-bottom: 20px;
+}
+
+.btn {
+   display: inline-block;
+   padding: 10px 20px;
+   background-color: #007bff;
+   color: #fff;
+   text-align: center;
+   font-size: 18px;
+   border-radius: 5px;
+   transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+   background-color: #0056b3;
+}
+
     body {file:///C:/Users/motis/Downloads/Telegram Desktop/content.txt
         background-color: lightblue;
         font-family: Arial, sans-serif;
@@ -68,98 +177,107 @@
 </style>
 
 <body style="background-image:none; background-color:lightblue">
+<?php @include 'NKhome.php'; ?>
+
     <div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="box">
+            <?php @include 'NKnavigation.php'; ?>
+            </div>
+        </div>
+        <div class="col-9 welcome">
+            <div class="content">
+            <h1 class="heading">Add content</h1>
 
-        <?php @include 'NKhome.php'; ?>
-        <?php @include 'NKnavigation.php'; ?>
+<fieldset>
+    <?php
+    $host = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "vaccination_db";
+    $content = $title = $time = $curdate = "";
+    $conErr = $titErr = "";
+    try {
+        $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-
-
-
-        <h1 class="heading">Add content</h1>
-
-        <fieldset>
-            <?php
-            $host = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "vaccination_db";
-            $content = $title = $time = $curdate = "";
-            $conErr = $titErr = "";
-            try {
-                $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    if (empty($_POST["content"])) {
-                        $conErr = " con is required";
-                    } else {
-                        $content = $_POST["content"];
-                    }
-                    if (empty($_POST["title"])) {
-                        $titErr = " title is required";
-                    } else {
-                        $title = $_POST["title"];
-                    }
-
-                   
-                    $stmt = "INSERT INTO generalinformation(title,content,date)values('$title','$content',curdate())";
-                    $conn->exec($stmt);
-                    $conn = null;
-                }
-
-                $conn = null; // Close the database connection
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST["content"])) {
+                $conErr = " con is required";
+            } else {
+                $content = $_POST["content"];
             }
-            ?>
-        </fieldset>
+            if (empty($_POST["title"])) {
+                $titErr = " title is required";
+            } else {
+                $title = $_POST["title"];
+            }
+
+           
+            $stmt = "INSERT INTO generalinformation(title,content,date)values('$title','$content',curdate())";
+            $conn->exec($stmt);
+            $conn = null;
+        }
+
+        $conn = null; // Close the database connection
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+    ?>
+</fieldset>
 
 
 
-        <fieldset>
-            <section class="contact">
+<fieldset>
+    <section class="contact">
 
-                <form action="" method="post">
+        <form action="" method="post">
 
-                    <div class="flex">
+            <div class="flex">
 
-                        <div class="inputBox">
-                            <span>Title</span>
-                            <span class="error" style="color: red;"><?php echo $titErr; ?></span>
-                            <!-- <label for="title">Title</label> -->
-                            <input type="text" name="title" id="title" required>
-                        </div>
-                        <div class="inputBox">
-                            <span>content</span>
-                            <span class="error" style="color: red;"><?php echo $conErr; ?></span>
-                            <!-- <label for="content">Content</label> -->
-                            <textarea name="content" id="content" rows="5" required></textarea>
+                <div class="inputBox">
+                    <span>Title</span>
+                    <span class="error" style="color: red;"><?php echo $titErr; ?></span>
+                    <!-- <label for="title">Title</label> -->
+                    <input type="text" name="title" id="title" required>
+                </div>
+                <div class="inputBox">
+                    <span>content</span>
+                    <span class="error" style="color: red;"><?php echo $conErr; ?></span>
+                    <!-- <label for="content">Content</label> -->
+                    <textarea name="content" id="content" rows="5" required></textarea>
 
-                            <!-- <input type="text" placeholder="enter nurse's id" name="n_id" required> -->
-                        </div>
-                        <!-- <div class="inputBox">
-                     <span>time</span>
-                     <span class="error" style="color: red;"><?php echo $timeErr; ?></span>
-                     <input type="time" placeholder="enter time of vaccination" name="time" required>
-                  </div> -->
-                        <input type="submit" value="add general information" name="update" class="btn">
-                    </div>
-                </form>
-            </section>
+                    <!-- <input type="text" placeholder="enter nurse's id" name="n_id" required> -->
+                </div>
+                <!-- <div class="inputBox">
+             <span>time</span>
+             <span class="error" style="color: red;"><?php echo $timeErr; ?></span>
+             <input type="time" placeholder="enter time of vaccination" name="time" required>
+          </div> -->
+                <input type="submit" value="add general information" name="update" class="btn">
+            </div>
+        </form>
+    </section>
 
-        </fieldset>
+</fieldset>
 
-        <?php @include 'footer.php'; ?>
-    </div>
-    <!-- swiper js link  -->
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <!-- custom js file link  -->
-    <script src="js/script.js"></script>
+</div>
+<!-- swiper js link  -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
 
 
+            </div>
+        </div>
+
+</div>
+</div>
+<?php @include 'footer.php'; ?>
+
+       
 </body>
 
 
