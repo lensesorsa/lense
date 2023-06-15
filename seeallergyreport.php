@@ -16,6 +16,114 @@
 </head>
 
 <style>
+   * {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+/* Global styles */
+body {
+   font-family: Arial, sans-serif;
+   font-size: 16px;
+   line-height: 1.5;
+   color: #333;
+}
+
+a {
+   color: #007bff;
+   text-decoration: none;
+}
+
+a:hover {
+   color: #0056b3;
+}
+
+.container {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 20px;
+   margin-top: 10px;
+}
+
+.row {
+   display: flex;
+   flex-direction: row;
+   column-gap:10rem;
+}
+
+.col-3 {
+   width: 20%;
+   margin-right: 20px;
+}
+
+.col-9 {
+   width: 75%;
+}
+
+/* Navigation styles */
+.box {
+   background-color: #f2f2f2;
+   padding: 20px;
+   height: 100%;
+   position: sticky;
+   left: 0;
+   top: 0;
+   overflow-y: auto;
+}
+
+.box a {
+   display: block;
+   margin-bottom: 15px;
+   padding: 10px;
+   color: #333;
+   text-decoration: none;
+   font-size: 18px;
+   transition: background-color 0.2s ease-in-out;
+}
+
+.box a:hover {
+   background-color: #007bff;
+   color: #fff;
+}
+
+.box a i {
+   margin-right: 10px;
+}
+
+/* Content styles */
+.content {
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 40px;
+}
+
+.content h1 {
+   font-size: 48px;
+   font-weight: bold;
+   margin-bottom: 20px;
+}
+
+.content p {
+   font-size: 20px;
+   line-height: 1.5;
+   margin-bottom: 20px;
+}
+
+.btn {
+   display: inline-block;
+   padding: 10px 20px;
+   background-color: #007bff;
+   color: #fff;
+   text-align: center;
+   font-size: 18px;
+   border-radius: 5px;
+   transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+   background-color: #0056b3;
+}
    table {
       border-collapse: collapse;
       width: 100%;
@@ -36,13 +144,19 @@
 </style>
 
 <body style="background-image:none; background-color:lightblue">
-   <div class="container">
-      <?php @include 'NKhome.php'; ?>
-      <?php @include 'NKnavigation.php'; ?>
-
-      <h1 class="heading">Allergy report</h1>
-
-      <section class="contact">
+<?php @include 'NKhome.php'; ?>
+   
+<div class="container">
+   <div class="row">
+      <div class="col-3">
+         <div class="box">
+            <?php @include 'NKnavigation.php'; ?>
+         </div>
+      </div>
+      <div class="col-9">
+         <div class="content">
+         <h1 class="heading">Allergy report</h1>
+         <section class="contact">
          <fieldset style="width: 10;">
             <?php
             $host = "localhost";
@@ -58,31 +172,26 @@
 
                // Display the results in an HTML table with borders
                echo "<table>";
-               echo "<tr><th>s_ID</th><th>rash</th><th>vomit</th><th>fever</th><th>c_id</th><th>date</th><th>Action</th></tr>";
+               echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>date</th><th>Action</th><th></th></tr>";
                while ($row = $stmt->fetch()) {
-                  echo "<tr id='row_" . $row["s_id"] . "'>";
-                  echo "<td>" . $row["s_id"] . "</td>";
+                  echo "<td>" . $row["c_id"] . "</td>";
                   echo "<td>" . ($row["rash"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["vomit"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["fever"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
-                  echo "<td>" . $row["c_id"] . "</td>";
                   echo "<td>" . $row["date"] . "</td>";
                   echo "<td>
-
-
-
-                              <form method='POST' action=''>
-                              <form>
-                                 <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
-                                 <button type='submit'>Reject</button>
-                              </form>
-                           </td>";
-                  echo "<td>
-                              <form method='POST' action=''>
-                                 <input type='hidden' name='accept' value='" . $row["s_id"] . "'>
-                                 <button type='submit'>Accept</button>
-                              </form>
-                           </td>";
+                           <form method='POST' action=''>
+                              <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
+                              <button type='submit'>Reject</button>
+                           </form>
+                        </td>";
+                 echo "<td>
+                           <form method='POST' action=''>
+                              <input type='hidden' name='accept' value='" . $row["s_id"] . "'>
+                              <button type='submit'>Accept</button>
+                              
+                           </form>
+                        </td>";
                   echo "</tr>";
 
                   $date = $row["date"];
@@ -112,11 +221,15 @@
                      $stmt->execute();
 
                      // Delete the row from the "symptom" table
+
+
                      $stmt = $conn->prepare("DELETE FROM symptom WHERE s_id = :sId");
                      $stmt->bindParam(':sId', $sId);
                      $stmt->execute();
                   }
                }
+
+
 
                $conn = null; // Close the database connection
             } catch (PDOException $e) {
@@ -124,8 +237,15 @@
             }
             ?>
          </fieldset>
-      </section>
+         </section>
+
+      </div>
    </div>
+         
+</div>
+
+<?php @include 'footer.php'; ?>
+
 </body>
 
 </html>
