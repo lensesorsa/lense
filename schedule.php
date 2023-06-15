@@ -73,7 +73,7 @@ a:hover {
 .box {
    background-color: #f2f2f2;
    padding: 20px;
-   height: 100%;
+   height: 100;
    position: sticky;
    left: 0;
    top: 0;
