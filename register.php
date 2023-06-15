@@ -242,7 +242,7 @@ a:hover {
 }
 
 .col-3 {
-   width: 20%;
+   width: 30%;
    margin-right: 20px;
 }
 
