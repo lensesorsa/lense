@@ -43,33 +43,7 @@ $conn = null;
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
     <!-- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" /> -->
     <link rel="stylesheet" href="css/style.css">
-    <style>
-   table {
-      border-collapse: collapse;
-      width: 100%;
-      margin-bottom: 20px;
-   }
-
-   th,
-   td {
-      text-align: left;
-      padding: 8px;
-      border: 2px solid #ddd;
-      font-size: 18px;
-   }
-
-   th {
-      background-color: white;
-
-   }
-
-   /* Add hover effect to rows */
-   tr:hover {
-      background-color: #f5f5f5;
-      cursor: pointer;
-   }
-</style>
-  </head>
+</head>
 
 <body style="background-image:none; background-color:lightblue">
 <div class="container-fluid fs-2">
@@ -78,7 +52,7 @@ $conn = null;
   <form action="" method="get" class="form-inline my-2 my-lg-0 ">
     <div class="input-group  fs-2">
       <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
     </div>
   </form>
 </nav>
@@ -97,10 +71,9 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
- 
+
 // Check if the search form has been submitted
 if (isset($_GET["search"])) {
-
     // Sanitize the search query to prevent SQL injection
     $search = $_GET["search"];
     $search = preg_replace("#[^0-9a-z]#i", "", $search); // Sanitize the search query
@@ -122,19 +95,19 @@ if (isset($_GET["search"])) {
     // Check if there are any results
     if ($stmt->rowCount() > 0) {
         // Loop through the results and display them
-        echo "<table>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>". "ID" . "</th>";
-        echo "<th>". "First Name" . "</th>";
-        echo "<th>". "Father Name" . "</th>";
-        echo "<th>". "Mother Name" . "</th>";
-        echo "<th>". "Allergy To:" . "</th>";
-        echo "<th>". " Z-Score" . "</th>";
-        echo "<th>". "Actions" . "</th>";
-        echo "</tr>";
-        echo "</thead>";
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            echo "<table>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th>". "ID" . "</th>";
+            echo "<th>". "First Name" . "</th>";
+            echo "<th>". "Father Name" . "</th>";
+            echo "<th>". "Mother Name" . "</th>";
+            echo "<th>". "Allergy To:" . "</th>";
+            echo "<th>". " Z-Score" . "</th>";
+            echo "<th>". "Actions" . "</th>";
+            echo "</tr>";
+            echo "</thead>";
             echo "<tbody>";
             echo "<tr>";
             echo "<td>". $row['c_id'] ."</td>";
@@ -194,7 +167,7 @@ $conn = null;
                     $conn = new PDO($dsn, $username, $password, $options);
 
                     // execute a query using PDO
-                    $sql = 'SELECT child.*, parent.* FROM child
+                    $sql = 'SELECT child.c_id, child.name, child.HIV_status, child.gender, child.blood_type FROM child
                             JOIN parent ON child.c_id= parent.c_id';
                     $stmt = $conn->query($sql);
                     
@@ -204,13 +177,13 @@ $conn = null;
                     echo "<tr>"; 
                     echo "<td>" . $row['c_id'] . "</td>";
                     echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['f_name'] . "</td>";
-                    echo "<td>" . $row['m_name'] . "</td>";
+                    // echo "<td>" . $row['f_name'] . "</td>";
+                    // echo "<td>" . $row['m_name'] . "</td>";
                     echo "<td>" . $row['gender'] . "</td>";
-                    echo "<td>" . $row['DOB'] . "</td>";
+                    // echo "<td>" . $row['DOB'] . "</td>";
                     echo "<td>" . $row['blood_type'] . "</td>";
 
-                    echo "<td>" . $row['HIV_status'] . "</td>";
+                    // echo "<td>" . $row['hiv_status'] . "</td>";
                    
                     echo "</tr>";
                     // echo $row['v_type'];
