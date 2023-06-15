@@ -13,6 +13,7 @@
    <link rel="shortcut icon" href="images/ye.jpg">
 
 </head>
+
 <style>
    /* Reset styles */
    * {
