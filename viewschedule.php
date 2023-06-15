@@ -152,7 +152,7 @@
 </style>
 
 <body style="background-color:lightblue">
-   <?php @include 'NKhome.php'; ?>
+   <?php @include 'Nhome.php'; ?>
    <div class="container">
       <h1 class="heading">View schedule</h1>
       <section class="footer">
@@ -161,7 +161,7 @@
                <div class="row">
                   <div class="col-3">
                      <div class="box">
-                        <?php @include 'parentnavigation.php'; ?>
+                        <?php @include 'nursenavigation.php'; ?>
                      </div>
                   </div>
                   <div class="col-9 welcome">
