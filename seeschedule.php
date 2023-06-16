@@ -208,7 +208,6 @@
                               echo "</tr>";
                            }
                            echo "</table>";
-                           $conn = null; // Close the database connection
                         } catch (PDOException $e) {
                            echo "Error: " . $e->getMessage();
                         }
@@ -218,6 +217,65 @@
                </div>
             </div>
          </div>
+         <?php
+
+
+         
+         $stmt = $conn->query("SELECT name, DOB,gender,HIV_status,blood_type FROM child where c_id='$c_id'"); //where child is his own child's session
+
+                              while (($row = $stmt->fetch())) {
+                                 // echo '<table>';
+                                //  echo "<tr>";
+                                 // echo '<td>' . $rows['f_name'] . "<br>";
+                                 // echo 'Mother Name' . $rows['m_name'] . "<br>";
+                                    echo '<div class="card bg-success" style="width: 28rem;">';
+                                    echo '<ul class="list-group list-group-flush">';
+                                    echo '<li class="list-group-item " style="list-style-type:none;">' . "Child Info" . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'Name: ' . $row['name'] . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'Date of birth: ' . $row['DOB'] . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'Gender: ' . $row['gender'] . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'Blood type: ' . $row['blood_type'] . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'HIV : ' . $row['HIV_status'] . '</li>';
+
+                                    echo '</ul>';
+                                    echo '</div>';
+                              }
+                              
+                              $select = $conn->query("SELECT f_name, m_name, email, number from parent where c_id='$c_id'");
+ 
+                              
+ while ( ($rows = $select->fetch())) {
+    // echo '<table>';
+    echo "<tr>";
+    // echo '<td>' . $rows['f_name'] . "<br>";
+    // echo 'Mother Name' . $rows['m_name'] . "<br>";
+       echo '<div class="card bg-success" style="width: 28rem;">';
+       echo '<ul class="list-group list-group-flush">';
+       echo '<li class="list-group-item " style="list-style-type:none;">' . "Parent Info" . '</li>';
+       echo '<li class="list-group-item" style="list-style-type:none;">'.'Father\'s name: ' . $rows['f_name'] . '</li>';
+       echo '<li class="list-group-item" style="list-style-type:none;">'.'Mother\'s name: ' . $rows['m_name'] . '</li>';
+       echo '<li class="list-group-item" style="list-style-type:none;">'.'Email: '. $rows['email'] . '</li>';
+       echo '<li class="list-group-item" style="list-style-type:none;">'.'Phone number: '. $rows['number'] . '</li>';
+
+       echo '</ul>';
+       echo '</div>';
+ }
+      $select = $conn->query("SELECT vaccine_type from vaccination_record where c_id='$c_id'");
+      echo '<h2 class="text-primary"><mark> Vaccine Administered</mark></h2>';
+      echo "<table>";
+      echo "<th>Vaccine Type</th>";
+      echo "</tr>";
+      
+      while ( ($row = $select->fetch())) {
+         echo "<td>" . $row["vaccine_type"] . "</td>";
+
+      }
+                            
+                            
+                            
+?>
+
+
 
       </section>
    </div>

@@ -1,7 +1,6 @@
 <?php
 
-// SESSION_start();
-// $c_id =  $_SESSION["c_id"];
+SESSION_start();
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -222,6 +221,7 @@ $conn = null;
                   echo "<td>" . $row['m_name'] . "</td>";
                   echo "<td>" . $row['gender'] . "</td>";
                   echo '<td><button onclick="window.location.href = \'childprofile.php\';">profile</button></td>';
+                  $_SESSION["c_id"]=$row['c_id'];
 
                   echo "</tr>";
                 }
