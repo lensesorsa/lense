@@ -28,7 +28,7 @@ $conn = null;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report allergy</title>
+    <title>child Profile</title>
     <!-- Add the Bootstrap CSS file -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 
@@ -175,13 +175,13 @@ $conn = null;
                     echo "<tr>"; 
                     echo "<td>" . $row['c_id'] . "</td>";
                     echo "<td>" . $row['name'] . "</td>";
-                    echo "<td>" . $row['f_name'] . "</td>";
-                    echo "<td>" . $row['m_name'] . "</td>";
+                    // echo "<td>" . $row['f_name'] . "</td>";
+                    // echo "<td>" . $row['m_name'] . "</td>";
                     echo "<td>" . $row['gender'] . "</td>";
-                    echo "<td>" . $row['DOB'] . "</td>";
+                    // echo "<td>" . $row['DOB'] . "</td>";
                     echo "<td>" . $row['blood_type'] . "</td>";
 
-                    echo "<td>" . $row['hiv_status'] . "</td>";
+                    // echo "<td>" . $row['hiv_status'] . "</td>";
                    
                     echo "</tr>";
                     // echo $row['v_type'];

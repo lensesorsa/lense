@@ -111,6 +111,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       padding: 20px;
       margin-top: 10px;
    }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
    .row {
       display: flex;
       flex-direction: row;

@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Home</title>
+   <title>Nurse Home</title>
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    <!-- custom css file link  -->
@@ -128,16 +128,14 @@ a:hover {
       <div class="row">
          <div class="col-3">
             <div class="box">
-               <a href="viewschedule.php" class="active"><i class="fas fa-calendar-alt"></i> View Schedule</a>
-               <a href="childprofile.php"><i class="fas fa-user"></i> Child Profile</a>
-               <a href="generatereport.php"><i class="fas fa-file-alt"></i> Generate Report</a>
+            <?php @include 'nursenavigation.php'; ?>
             </div>
          </div>
          <div class="col-9 welcome">
             <div class="content">
                <h1>Welcome to our website!</h1>
                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis quam. Sed id libero vel elit ornare finibus. Aliquam tincidunt justo id nulla fermentum, in aliquet orci ultrices. Aliquamerat volutpat. Vivamus maximus nisi nisi, a interdum nulla dictum sit amet. Nullam consequat libero ut nibh aliquam, non dapibus enim bibendum. Donec at elit ac urna interdum luctus. Donec sed metus tincidunt, aliquam mauris eget, molestie nunc. Sed sitamet odio vel sapien blandit tincidunt. Fusce vulputate nulla diam, eu consequat sem sagittis vel. Donec et enim eu erat bibendum bibendum. Sed in libero vel elit ornare finibus.</p>
-               <a href="#" class="btn">Learn More</a>
+               <!-- <a href="#" class="btn">Learn More</a> -->
             </div>
          </div>
       </div>

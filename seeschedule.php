@@ -78,7 +78,11 @@
    }
 
    .col-3 {
+<<<<<<< HEAD
       width: 30%;
+=======
+      width: 20%;
+>>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
       margin-right: 20px;
    }
 
@@ -181,7 +185,11 @@
                               $c_id =  $_SESSION["c_id"];
 
 
+<<<<<<< HEAD
                               $stmt = $conn->query("SELECT c_id, v_type,date,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
+=======
+                              $stmt = $conn->query("SELECT c_id, v_type,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
+>>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
                               $select = $conn->query("SELECT name from child where c_id='$c_id'");
 
                               //Display the results in an HTML table with borders and clickable rows
@@ -191,6 +199,7 @@
 
                                  echo "<td>" . $rows["name"] . "</td>";
                                  echo "<td>" . $row["v_type"] . "</td>";
+<<<<<<< HEAD
                                 
                                  // echo "<td>" . $row["time"] . "</td>";
                                  if ($row["time"] != null) {
@@ -202,6 +211,12 @@
                                  echo "</tr>";
                               }
                               
+=======
+                                 echo "<td>" . $row["time"] . "</td>";
+
+                                 echo "</tr>";
+                              }
+>>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
                               echo "</table>";
                               $conn = null; // Close the database connection
                            } catch (PDOException $e) {

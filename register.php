@@ -174,10 +174,8 @@ $conn = null;
 <head>
     <style>
         span.error {
-            /* color: #FF0000; */
-            color: #000;
+            color: #FF0000;
         }
-        
         
     </style>
     <meta charset="UTF-8">
@@ -205,22 +203,134 @@ $conn = null;
     <link rel="stylesheet" href="css/style.css">
 
 </head>
+<style>
+  /* Reset styles */
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+/* Global styles */
+body {
+   font-family: Arial, sans-serif;
+   font-size: 16px;
+   line-height: 1.5;
+   color: #333;
+}
+
+a {
+   color: #007bff;
+   text-decoration: none;
+}
+
+a:hover {
+   color: #0056b3;
+}
+
+.container {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 20px;
+   margin-top: 10px;
+}
+
+.row {
+   display: flex;
+   flex-direction: row;
+   column-gap:10rem;
+}
+
+.col-3 {
+   width: 30%;
+   margin-right: 20px;
+}
+
+.col-9 {
+   width: 75%;
+}
+
+/* Navigation styles */
+.box {
+   background-color: #f2f2f2;
+   padding: 20px;
+   height: 100%;
+   position: sticky;
+   left: 0;
+   top: 0;
+   overflow-y: auto;
+}
+
+.box a {
+   display: block;
+   margin-bottom: 15px;
+   padding: 10px;
+   color: #333;
+   text-decoration: none;
+   font-size: 18px;
+   transition: background-color 0.2s ease-in-out;
+}
+
+.box a:hover {
+   background-color: #007bff;
+   color: #fff;
+}
+
+.box a i {
+   margin-right: 10px;
+}
+
+/* Content styles */
+.content {
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 40px;
+}
+
+.content h1 {
+   font-size: 48px;
+   font-weight: bold;
+   margin-bottom: 20px;
+}
+
+.content p {
+   font-size: 20px;
+   line-height: 1.5;
+   margin-bottom: 20px;
+}
+
+.btn {
+   display: inline-block;
+   padding: 10px 20px;
+   background-color: #007bff;
+   color: #fff;
+   text-align: center;
+   font-size: 18px;
+   border-radius: 5px;
+   transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+   background-color: #0056b3;
+}
+</style>
+
 
 <body style="background-image:none; background-color:lightblue">
+<?php @include 'header.php'; ?>
 
     <div class="container">
-
-        <?php @include 'NKhome.php'; ?>
-        <?php @include 'NKnavigation.php'; ?>
-
-        <section class="contact">
-        
-            <h1 class="heading">register</h1>
-            
+    <div class="row">
+         <div class="col-3">
+            <div class="box">
+                <?php @include 'NKnavigation.php'; ?>
+            </div>
+        </div>
+        <div class="col-9">
+            <section class="contact">
+                <h1 class="heading">register</h1>
                 <form action="" method="post">
-
-                <div class="flex">
-
+                    <div class="flex">
                     <div class="inputBox">
                         <span>child's name</span>
                         <span class="error" style="color: red;"><?php echo $nameErr; ?></span>
@@ -292,46 +402,32 @@ $conn = null;
                         <span class="error" style="color: red;"> <?php echo $housenoErr; ?></span>
                         <textarea name="house_no" placeholder="enter your house number" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
                     </div>
+                    <input type="submit" value="register" name="register" id="register" class="btn">
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Registration Successful</h4>
+                        <div class="modal-body">
+                            <p>Your registration has been successful.</p>
+                        </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                </form>
+            </section>
 
-                </div>
-                <input type="submit" value="register" name="register" id="register" class="btn">
-
-
-                <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-  
-            <!-- Modal content-->
-        <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Registration Successful</h4>
-      </div>
-      <div class="modal-body">
-        <p>Your registration has been successful.</p>
-        <p>thank you.</p>
-        <p>thank you.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+        </div>
     </div>
-    
-  </div>
 </div>
-            </form>
-
-
- <!-- <div class="box">
-  <a href="register.php"><i class="fas fa-angle-right"></i> register</a>
-  <a href="schedule.php"><i class="fas fa-angle-right"></i> schedule</a>
-  <a href="vaccinemanagement.php"><i class="fas fa-angle-right"></i> manage vaccine</a>
-  <a href="seeallergyreport.php"><i class="fas fa-angle-right"></i> see allergy report</a>
-  <a href="content.php"><i class="fas fa-angle-right"></i> add content</a>
-</div>-->
-        </section>
-
-        <script>
+<?php @include 'footer.php'; ?>
+<script>
     $(document).ready(function(){
         $("#myModal").modal('hide');
 
@@ -340,13 +436,15 @@ $conn = null;
         });
     });
 </script>
+<<<<<<< HEAD
 
         <?php @include 'footer.php'; ?>
+=======
+>>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
     </div>
     <!-- swiper js link  -->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- custom js file link  -->
     <script src="js/script.js"></script>
 </body>
-
 </html>
