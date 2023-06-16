@@ -217,6 +217,8 @@ body {
    font-size: 16px;
    line-height: 1.5;
    color: #333;
+   padding-left: -3px;
+   margin-left: -10px;
 }
 
 a {
@@ -231,34 +233,39 @@ a:hover {
 .container {
    max-width: 1000px;
    margin: 0 auto;
-   padding: 20px;
+   padding: 10px;
    margin-top: 10px;
 }
 
 .row {
    display: flex;
    flex-direction: row;
-   column-gap:10rem;
+   column-gap:4rem;
 }
 
 .col-3 {
    width: 30%;
-   margin-right: 20px;
+   margin-right:10px;
+
 }
 
 .col-9 {
-   width: 75%;
+   width: 100%;
 }
 
 /* Navigation styles */
 .box {
    background-color: #f2f2f2;
-   padding: 20px;
-   height: 100%;
+   padding:10px;
+   height: 50%;
    position: sticky;
    left: 0;
    top: 0;
    overflow-y: auto;
+   margin-top: 5pc;
+   margin-left: 0;
+
+   
 }
 
 .box a {
@@ -284,7 +291,7 @@ a:hover {
 .content {
    max-width: 800px;
    margin: 0 auto;
-   padding: 40px;
+   padding: 10px;
 }
 
 .content h1 {
@@ -313,12 +320,15 @@ a:hover {
 .btn:hover {
    background-color: #0056b3;
 }
+
 </style>
 
 
 <body style="background-image:none; background-color:lightblue">
 <?php @include 'header.php'; ?>
-
+<section class="contact"> 
+<h1 class="heading">register</h1>
+<section class="footer">
     <div class="container">
     <div class="row">
          <div class="col-3">
@@ -328,7 +338,7 @@ a:hover {
         </div>
         <div class="col-9">
             <section class="contact">
-                <h1 class="heading">register</h1>
+                <!-- <h1 class="heading">register</h1> -->
                 <form action="" method="post">
                     <div class="flex">
                     <div class="inputBox">
@@ -382,7 +392,21 @@ a:hover {
                         <span class="error" style="color: red;"> <?php echo $kebeleErr; ?></span>
                         <textarea name="kebele" placeholder="enter your kebele" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
                     </div>
-                    <div class="inputBox">
+                    <div class="inputBox" >
+    <label for="gender">Gender:</label>
+    <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
+    <div style="display: flex; flex-direction:column; margin-right: 0;">
+    <label >
+        <input type="radio" name="gender" value="male">
+        <span>Male</span>
+    </label>
+    <label >
+        <input type="radio" name="gender" value="female">
+        <span>Female</span>
+    </label>
+    </div>
+</div>
+                    <!-- <div class="inputBox">
                         <span>Gender:</span>
                         <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
                         <span>
@@ -395,8 +419,7 @@ a:hover {
                             Female
                         </span>
 
-                        <!-- <input type="text" name="gender" placeholder="gender of the child"> -->
-                    </div>
+                        </div> -->
                     <div class="inputBox">
                         <span>house number</span>
                         <span class="error" style="color: red;"> <?php echo $housenoErr; ?></span>
@@ -422,10 +445,11 @@ a:hover {
                     </div>
                 </form>
             </section>
-
+</section>
         </div>
     </div>
 </div>
+</section>
 <?php @include 'footer.php'; ?>
 <script>
     $(document).ready(function(){
@@ -441,5 +465,6 @@ a:hover {
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <!-- custom js file link  -->
     <script src="js/script.js"></script>
+
 </body>
 </html>
