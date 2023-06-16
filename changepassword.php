@@ -1,3 +1,63 @@
+<?php
+session_start();
+$host = "localhost";
+$username = "root";
+$password = "";
+
+try {
+    $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $passErr = $matchErr = $name = "";
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST['newpassword'])) {
+            $passErr = "New password is required";
+        } else {
+            $new_password = $_POST['newpassword'];
+        }
+
+        if (empty($_POST['newpassword2'])) {
+            $passErr = "Confirm new password is required";
+        } else {
+            $new_password2 = $_POST['newpassword2'];
+        }
+
+        if ($new_password != $new_password2) {
+            $matchErr = "Passwords do not match. Please re-enter your new password.";
+        } else {
+            // $passErr = "";
+            if (isset($_POST['update'])) {
+                $sql1 = "UPDATE users SET password='$new_password' WHERE name='{$_SESSION['name']}'";
+                $conn->exec($sql1);
+            } else {
+                $updateErr = "get registered in first";
+            }
+
+            $sq = "SELECT * FROM users WHERE user_id = '{$_SESSION['user_id']}' AND password IS NOT NULL";
+            $result = $conn->query($sq);
+            $count = 0;
+
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $_SESSION['name'] = $row['name'];
+                $_SESSION['password'] = $row['password'];
+                $_SESSION['role'] = $row['role'];
+                $count = $count + 1;
+            }
+
+            if ($count == 0) {
+                $passErr = "Invalid user";
+            } else {
+                header("location: parent.php");
+            }
+        }
+
+        $conn = null;
+    }
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -71,9 +131,9 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
          }
-         .btn:hover {
+         /* .btn:hover {
             background-color: #006080;
-         }
+         } */
          .error {
             font-size: 0.8rem;
             font-weight: 500;
@@ -108,7 +168,7 @@
          }
       </style>
    </head>
-   <body>
+   <body style="background-color:lightblue">
       <div class="container">
          <section class="contact">
             <h1 class="heading">Change Password</h1>
@@ -123,7 +183,7 @@
                      <label for="newpassword2">Confirm New Password</label>
                      <input type="password" id="newpassword2" name="newpassword2" required>
                      <span class="error"><?php echo $passErr; ?></span>
-                     <span class="error"><?php echo $matchErr; ?></span                  </div>
+                     <span class="error"><?php echo $matchErr; ?></span >                 </div>
                   <div class="inputBox">
                      <input type="submit" value="Change Password" name="update" class="btn">
                   </div>

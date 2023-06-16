@@ -52,6 +52,8 @@
       <title>Contact Us</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
       <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+      <link rel="stylesheet" href="css/Style.css">
+
       <style>
          * {
             margin: 0;
@@ -84,18 +86,18 @@
             flex-direction: column;
             justify-content: space-between;
          }
-         .inputBox {
+         .inputBox1 {
             width: 100%;
             margin-bottom: 20px;
          }
-         .inputBox span {
+         .inputBox1 span {
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
             color: #333;
          }
-         .inputBox input,
-         .inputBox textarea {
+         .inputBox1 input,
+         .inputBox1 textarea {
             width: 100%;
             padding: 10px;
             border: none;
@@ -106,8 +108,8 @@
             background-color: #f2f2f2;
             color: #333;
          }
-         .inputBox input:focus,
-         .inputBox textarea:focus {
+         .inputBox1 input:focus,
+         .inputBox1 textarea:focus {
             outline: none;
             box-shadow: 0 0 5px rgba(0, 140, 186, 0.5);
          }
@@ -124,9 +126,9 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
          }
-         .btn:hover {
-            background-color: #006080;
-         }
+         /* .btn:hover {
+            background-color: light-blue;
+         } */
          .error {
             font-size: 0.8rem;
             font-weight: 500;
@@ -159,28 +161,30 @@
          }
       </style>
    </head>
-   <body>
+   <body style="background-color:lightblue">
+   <?php @include 'Phome.php'; ?>
+
       <div class="container">
          <section class="contact">
             <h1 class="heading">Contact Us</h1>
             <form action="" method="post">
                <div class="flex">
-                  <div class="inputBox">
+                  <div class="inputBox1">
                      <label for="name">Name</label>
                      <input type="text" id="name" name="name" required>
                      <span class="error"><?php echo $nameErr; ?></span>
                   </div>
-                  <div class="inputBox">
+                  <div class="inputBox1">
                      <label for="email">Email</label>
                      <input type="email" id="email" name="email" required>
                      <span class="error"><?php echo $emailErr; ?></span>
                   </div>
-                  <div class="inputBox">
+                  <div class="inputBox1">
                      <label for="message">Message</label>
                      <textarea id="message" name="message" required></textarea>
                      <span class="error"><?php echo $messageErr; ?></span>
                   </div>
-                  <div class="inputBox">
+                  <div class="inputBox1">
                      <input type="submit" value="Send Message" name="submit" class="btn">
                   </div>
                </div>
