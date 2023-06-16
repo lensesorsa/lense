@@ -200,15 +200,29 @@ $conn = null;
                         </div>
                     </div>
                     <div class="col-9">
-                        <div class="contact">
-                            <!-- <div class="row"> -->
-                            <!-- <div class="col-md-6 fs-2 text-center mx-auto" style="width: 700px; height:600px; margin:10px 50px;"> -->
+                            <section class="contact">
+                                <h1 class="heading">Add vaccine</h1>
                             <form method="post" action="" id="addForm">
                                 <div class="row mb-3">
-                                    <label for="vaccine_type" class="col-sm-2 col-form-label">Vaccine Type</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="vaccine_type" name="v_type" placeholder="Vaccine Name">
-                                    </div>
+
+                                <span>vaccine recieved</span>
+                  <select name="v_type">
+                     <option value="none"> none</option>
+                     <option value="BCG">BCG</option>
+                     <option value="polio 0">polio 0</option>
+                     <option value="polio 1">polio 1</option>
+                     <option value="polio 2">polio 2</option>
+                     <option value="polio 3">polio 3</option>
+                     <option value="rota 1">rota 1</option>
+                     <option value="rota 2">rota 2</option>
+                     <option value="penta">penta</option>
+                     <option value="PCV">PCV</option>
+                     <option value="measles">measles</option>
+                     <option value="vit_A">vit_A</option>
+                  </select>
+
+
+                                
                                 </div>
                                 <div class="row mb-3">
                                     <label for="amount" class="col-sm-2 col-form-label">Amount</label>
@@ -232,17 +246,10 @@ $conn = null;
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form>
         </section>
+</section>
         </div>
         </div>
 
-        <!-- <button type="submit" class="btn btn-primary">See Inventory</button> -->
-
-        <!-- <div class="col">
-                        <a href="#addForm"><button class="btn btn-primary w-100">Add to Inventory</button></a>
-                    </div>
-                    < class="col">
-                        <a href="#inventory"><button class="btn btn-secondary w-100">Go to Inventory</button></a>
-                    </div> -->
         </div>
         </div>
 
