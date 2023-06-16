@@ -436,11 +436,6 @@ a:hover {
         });
     });
 </script>
-<<<<<<< HEAD
-
-        <?php @include 'footer.php'; ?>
-=======
->>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
     </div>
     <!-- swiper js link  -->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>

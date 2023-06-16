@@ -185,16 +185,6 @@ a:hover {
 </style>
 
 
-<<<<<<< HEAD
-      <?php @include 'NKheader.php'; ?>
-      <?php @include 'NKnavigation.php'; ?>
-
-
-      <h1 class="heading"> schedule</h1>
-      <!-- <h1 class="heading"> schedule</h1> -->
-      
-     <fieldset>
-=======
 <body style="background-color: lightblue;">
 <?php @include 'NKheader.php'; ?>
 <div class="container">
@@ -213,7 +203,6 @@ a:hover {
                <h1 class="heading"> schedule</h1>
 
       <fieldset>
->>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
          <section class="contact">
 
             <form action="" method="post">

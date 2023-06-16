@@ -13,14 +13,8 @@
    <link rel="stylesheet" href="css/Style.css">
    <link rel="shortcut icon" href="images/ye.jpg">
    <style>
-<<<<<<< HEAD
-       table {
-         margin-bottom: 20px;
-        
-=======
       table {
          margin-bottom: 20px;
->>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
       }
       h2, h3, p {
          font-size: 24px;
@@ -28,13 +22,8 @@
       }
       button {
          font-size: 18px;
-<<<<<<< HEAD
-         background-color: green;
-         color: white;
-=======
          background-color: lightgreen;
          color: black;
->>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
          padding: 10px 20px;
          border: none;
          border-radius: 5px;
@@ -42,19 +31,12 @@
       }
       button:hover {
          background-color: darkgreen;
-<<<<<<< HEAD
-=======
          color: White;
->>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
       }
    </style>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script>
       $(document).ready(function() {
-<<<<<<< HEAD
-         $("#showReportBtn").click(function() {
-            $("#detailedReport").show(); // Show the detailed report
-=======
          $("#showVaccinesGivenBtn").click(function() {
             $("#vaccinesGivenReport").toggle(); // Toggle the display of the detailed report for Vaccines Given
          });
@@ -62,7 +44,6 @@
          $("#showReportBtn").click(function() {
            // $("#detailedReport").show();// Show the detailed report
             $("#detailedReport").toggle();  
->>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
          });
       });
    </script>
@@ -91,35 +72,6 @@
          // Check if there are any records
          if ($stmt->rowCount() >= 0) {
             echo "<h2>Weekly Report</h2>";
-<<<<<<< HEAD
-            echo "<h3>Week " . date("W") . " Report</h3>";
-
-            // Calculate total vaccines given
-            $totalGiven = 0;
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-               $totalGiven += $row['ammount'];
-            }
-            echo "<p>Vaccines given: " . $totalGiven . "</p>";
-
-            // Query to fetch vaccines remaining
-            $remainingQuery = "SELECT SUM(ammount) AS remaining FROM vaccine";
-            $remainingStmt = $db->query($remainingQuery);
-            $remainingRow = $remainingStmt->fetch(PDO::FETCH_ASSOC);
-            $remaining = $remainingRow['remaining'] - $totalGiven;
-            echo "<p style='font-size: 24px;'>Vaccines remaining: " . $remaining . " <button id='showReportBtn' style='font-size: 24px;'>Show Detailed Report</button></p>";
-
-            // Display the report table initially hidden
-            echo "<div id='detailedReport' style='display: none;'>";
-            echo "<h3 style='font-size: 22px;'>Detailed Report</h3>";
-            echo "<table border='1' style='font-size: 18px; padding: 10px;'>";
-            echo "<tr><th>Vaccine Type</th><th style='padding-left: 30px;'>Remaining Quantity</th></tr>";
-            
-            // Query to fetch each vaccine type with remaining quantity
-            $detailQuery = "SELECT v_type, ammount FROM vaccine";
-            $detailStmt = $db->query($detailQuery);
-            while ($detailRow = $detailStmt->fetch(PDO::FETCH_ASSOC)) {
-               echo "<tr><td>".$detailRow['v_type']."</td><td style='padding-left: 30px;'>".$detailRow['ammount']."</td></tr>";
-=======
             $currentWeek = date("W");
             echo "<h3>Week " . $currentWeek . " Report</h3>";
 
@@ -157,7 +109,6 @@
             echo "<tr><th>Vaccine Type</th><th style='padding-left: 30px;'>Vaccines Remaining</th></tr>";
             foreach ($remainingVaccines as $vaccine) {
                echo "<tr><td>" . $vaccine['v_type'] . "</td><td style='padding-left: 30px;'>" . $vaccine['ammount'] . "</td></tr>";
->>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
             }
             echo "</table>";
             echo "</div>";
@@ -168,18 +119,10 @@
             $expiringRow = $expiringStmt->fetch(PDO::FETCH_ASSOC);
             $expiring = $expiringRow['expiring'];
             echo "<p>Vaccines to expire in 10 days: " . $expiring . "</p>";
-<<<<<<< HEAD
-
-         } else {
-            echo "No records found.";
-         }
-      } catch(PDOException $e) {
-=======
          } else {
             echo "No records found.";
          }
       } catch (PDOException $e) {
->>>>>>> 7992fdca9671484fb328a91cb1a34e0f7dfd071d
          echo "Connection failed: " . $e->getMessage();
       }
 
