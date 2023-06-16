@@ -157,55 +157,67 @@
       <h1 class="heading">see schedule</h1>
       <section class="footer">
          <!-- <div class="box-container"> -->
-            <div class="container">
-               <div class="row">
-                  <div class="col-3">
-                     <div class="box">
-                        <?php @include 'parentnavigation.php'; ?>
-                     </div>
+         <div class="container">
+            <div class="row">
+               <div class="col-3">
+                  <div class="box">
+                     <?php @include 'parentnavigation.php'; ?>
                   </div>
-                  <div class="col-9 welcome">
-                     <div class="content">
-                        <fieldset>
-                           <?php
-                           $host = "localhost";
-                           $username = "root";
-                           $password = "";
-                           $dbname = "vaccination_db";
+               </div>
+               <div class="col-9 welcome">
+                  <div class="content">
+                     <fieldset>
+                        <?php
+                        $host = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "vaccination_db";
 
-                           try {
-                              $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-                              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                              session_start();
+                        try {
+                           $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+                           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                           session_start();
 
-                              $c_id =  $_SESSION["c_id"];
+                           $c_id =  $_SESSION["c_id"];
 
 
-                              $stmt = $conn->query("SELECT c_id, v_type,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
-                              $select = $conn->query("SELECT name from child where c_id='$c_id'");
+                           $stmt = $conn->query("SELECT c_id, v_type,date,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
+                           $select = $conn->query("SELECT name from child where c_id='$c_id'");
 
-                              //Display the results in an HTML table with borders and clickable rows
-                              echo "<table>";
-                              echo "<tr><th>Child Name</th><th>Vaccine Type</th><th>Time</th><th>date</th></tr>";
-                              while (($row = $stmt->fetch()) && ($rows = $select->fetch())) {
+                           //Display the results in an HTML table with borders and clickable rows
+                           echo "<table>";
+                           echo "<tr><th>Child Name</th><th>Vaccine Type</th><th>date</th><th>time</th></tr>";
+                           while (($row = $stmt->fetch()) && ($rows = $select->fetch())) {
 
-                                 echo "<td>" . $rows["name"] . "</td>";
-                                 echo "<td>" . $row["v_type"] . "</td>";
-                                 echo "<td>" . $row["time"] . "</td>";
-
-                                 echo "</tr>";
+                              echo "<td>" . $rows["name"] . "</td>";
+                              echo "<td>" . $row["v_type"] . "</td>";
+                              echo "<td>" . $row["date"] . "</td>";
+                              if ($row["time"] != null) {
+                                 if (strtotime($row["date"]) < time()) {
+                                    // schedule date has passed, show a warning message
+                                    echo "<h2 class=error>The schedule for this event has passed</td>";
+                                 } else {
+                                    // schedule date is in the future, show the time
+                                    echo "<td>" . $row["time"] . "</td>";
+                                 }
+                              } else {
+                                 echo "<h2>The schedule is not yet set!!<hr>please come later</td>";
                               }
-                              echo "</table>";
-                              $conn = null; // Close the database connection
-                           } catch (PDOException $e) {
-                              echo "Error: " . $e->getMessage();
+
+
+                              echo "</tr>";
                            }
-                           ?>
-                        </fieldset>
-                     </div>
+                           echo "</table>";
+                           $conn = null; // Close the database connection
+                        } catch (PDOException $e) {
+                           echo "Error: " . $e->getMessage();
+                        }
+                        ?>
+                     </fieldset>
                   </div>
                </div>
             </div>
+         </div>
 
       </section>
    </div>
