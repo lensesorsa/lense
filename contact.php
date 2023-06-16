@@ -1,10 +1,55 @@
+<?php
+   $nameErr = $emailErr = $messageErr = "";
+   $name = $email = $message = "";
+   $success = false;
+
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      if (empty($_POST["name"])) {
+         $nameErr = "Name is required";
+      } else {
+         $name = test_input($_POST["name"]);
+         if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+            $nameErr = "Only letters and white space allowed";
+         }
+      }
+
+      if (empty($_POST["email"])) {
+         $emailErr = "Email is required";
+      } else {
+         $email = test_input($_POST["email"]);
+         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format";
+         }
+      }
+
+      if (empty($_POST["message"])) {
+         $messageErr = "Message is required";
+      } else {
+         $message = test_input($_POST["message"]);
+      }
+
+      if ($nameErr == "" && $emailErr == "" && $messageErr == "") {
+         // Send email or save message to database
+         // Set $success to true if message is sent successfully
+         $success = true;
+      }
+   }
+
+   function test_input($data) {
+      $data = trim($data);
+      $data = stripslashes($data);
+      $data = htmlspecialchars($data);
+      return $data;
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Change Password</title>
+      <title>Contact Us</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
       <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
       <style>
@@ -49,7 +94,8 @@
             font-weight: 500;
             color: #333;
          }
-         .inputBox input {
+         .inputBox input,
+         .inputBox textarea {
             width: 100%;
             padding: 10px;
             border: none;
@@ -57,6 +103,13 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
             font-size: 1rem;
             font-family: sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+         }
+         .inputBox input:focus,
+         .inputBox textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 140, 186, 0.5);
          }
          .btn {
             background-color: #008CBA;
@@ -87,48 +140,56 @@
             font-size: 1.2rem;
             color: #333;
          }
-         input[type="password"] {
-            font-size: 1.2rem;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-            background-color: #f2f2f2;
+         textarea {
+            min-height: 150px;
+            resize: vertical;
+         }
+         .success-message {
+            background-color: #c1e7c3;
+            border: 2px solid #6ac47e;
             color: #333;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
          }
-         input[type="password"]:focus {
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 140, 186, 0.5);
-         }
-         .inputBox input[type="submit"] {
-            background-color: #006080;
-         }
-         .inputBox input[type="submit"]:hover {
-            background-color: #004256;
+         .success-message p {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
          }
       </style>
    </head>
    <body>
       <div class="container">
          <section class="contact">
-            <h1 class="heading">Change Password</h1>
+            <h1 class="heading">Contact Us</h1>
             <form action="" method="post">
                <div class="flex">
                   <div class="inputBox">
-                     <label for="newpassword">New Password</label>
-                     <input type="password" id="newpassword" name="newpassword" required>
-                     <span class="error"><?php echo $passErr; ?></span>
+                     <label for="name">Name</label>
+                     <input type="text" id="name" name="name" required>
+                     <span class="error"><?php echo $nameErr; ?></span>
                   </div>
                   <div class="inputBox">
-                     <label for="newpassword2">Confirm New Password</label>
-                     <input type="password" id="newpassword2" name="newpassword2" required>
-                     <span class="error"><?php echo $passErr; ?></span>
-                     <span class="error"><?php echo $matchErr; ?></span                  </div>
+                     <label for="email">Email</label>
+                     <input type="email" id="email" name="email" required>
+                     <span class="error"><?php echo $emailErr; ?></span>
+                  </div>
                   <div class="inputBox">
-                     <input type="submit" value="Change Password" name="update" class="btn">
+                     <label for="message">Message</label>
+                     <textarea id="message" name="message" required></textarea>
+                     <span class="error"><?php echo $messageErr; ?></span>
+                  </div>
+                  <div class="inputBox">
+                     <input type="submit" value="Send Message" name="submit" class="btn">
                   </div>
                </div>
             </form>
+            <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && $success) { ?>
+            <div class="success-message">
+               <p>Thank you for contacting us! We will get back to you as soon as possible.</p>
+            </div>
+            <?php } ?>
          </section>
       </div>
       <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
