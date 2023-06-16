@@ -124,10 +124,10 @@ a:hover {
    background-color: #0056b3;
 }
 
-    body {file:///C:/Users/motis/Downloads/Telegram Desktop/content.txt
+    /* body {file:///C:/Users/motis/Downloads/Telegram Desktop/content.txt
         background-color: lightblue;
         font-family: Arial, sans-serif;
-    }
+    } */
 
     table {
         border-collapse: collapse;
