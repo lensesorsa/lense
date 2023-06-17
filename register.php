@@ -140,15 +140,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error inserting data into parent table: " . $e->getMessage();
     }
 
-    try {
-        $stmt = $conn->prepare("INSERT INTO schedule (c_id) VALUES (:c_id)");
-        $stmt->bindParam(':c_id', $c_id);
-        $stmt->execute();
-        //echo "Data inserted successfully"; allert 
-    } catch (PDOException $e) {
-        echo "Error inserting data into parent table: " . $e->getMessage();
-    }
-
     $insert = "INSERT INTO users(name,password,role) VALUES ('$f_name',1234,'parent')";
     $insert1 = "INSERT INTO schedule(c_id,date,v_type)values('$c_id',curdate(),'BCG')";
     $conn->exec($insert);
@@ -257,7 +248,7 @@ a:hover {
 .box {
    background-color: #f2f2f2;
    padding:10px;
-   height: 50%;
+   height: auto;
    position: sticky;
    left: 0;
    top: 0;

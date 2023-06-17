@@ -64,7 +64,7 @@ a:hover {
 .box {
    background-color: #f2f2f2;
    padding: 20px;
-   height: 50%;
+   height: auto;
    position: sticky;
    left: 0;
    top: 0;
@@ -177,6 +177,7 @@ a:hover {
 <body style="background-color:lightblue">
 <?php @include 'Nhome.php'; ?> 
 <?php session_start();
+$n_id=$_SESSION['n_id'];
                            $host = "localhost";
                            $username = "root";
                            $password = "";
@@ -196,9 +197,8 @@ a:hover {
       <div class="row">
          <div class="col-3">
             <div class="box">
-               <a href="viewschedule.php" class="active"><i class="fas fa-calendar-alt"></i> View Schedule</a>
-               <a href="childprofile.php"><i class="fas fa-user"></i> Child Profile</a>
-               <a href="generatereport.php"><i class="fas fa-file-alt"></i> Generate Report</a>
+            <?php @include 'nursenavigation.php'; ?> 
+
             </div>
          </div>
          <div class="col-9 welcome">
@@ -207,11 +207,11 @@ a:hover {
                            <?php
                             
                               // Select all rows from the "users" table
-                              $stmt = $conn->query("SELECT * FROM schedule where date=curdate()"); //for the specific nurse and time that time is also specified
+                              $stmt = $conn->query("SELECT * FROM schedule where date=curdate() and n_id='$n_id'"); //for the specific nurse and time that time is also specified
 
                               // Display the results in an HTML table
                               echo "<table>";
-                              echo "<tr><th>child ID</th><th>vaccine type</th><th>time</th><th>child name</th>";
+                              echo "<tr><th>child ID</th><th>vaccine type</th><th>time</th><th>Action</th>";
                               while ($row = $stmt->fetch()) {
                                  echo "<tr>";
                                  echo "<td>" . $row["c_id"] . "</td>";

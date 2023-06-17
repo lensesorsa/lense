@@ -119,8 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    }
 
    .col-3 {
-      width: 20%;
-      margin-right: 20px;
+      width: 30%;
+      /* margin-right: 20px; */
    }
 
    .col-9 {
@@ -130,12 +130,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    /* Navigation styles */
    .box {
       background-color: #f2f2f2;
-      /* padding: 10px; */
+      padding: 10px;
       height: 80%;
-      position: sticky;
+      /* position: sticky; */
       left: 0;
       top: 0;
       margin-top: 7rem;
+      /* margin-left:-2rem; */
+/* margin-left:0; */
       overflow-y: auto;
    }
 
@@ -197,10 +199,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <?php @include 'header.php'; ?>
         <section class="contact">
-            <h1 class="heading">Report Allergy</h1>
             <section class="footer">
+            <h1 class="heading">Report Allergy</h1>
+
          <!-- <div class="box-container"> -->
-            <div class="container">
+            <!-- <div class="container"> -->
                <div class="row">
                   <div class="col-3">
                      <div class="box">
