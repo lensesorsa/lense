@@ -361,6 +361,20 @@ a:hover {
                         <span class="error" style="color: red;"> <?php echo $dateErr; ?></span>
                         <input type="date" name="date" min="2022-01-00" max="2050-12-30">
                     </div>
+                    <div class="inputBox" >
+    <label for="gender">Gender:</label>
+    <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
+    <div style="display: flex; flex-direction:column; margin-right: 0;">
+    <label >
+        <input type="radio" name="gender" value="male">
+        <span>Male</span>
+    </label>
+    <label >
+        <input type="radio" name="gender" value="female">
+        <span>Female</span>
+    </label>
+    </div>
+</div>
 
                     <div class="inputBox">
                         <span>HIV_status</span>
@@ -392,20 +406,7 @@ a:hover {
                         <span class="error" style="color: red;"> <?php echo $kebeleErr; ?></span>
                         <textarea name="kebele" placeholder="enter your kebele" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
                     </div>
-                    <div class="inputBox" >
-    <label for="gender">Gender:</label>
-    <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
-    <div style="display: flex; flex-direction:column; margin-right: 0;">
-    <label >
-        <input type="radio" name="gender" value="male">
-        <span>Male</span>
-    </label>
-    <label >
-        <input type="radio" name="gender" value="female">
-        <span>Female</span>
-    </label>
-    </div>
-</div>
+                    
                     <!-- <div class="inputBox">
                         <span>Gender:</span>
                         <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>

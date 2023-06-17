@@ -183,7 +183,6 @@ try {
                         </div>
 
                         <input type="submit" name="login" value="login" class="btn">
-                        <p class="forgot">Forgot password?</p>
                      </div>
                   </div>
                </div>
