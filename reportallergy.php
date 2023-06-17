@@ -111,6 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       padding: 20px;
       margin-top: 10px;
    }
+
    .row {
       display: flex;
       flex-direction: row;
