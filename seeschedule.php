@@ -178,6 +178,10 @@
                               $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                               session_start();
 
+                              if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
+                                 header("location:home.php");
+                                 
+                              }
                               $c_id =  $_SESSION["c_id"];
 
 

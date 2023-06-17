@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurse') {
+   header("location:home.php");
+   
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,7 +137,6 @@ a:hover {
    try {
       $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-   session_start();
    $n_name=$_SESSION['name'];
    $select=$conn->query("SELECT n_id from nurse where name='$n_name'");
    while($row=$select->fetch()){
