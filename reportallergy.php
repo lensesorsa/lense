@@ -199,8 +199,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <?php @include 'header.php'; ?>
         <section class="contact">
-            <h1 class="heading">Report Allergy</h1>
             <section class="footer">
+            <h1 class="heading">Report Allergy</h1>
+
          <!-- <div class="box-container"> -->
             <!-- <div class="container"> -->
                <div class="row">
