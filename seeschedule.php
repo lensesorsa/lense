@@ -156,7 +156,7 @@
    <div class="container">
       <h1 class="heading">see schedule</h1>
       <section class="footer">
-         <div class="box-container">
+         <!-- <div class="box-container"> -->
             <div class="container">
                <div class="row">
                   <div class="col-3">
@@ -215,6 +215,7 @@
                         </fieldset>
                      </div>
                   </div>
+                  
                </div>
 
 
@@ -233,7 +234,7 @@
                   // echo 'Mother Name' . $rows['m_name'] . "<br>";
                   echo '<div class="card bg-success" style="width: 28rem;">';
                   echo '<ul class="list-group list-group-flush">';
-                  echo '<li class="list-group-item " style="list-style-type:none;">' . "Child Info" . '</li>';
+                  echo '<li class="list-group-item " style="list-style-type:none;">' . "<b><h3>Child Info</h3></b>Parent Info" . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Name: ' . $row['name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Date of birth: ' . $row['DOB'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Gender: ' . $row['gender'] . '</li>';
@@ -258,7 +259,7 @@
                   // echo 'Mother Name' . $rows['m_name'] . "<br>";
                   echo '<div class="card bg-success" style="width: 28rem;">';
                   echo '<ul class="list-group list-group-flush">';
-                  echo '<li class="list-group-item " style="list-style-type:none;">' . "Parent Info" . '</li>';
+                  echo '<li class="list-group-item " style="list-style-type:none;">' . "<b><h3>Parent Info</h3></b>Parent Info" . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Father\'s name: ' . $rows['f_name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Mother\'s name: ' . $rows['m_name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Email: ' . $rows['email'] . '</li>';
@@ -273,11 +274,11 @@
 
             </div>
          </div>
-      </div>
-   </div>
-   <?php
+         <div class="col-3 ">
+            <div class="box">
+            <?php
    $select = $conn->query("SELECT vaccine_type from vaccination_record where c_id='$c_id'");
-   echo '<h2 class="text-primary"><mark> Vaccine Administered</mark></h2>';
+   echo '<b><h3>Vaccine Administered</h3></b>';
    echo "<table>";
    echo "<th>Vaccine Type</th>";
    echo "<tr>";
@@ -290,6 +291,11 @@
    echo "</tr>";
    echo "</table>";
    ?>
+            </div>
+         </div>
+      </div>
+   </div>
+   
    </div>
 </div>
 
