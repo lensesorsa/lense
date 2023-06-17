@@ -123,7 +123,24 @@ a:hover {
 }
 </style>
 <body style="background-color: lightblue;">
-   <?php @include 'header.php'; ?>
+   <?php @include 'header.php'; 
+   $host = "localhost";
+   $username = "root";
+   $password = "";
+   try {
+      $conn = new PDO("mysql:host=$host;dbname=vaccination_db", $username, $password);
+      $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   session_start();
+   $n_name=$_SESSION['name'];
+   $select=$conn->query("SELECT n_id from nurse where name='$n_name'");
+   while($row=$select->fetch()){
+      $_SESSION['n_id']=$row['n_id'];
+   }
+
+}catch(PDOException $e)
+{
+   echo $e->getMessage();
+}?>
    <div class="container">
       <div class="row">
          <div class="col-3">

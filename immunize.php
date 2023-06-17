@@ -1,5 +1,4 @@
-<?php
-
+<?php session_start();
 $c_id = $_SESSION['c_id'];
 $host = "localhost";
 $username = "root";
