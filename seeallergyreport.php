@@ -167,16 +167,22 @@ a:hover {
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                $stmt = $conn->query("SELECT * FROM symptom");
-
-               // Display the results in an HTML table with borders
                echo "<table>";
                echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>date</th><th>Action</th><th></th></tr>";
-               while ($row = $stmt->fetch()) {
+               
+               while ($row = $stmt->fetch()) {             
+                  $c_id=$row["c_id"];
+                  $date=$row["date"];
+               
+               $stmts = $conn->query("SELECT vaccine_type FROM vaccination_record where c_id='$c_id' AND date='$date' ");
+               // Display the results in an HTML table with borders
+               while ($rows=$stmts->fetch()) {
+                  if($row){
                   echo "<td>" . $row["c_id"] . "</td>";
                   echo "<td>" . ($row["rash"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["vomit"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["fever"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
-                  echo "<td>" . $row["date"] . "</td>";
+                  echo "<td>" . $rows["vaccine_type"] . "</td>";
                   echo "<td>
                            <form method='POST' action=''>
                               <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
@@ -192,10 +198,11 @@ a:hover {
                         </td>";
 
                   echo "</tr>";
-
-                  $date = $row["date"];
-                  $c_id = $row["c_id"];
                }
+                  // $date = $row["date"];
+                  // $c_id = $row["c_id"];
+               }
+            }
                echo "</table>";
 
                if ($_SERVER["REQUEST_METHOD"] == "POST") {
