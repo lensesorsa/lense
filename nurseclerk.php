@@ -126,7 +126,13 @@ a:hover {
 </style>
 
 <body style="background-color:lightblue">
-  <?php @include 'header.php'; ?>
+  <?php @include 'header.php'; 
+  session_start();
+   if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+      header("location:home.php");
+      
+   }
+  ?>
 <div class="container">
    <div class="row">
       <div class="col-3">

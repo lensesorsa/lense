@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -11,6 +11,10 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+    header("location:home.php");
+    
+ }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["c_name"])) {
         $nameErr = " Name is required";
@@ -398,20 +402,7 @@ a:hover {
                         <textarea name="kebele" placeholder="enter your kebele" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
                     </div>
                     
-                    <!-- <div class="inputBox">
-                        <span>Gender:</span>
-                        <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
-                        <span>
-                            <input type="radio" name="gender" value="male">
-                            Male
-                        </span>
-
-                        <span>
-                            <input type="radio" name="gender" value="female">
-                            Female
-                        </span>
-
-                        </div> -->
+                  
                     <div class="inputBox">
                         <span>house number</span>
                         <span class="error" style="color: red;"> <?php echo $housenoErr; ?></span>

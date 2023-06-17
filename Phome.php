@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
+   header("location:home.php");
+   
+}
+?>
 <section class="header">
 
    <a href="home.php" class="logo"> Jan meda health center</a>

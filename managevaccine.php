@@ -1,5 +1,10 @@
 <?php
 SESSION_start();
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+      header("location:home.php");
+      
+   }
+ 
 // $c_id =  $_SESSION["c_id"];
 $host = 'localhost';
 $username = 'root';

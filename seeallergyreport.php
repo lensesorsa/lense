@@ -157,6 +157,7 @@ a:hover {
          <section class="contact">
          <fieldset style="width: 10;">
             <?php
+            session_start();
             $host = "localhost";
             $username = "root";
             $password = "";
@@ -165,7 +166,10 @@ a:hover {
             try {
                $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+               if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+                  header("location:home.php");
+                  
+               }
                $stmt = $conn->query("SELECT * FROM symptom");
                echo "<table>";
                echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>date</th><th>Action</th><th></th></tr>";

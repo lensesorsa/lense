@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+   <?php session_start();
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+      header("location:home.php");
+      
+   }
+ ?>
 
 <head>
    <meta charset="UTF-8">

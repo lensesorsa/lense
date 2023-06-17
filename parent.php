@@ -147,7 +147,10 @@
          // echo"</tr>";
          $_SESSION["c_id"] = $row["c_id"];
       }
-
+      if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
+         header("location:home.php");
+         
+      }
       $nameErr = $emailErr = $noErr = $passwordErr = $addressErr = $messageErr = $updateErr = $dateErr = $genderErr = $blood_typeErr = $HIVErr = "";
       $name = $email = $number = $date = $address = $password = $gender = $HIV = $blood_type = "";
    } catch (PDOException $e) {

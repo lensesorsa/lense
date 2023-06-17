@@ -15,7 +15,10 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
+    header("location:home.php");
+    
+ }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["rash"]) && empty($_POST["fever"]) && empty($_POST["vomit"])) {
         $symptomErr = "At least one symptom must be selected.";
