@@ -168,7 +168,7 @@
                <div class="row">
                   <div class="col-3">
                      <div class="box">
-                        <?php @include 'parentnavigation.php'; ?>
+                        <?php @include 'nursenavigation.php'; ?>
                      </div>
                   </div>
                   <div class="col-9 welcome">
