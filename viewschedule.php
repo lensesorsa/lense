@@ -57,18 +57,19 @@ a:hover {
 }
 
 .col-9 {
-   width: 75%;
+   width: 80%;
 }
 
 /* Navigation styles */
 .box {
    background-color: #f2f2f2;
    padding: 20px;
-   height: auto;
+   height: 50%;
    position: sticky;
    left: 0;
    top: 0;
    overflow-y: auto;
+   margin-top: 5pc;
 }
 
 .box a {
@@ -175,9 +176,21 @@ a:hover {
 
 <body style="background-color:lightblue">
 <?php @include 'Nhome.php'; ?> 
+<?php session_start();
+                           $host = "localhost";
+                           $username = "root";
+                           $password = "";
+                           $dbname = "vaccination_db";
+
+                           try {
+                              $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+                              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ ?>
 <section class="contact"> 
-         <h1 class="heading">see schedule</h1>
+         <!-- <h1 class="heading">see schedule</h1> -->
      <section class="footer">
+     <h1 class="heading">see schedule</h1>
+
      <!-- <div class="box-container"> -->
      <div class="container">
       <div class="row">
@@ -192,16 +205,7 @@ a:hover {
             <div class="content">
                         <fieldset style="width: 10;">
                            <?php
-                            session_start();
-                           $host = "localhost";
-                           $username = "root";
-                           $password = "";
-                           $dbname = "vaccination_db";
-
-                           try {
-                              $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-                              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+                            
                               // Select all rows from the "users" table
                               $stmt = $conn->query("SELECT * FROM schedule where date=curdate()"); //for the specific nurse and time that time is also specified
 
@@ -232,10 +236,12 @@ a:hover {
                   </div>
                </div>
             </div>
+            <?php @include 'footer.php'; ?>
+
          </section>
-   
-   <?php @include 'footer.php'; ?>
-</section>
+         </section>
+   <!-- <?php @include 'footer.php'; ?> -->
+
 </body>
 
 </html>
