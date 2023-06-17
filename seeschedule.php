@@ -78,7 +78,7 @@
    }
 
    .col-3 {
-      width: 30%;
+      width: 20%;
       margin-right: 20px;
    }
 
@@ -157,62 +157,125 @@
       <h1 class="heading">see schedule</h1>
       <section class="footer">
          <!-- <div class="box-container"> -->
-            <div class="container">
-               <div class="row">
-                  <div class="col-3">
-                     <div class="box">
-                        <?php @include 'parentnavigation.php'; ?>
-                     </div>
+         <div class="container">
+            <div class="row">
+               <div class="col-3">
+                  <div class="box">
+                     <?php @include 'parentnavigation.php'; ?>
                   </div>
-                  <div class="col-9 welcome">
-                     <div class="content">
-                        <fieldset>
-                           <?php
-                           $host = "localhost";
-                           $username = "root";
-                           $password = "";
-                           $dbname = "vaccination_db";
+               </div>
+               <div class="col-9 welcome">
+                  <div class="content">
+                     <fieldset>
+                        <?php
+                        $host = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $dbname = "vaccination_db";
 
-                           try {
-                              $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-                              $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                              session_start();
+                        try {
+                           $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+                           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                           session_start();
 
-                              $c_id =  $_SESSION["c_id"];
+                           $c_id =  $_SESSION["c_id"];
 
 
-                              $stmt = $conn->query("SELECT c_id, v_type,date,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
-                              $select = $conn->query("SELECT name from child where c_id='$c_id'");
+                           $stmt = $conn->query("SELECT c_id, v_type,date,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
+                           $select = $conn->query("SELECT name from child where c_id='$c_id'");
 
-                              //Display the results in an HTML table with borders and clickable rows
-                              echo "<table>";
-                              echo "<tr><th>Child Name</th><th>Vaccine Type</th><th>Time</th><th>date</th></tr>";
-                              while (($row = $stmt->fetch()) && ($rows = $select->fetch())) {
+                           //Display the results in an HTML table with borders and clickable rows
+                           echo "<table>";
+                           echo "<tr><th>Child Name</th><th>Vaccine Type</th><th>date</th><th>time</th></tr>";
+                           while (($row = $stmt->fetch()) && ($rows = $select->fetch())) {
 
-                                 echo "<td>" . $rows["name"] . "</td>";
-                                 echo "<td>" . $row["v_type"] . "</td>";
-                                
-                                 // echo "<td>" . $row["time"] . "</td>";
-                                 if ($row["time"] != null) {
-                                    echo "<td>" . $row["time"] . "</td>";
+                              echo "<td>" . $rows["name"] . "</td>";
+                              echo "<td>" . $row["v_type"] . "</td>";
+                              echo "<td>" . $row["date"] . "</td>";
+                              if ($row["time"] != null) {
+                                 if (strtotime($row["date"]) < time()) {
+                                    // schedule date has passed, show a warning message
+                                    echo "<h2 class=error>The schedule for this event has passed</td>";
                                  } else {
-                                    echo "<td><h2>The schedule is not yet set</h2></td>";
+                                    // schedule date is in the future, show the time
+                                    echo "<td>" . $row["time"] . "</td>";
                                  }
-                                 echo "<td>" . $row["date"] . "</td>";
-                                 echo "</tr>";
+                              } else {
+                                 echo "<h2>The schedule is not yet set!!<hr>please come later</td>";
                               }
-                              
-                              echo "</table>";
-                              $conn = null; // Close the database connection
-                           } catch (PDOException $e) {
-                              echo "Error: " . $e->getMessage();
+
+
+                              echo "</tr>";
                            }
-                           ?>
-                        </fieldset>
-                     </div>
+                           echo "</table>";
+                        } catch (PDOException $e) {
+                           echo "Error: " . $e->getMessage();
+                        }
+                        ?>
+                     </fieldset>
                   </div>
                </div>
             </div>
+         </div>
+         <?php
+
+
+         
+         $stmt = $conn->query("SELECT name, DOB,gender,HIV_status,blood_type FROM child where c_id='$c_id'"); //where child is his own child's session
+
+                              while (($row = $stmt->fetch())) {
+                                 // echo '<table>';
+                                //  echo "<tr>";
+                                 // echo '<td>' . $rows['f_name'] . "<br>";
+                                 // echo 'Mother Name' . $rows['m_name'] . "<br>";
+                                    echo '<div class="card bg-success" style="width: 28rem;">';
+                                    echo '<ul class="list-group list-group-flush">';
+                                    echo '<li class="list-group-item " style="list-style-type:none;">' . "Child Info" . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'Name: ' . $row['name'] . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'Date of birth: ' . $row['DOB'] . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'Gender: ' . $row['gender'] . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'Blood type: ' . $row['blood_type'] . '</li>';
+                                    echo '<li class="list-group-item" style="list-style-type:none;">'.'HIV : ' . $row['HIV_status'] . '</li>';
+
+                                    echo '</ul>';
+                                    echo '</div>';
+                              }
+                              
+                              $select = $conn->query("SELECT f_name, m_name, email, number from parent where c_id='$c_id'");
+ 
+                              
+ while ( ($rows = $select->fetch())) {
+    // echo '<table>';
+    echo "<tr>";
+    // echo '<td>' . $rows['f_name'] . "<br>";
+    // echo 'Mother Name' . $rows['m_name'] . "<br>";
+       echo '<div class="card bg-success" style="width: 28rem;">';
+       echo '<ul class="list-group list-group-flush">';
+       echo '<li class="list-group-item " style="list-style-type:none;">' . "Parent Info" . '</li>';
+       echo '<li class="list-group-item" style="list-style-type:none;">'.'Father\'s name: ' . $rows['f_name'] . '</li>';
+       echo '<li class="list-group-item" style="list-style-type:none;">'.'Mother\'s name: ' . $rows['m_name'] . '</li>';
+       echo '<li class="list-group-item" style="list-style-type:none;">'.'Email: '. $rows['email'] . '</li>';
+       echo '<li class="list-group-item" style="list-style-type:none;">'.'Phone number: '. $rows['number'] . '</li>';
+
+       echo '</ul>';
+       echo '</div>';
+ }
+      $select = $conn->query("SELECT vaccine_type from vaccination_record where c_id='$c_id'");
+      echo '<h2 class="text-primary"><mark> Vaccine Administered</mark></h2>';
+      echo "<table>";
+      echo "<th>Vaccine Type</th>";
+      echo "</tr>";
+      
+      while ( ($row = $select->fetch())) {
+         echo "<td>" . $row["vaccine_type"] . "</td>";
+
+      }
+                            
+                            
+                            
+?>
+
+
 
       </section>
    </div>
