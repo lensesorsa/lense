@@ -13,12 +13,8 @@
    <link rel="shortcut icon" href="images/ye.jpg">
 
 </head>
-
 <style>
    /* Reset styles */
-   .lense{
-   display: flex;
-   }
    * {
       box-sizing: border-box;
       margin: 0;
@@ -61,7 +57,7 @@
    }
 
    .col-9 {
-      width:75%;
+      width: 75%;
    }
 
    /* Navigation styles */
@@ -158,11 +154,16 @@
       echo $e->getMessage();
    }
    // // Prepare a statement and execute a query
+
    // Fetch the result as an associative array
+
+
    // Assign the result to the session variable
    // $_SESSION['p_id'] = $result['p_id'];
    // $stmt = $conn->query("select c_id from parent where p_id='{$_SESSION['name']}'");
-  ?>
+
+
+   ?>
    <section class="footer">
       <div class="box-container">
          <div class="container">
@@ -177,13 +178,13 @@
                      <!-- <img src="image/parent.jpg" /> -->
                      <h1>Welcome to our website!</h1>
                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis quam. Sed id libero vel elit ornare finibus. Aliquam tincidunt justo id nulla fermentum, in aliquet orci ultrices. Aliquamerat volutpat. Vivamus maximus nisi nisi, a interdum nulla dictum sit amet. Nullam consequat libero ut nibh aliquam, non dapibus enim bibendum. Donec at elit ac urna interdum luctus. Donec sed metus tincidunt, aliquam mauris eget, molestie nunc. Sed sitamet odio vel sapien blandit tincidunt. Fusce vulputate nulla diam, eu consequat sem sagittis vel. Donec et enim eu erat bibendum bibendum. Sed in libero vel elit ornare finibus.</p>
-                     <a href="#" class="btn">Learn More</a>
+                     <!-- <a href="#" class="btn">Learn More</a> -->
                   </div>
                </div>
             </div>
          </div>
       </div>
-      
+      </div>
    </section>
    <?php @include 'footer.php'; ?>
 </body>
