@@ -129,7 +129,6 @@
       // Close the database connection
       $db = null;
       ?>
-      
    </div>
 </body>
 </html>
