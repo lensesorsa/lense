@@ -156,9 +156,12 @@ a:hover {
          </div>
          <div class="col-9 welcome">
             <div class="content">
-               <h1>Welcome to our website!</h1>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis quam. Sed id libero vel elit ornare finibus. Aliquam tincidunt justo id nulla fermentum, in aliquet orci ultrices. Aliquamerat volutpat. Vivamus maximus nisi nisi, a interdum nulla dictum sit amet. Nullam consequat libero ut nibh aliquam, non dapibus enim bibendum. Donec at elit ac urna interdum luctus. Donec sed metus tincidunt, aliquam mauris eget, molestie nunc. Sed sitamet odio vel sapien blandit tincidunt. Fusce vulputate nulla diam, eu consequat sem sagittis vel. Donec et enim eu erat bibendum bibendum. Sed in libero vel elit ornare finibus.</p>
-               <!-- <a href="#" class="btn">Learn More</a> -->
+               <h1>Welcome to the website!</h1>
+<p>Dear Nurses,
+
+It is my pleasure to extend a warm welcome to all of you who have dedicated your lives to the noble profession of nursing. Your unwavering commitment to providing compassionate care to patients in their times of need is truly inspiring, and we are honored to have you as part of our healthcare team.
+<br>
+Once again, welcome to all nurses, and thank you for your service.</p>               <!-- <a href="#" class="btn">Learn More</a> -->
             </div>
          </div>
       </div>
