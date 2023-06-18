@@ -11,7 +11,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+   <title>Schedule</title>
 
       <!-- Add the Bootstrap CSS file -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -193,7 +193,7 @@ a:hover {
 
 
 <body style="background-color: lightblue;">
-<?php @include 'NKheader.php'; ?>
+<?php @include 'NKhome.php'; ?>
 <section class="footer">
 <div class="container">
       <div class="row">
