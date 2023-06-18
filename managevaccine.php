@@ -1,65 +1,3 @@
-<?php
-SESSION_start();
-    if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
-      header("location:home.php");
-      
-   }
- 
-// $c_id =  $_SESSION["c_id"];
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$dbname = 'vaccination_db';
-
-try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $exp_date_err = $received_date_err = $amount_err = $v_type_err = '';
-    $exp_date = $received_date = $amount = $v_type = '';
-} catch (PDOException $e) {
-    echo $e->getMessage();
-}
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (empty($_POST['exp_date'])) {
-        $exp_date = ' Expiry date is required';
-    } else {
-        $exp_date = $_POST['exp_date'];
-    }
-    if (empty($_POST['received_date'])) {
-        $received_date_err = ' received date is required';
-    } else {
-        $received_date = $_POST['received_date'];
-    }
-    if (empty($_POST['amount'])) {
-        $amount_err = ' amount is required';
-    } else {
-        $amount = $_POST['amount'];
-    }
-    if (empty($_POST['v_type'])) {
-        $v_type_err = 'name is required';
-    } else {
-        $v_type = $_POST['v_type'];
-    }
-
-    // Insert data into the child table
-    try {
-        $stmt = $conn->prepare('INSERT INTO vaccine (v_type,received_date,ammount,exp_date) VALUES (:v_type,:received_date,:ammount,:exp_date)');
-        $stmt->bindParam(':v_type', $v_type);
-        $stmt->bindParam(':received_date', $received_date);
-        $stmt->bindParam(':ammount', $amount);
-        $stmt->bindParam(':exp_date', $exp_date);
-        $stmt->execute();
-        // Get the last inserted ID from the child table
-        // $c_id = $conn->lastInsertId();
-        //echo "data succesfully inserted"; allert
-    } catch (PDOException $err) {
-        echo 'Error: ' . $err->getMessage();
-    }
-}
-// Close the database connection
-$conn = null;
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -189,11 +127,8 @@ $conn = null;
         background-color: #0056b3;
     }
 </style>
-
 <body style="background-color:lightblue">
     <?php @include 'NKhome.php'; ?>
-
-
     <section class="contact">
         <h1 class="heading">vaccine management</h1>
         <section class="footer">
@@ -205,11 +140,11 @@ $conn = null;
                         </div>
                     </div>
                     <div class="col-9">
-                            <section class="contact">
-                                <h1 class="heading">Add vaccine</h1>
+                        <div class="contact">
+                            <!-- <div class="row"> -->
+                            <!-- <div class="col-md-6 fs-2 text-center mx-auto" style="width: 700px; height:600px; margin:10px 50px;"> -->
                             <form method="post" action="" id="addForm">
                                 <div class="row mb-3">
-
                                 <span>vaccine recieved</span>
                   <select name="v_type">
                      <option value="none"> none</option>
@@ -225,9 +160,6 @@ $conn = null;
                      <option value="measles">measles</option>
                      <option value="vit_A">vit_A</option>
                   </select>
-
-
-                                
                                 </div>
                                 <div class="row mb-3">
                                     <label for="amount" class="col-sm-2 col-form-label">Amount</label>
@@ -251,10 +183,59 @@ $conn = null;
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form>
         </section>
-</section>
-        </div>
-        </div>
+      
 
+        <?php
+                // connect to the database using PDO
+                $host = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'vaccination_db';
+
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $exp_date_err = $received_date_err = $amount_err = $v_type_err = '';
+    $exp_date = $received_date = $amount = $v_type = '';
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (empty($_POST['exp_date'])) {
+        $exp_date = ' Expiry date is required';
+    } else {
+        $exp_date = $_POST['exp_date'];
+    }
+    if (empty($_POST['received_date'])) {
+        $received_date_err = ' received date is required';
+    } else {
+        $received_date = $_POST['received_date'];
+    }
+    if (empty($_POST['amount'])) {
+        $amount_err = ' amount is required';
+    } else {
+        $amount = $_POST['amount'];
+    }
+    if (empty($_POST['v_type'])) {
+        $v_type_err = 'name is required';
+    } else {
+        $v_type = $_POST['v_type'];
+    }
+}
+    // Insert data into the child table
+    try {
+        if (!empty($v_type) && !empty($amount) && !empty($received_date) && !empty($exp_date)){
+        $stmt = $conn->prepare('INSERT INTO vaccine (v_type,received_date,ammount,exp_date) VALUES (:v_type,:received_date,:ammount,:exp_date)');
+        $stmt->bindParam(':v_type', $v_type);
+        $stmt->bindParam(':received_date', $received_date);
+        $stmt->bindParam(':ammount', $amount);
+        $stmt->bindParam(':exp_date', $exp_date);
+        $stmt->execute();}
+    }catch(PDOException $err){
+        echo $err->getMessage();
+    }
+    ?>
         </div>
         </div>
 
@@ -268,22 +249,65 @@ $conn = null;
                     <th scope="col">Expiry Date</th>
                     <th scope="col">Recieved Date</th>
                     <th scope="col">Amount</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 // connect to the database using PDO
-                $dsn = 'mysql:host=localhost;dbname=vaccination_db';
-                $username = 'root';
-                $password = '';
-                $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-                $conn = new PDO($dsn, $username, $password, $options);
+                $host = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'vaccination_db';
 
-                // execute a query using PDO
-                $sql = 'SELECT * FROM vaccine';
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // $exp_date_err = $received_date_err = $amount_err = $v_type_err = '';
+    // $exp_date = $received_date = $amount = $v_type = '';
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//     if (empty($_POST['exp_date'])) {
+//         $exp_date = ' Expiry date is required';
+//     } else {
+//         $exp_date = $_POST['exp_date'];
+//     }
+//     if (empty($_POST['received_date'])) {
+//         $received_date_err = ' received date is required';
+//     } else {
+//         $received_date = $_POST['received_date'];
+//     }
+//     if (empty($_POST['amount'])) {
+//         $amount_err = ' amount is required';
+//     } else {
+//         $amount = $_POST['amount'];
+//     }
+//     if (empty($_POST['v_type'])) {
+//         $v_type_err = 'name is required';
+//     } else {
+//         $v_type = $_POST['v_type'];
+//     }
+// }
+//     // Insert data into the child table
+//     try {
+//         $stmt = $conn->prepare('INSERT INTO vaccine (v_type,received_date,ammount,exp_date) VALUES (:v_type,:received_date,:ammount,:exp_date)');
+//         $stmt->bindParam(':v_type', $v_type);
+//         $stmt->bindParam(':received_date', $received_date);
+//         $stmt->bindParam(':ammount', $amount);
+//         $stmt->bindParam(':exp_date', $exp_date);
+//         $stmt->execute();
+
+         $today=date('Y-m-d');
+                $sql = "SELECT * FROM vaccine WHERE exp_date < '$today'";
                 $stmt = $conn->query($sql);
-
+                // WHERE exp_date < '$today'
+               
+                // $del->execute();
                 // fetch the results
+                echo '<div class="col-md-10 fs-1 text-primary text-center font-weight-bold">Expired Vaccine</div>';
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo '<tr>';
                     echo '<td>' . $row['v_id'] . '</td>';
@@ -291,25 +315,40 @@ $conn = null;
                     echo '<td>' . $row['exp_date'] . '</td>';
                     echo '<td>' . $row['received_date'] . '</td>';
                     echo '<td>' . $row['ammount'] . '</td>';
-                    echo '<td>' . '<button>Expired</button>' . '</td>';
+                    echo '<td>' . '<form method="post" action="">' . 
+                    '<button class="btn btn-primary" type="submit" name="delete">Expired</button>
+                    </form>'. '</td>'; 
                     echo '</tr>';
                     // echo $row['v_type'];
                 }
-
-                // close the database connection
-                $conn = null;
+    // } catch (PDOException $err) {
+    //     echo 'Error: ' . $err->getMessage();
+    // }       
+                // $format= 'y-m-d';
+                $today=date('Y-m-d');
+                if (isset($_POST['delete'])) {
+        
+                $del_sql="DELETE FROM vaccine WHERE exp_date < '$today'";
+                $del_st = $conn->prepare($del_sql);
+                $del_st->execute();
+                }
+                // // close the database connection
+                // $conn = null;
 
                 ?>
+                
             </tbody>
         </table>
     </div>
     </div>
     </div>
     <!-- add vaccine  -->
-    <div class="col-md-10 fs-1 text-primary text-center font-weight-bold">Vaccine Inventory in <?php echo date('F') . '-' . date('Y'); ?></div>
-
+    <!-- <div class="col-md-10 fs-1 text-primary text-center font-weight-bold">Vaccine Inventory in  ?></div> -->
 
 </body>
 <?php @include 'footer.php'; ?>
 
+<!-- use PDO; -->
+
 </html>
+
