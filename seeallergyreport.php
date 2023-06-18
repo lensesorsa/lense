@@ -172,23 +172,64 @@ a:hover {
                $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                
-               $stmt = $conn->query("SELECT * FROM symptom");
+            //    $stmt = $conn->query("SELECT * FROM symptom");
+            //    while ($row = $stmt->fetch()) { 
+                  
+            //       $session = array(
+            //          "c_id" => $row["c_id"],
+            //          "date" => $row["date"]
+            //      );
+             
+
+
+            //       // $session['c_id']=$row["c_id"];
+            //       // $session['date']=$row["date"];
+
+            //       $stmts = $conn->query("SELECT vaccine_type FROM vaccination_record where c_id='{$session["c_id"]}' AND date='{$session["date"]}' ");
+              
+            //    echo "<table>";
+            //    echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>Vaccine type</th><th>Action</th><th></th></tr>";
+               
+               
+            //    // Display the results in an HTML table with borders
+            //    while ($rows=$stmts->fetch()) {
+            //          echo "<tr>";
+            //       echo "<td>" . $row["c_id"] . "</td>";
+            //       echo "<td>" . ($row["rash"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
+            //       echo "<td>" . ($row["vomit"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
+            //       echo "<td>" . ($row["fever"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
+            //       echo "<td>" . $rows["vaccine_type"] . "</td>";
+            //       echo "<td>
+            //                <form method='POST' action=''>
+            //                   <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
+            //                   <button type='submit'>Reject</button>
+            //                </form>
+            //             </td>";
+            //      echo "<td>
+            //                <form method='POST' action=''>
+            //                   <input type='hidden' name='accept' value='" . $row["s_id"] . "'>
+            //                   <button type='submit'>Accept</button>
+                              
+            //                </form>
+            //             </td>";
+
+            //       echo "</tr>";
+            //    }
+            // }
+            //    echo "</table>";
+
+
+            $stmt = $conn->query("SELECT * FROM symptom");
+
+               // Display the results in an HTML table with borders
                echo "<table>";
                echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>date</th><th>Action</th><th></th></tr>";
-               
-               while ($row = $stmt->fetch()) {             
-                  $c_id=$row["c_id"];
-                  $date=$row["date"];
-               
-               $stmts = $conn->query("SELECT vaccine_type FROM vaccination_record where c_id='$c_id' AND date='$date' ");
-               // Display the results in an HTML table with borders
-               while ($rows=$stmts->fetch()) {
-                     echo "<tr>";
+               while ($row = $stmt->fetch()) {
                   echo "<td>" . $row["c_id"] . "</td>";
                   echo "<td>" . ($row["rash"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["vomit"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["fever"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
-                  echo "<td>" . $rows["vaccine_type"] . "</td>";
+                  echo "<td>" . $row["date"] . "</td>";
                   echo "<td>
                            <form method='POST' action=''>
                               <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
@@ -204,11 +245,10 @@ a:hover {
                         </td>";
 
                   echo "</tr>";
-               
-                  // $date = $row["date"];
-                  // $c_id = $row["c_id"];
+
+                  $date = $row["date"];
+                  $c_id = $row["c_id"];
                }
-            }
                echo "</table>";
 
                if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -221,9 +261,11 @@ a:hover {
                      $sId = $_POST["accept"];
 
                      $select = $conn->query("SELECT vaccine_type FROM vaccination_record WHERE c_id='$c_id' AND date='$date'");
-                     while ($row = $select->fetch()) {
+                     while($row=$select->fetch()){
+                     // $select = $conn->query("SELECT vaccine_type FROM vaccination_record WHERE c_id='{$session["c_id"]}' AND date='{$session["date"]}'");                     while ($row = $select->fetch()) {
                         $v_type = $row["vaccine_type"];
                      }
+                  }
                      $dates = date('Y-m-d');
                      $stmt = $conn->prepare("INSERT INTO variable_child_information (allergy,c_id,date) VALUES (:allergy,:c_id,:date)");
                      $stmt->bindParam(':allergy', $v_type);
@@ -239,9 +281,7 @@ a:hover {
                      $stmt->bindParam(':sId', $sId);
                      $stmt->execute();
                   }
-               }
-
-
+               
 
                $conn = null; // Close the database connection
             } catch (PDOException $e) {
