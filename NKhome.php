@@ -1,9 +1,5 @@
 <!-- <?php 
-  session_start();
-  if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
-   header("location:home.php");
-   
-}
+ 
 ?> -->
 <section class="header">
 
