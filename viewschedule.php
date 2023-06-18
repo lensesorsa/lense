@@ -183,7 +183,8 @@ a:hover {
 
 <body style="background-color:lightblue">
 <?php @include 'Nhome.php'; ?> 
-<?php session_start();
+<?php 
+
 $n_id=$_SESSION['n_id'];
                            $host = "localhost";
                            $username = "root";
