@@ -1,3 +1,5 @@
+<?php                           session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -177,7 +179,6 @@
                            try {
                               $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                               $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
                               if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
                                  header("location:home.php");
                                  
@@ -201,7 +202,9 @@
 
                               
                               if ($row["time"] != null) {
-                                  if (strtotime($row["date"]) < time()) {
+                                 //  if (strtotime($row["date"]) < time()) {
+                                    if (date('Y-m-d', strtotime($row["date"])) < date('Y-m-d')) {
+
                                       // schedule date has passed, show a warning message
                                       echo "<td><div class='error'>The schedule for this event has passed</div></td>";
                                   } else {
