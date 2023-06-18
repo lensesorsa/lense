@@ -215,7 +215,7 @@ $n_id=$_SESSION['n_id'];
                            <?php
                             
                               // Select all rows from the "users" table
-                              $stmt = $conn->query("SELECT * FROM schedule where date=curdate() and n_id='$n_id'"); //for the specific nurse and time that time is also specified
+                              $stmt = $conn->query("SELECT * FROM schedule where  n_id='$n_id'"); //for the specific nurse and time that time is also specified
 
                               // Display the results in an HTML table
                               echo "<table>";

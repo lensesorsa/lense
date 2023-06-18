@@ -141,7 +141,7 @@ if ($successful) {
       }
 
       .col-3 {
-         width: 30%;
+         width: 40%;
          margin-right: 20px;
       }
 

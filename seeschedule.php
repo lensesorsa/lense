@@ -1,4 +1,9 @@
-<?php                           session_start();
+<?php                        
+session_start();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
+   header("location:home.php");
+   
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,10 +184,7 @@
                            try {
                               $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                               $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                              if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
-                                 header("location:home.php");
-                                 
-                              }
+                              
                               $c_id =  $_SESSION["c_id"];
 
 
