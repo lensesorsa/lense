@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+                  header("location:home.php");
+                  
+               }?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -165,10 +171,7 @@ a:hover {
             try {
                $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-               if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
-                  header("location:home.php");
-                  
-               }
+               
                $stmt = $conn->query("SELECT * FROM symptom");
                echo "<table>";
                echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>date</th><th>Action</th><th></th></tr>";
@@ -180,7 +183,7 @@ a:hover {
                $stmts = $conn->query("SELECT vaccine_type FROM vaccination_record where c_id='$c_id' AND date='$date' ");
                // Display the results in an HTML table with borders
                while ($rows=$stmts->fetch()) {
-                  if($row){
+                     echo "<tr>";
                   echo "<td>" . $row["c_id"] . "</td>";
                   echo "<td>" . ($row["rash"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["vomit"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
@@ -201,7 +204,7 @@ a:hover {
                         </td>";
 
                   echo "</tr>";
-               }
+               
                   // $date = $row["date"];
                   // $c_id = $row["c_id"];
                }
