@@ -182,7 +182,6 @@
 
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </form>
-        </section>
       
 
         <?php
@@ -239,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         </div>
 
-    </section>
+    
     <div class="col-md-12 fs-2" id="inventory">
         <table class="table table-striped">
             <thead>
@@ -269,36 +268,6 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//     if (empty($_POST['exp_date'])) {
-//         $exp_date = ' Expiry date is required';
-//     } else {
-//         $exp_date = $_POST['exp_date'];
-//     }
-//     if (empty($_POST['received_date'])) {
-//         $received_date_err = ' received date is required';
-//     } else {
-//         $received_date = $_POST['received_date'];
-//     }
-//     if (empty($_POST['amount'])) {
-//         $amount_err = ' amount is required';
-//     } else {
-//         $amount = $_POST['amount'];
-//     }
-//     if (empty($_POST['v_type'])) {
-//         $v_type_err = 'name is required';
-//     } else {
-//         $v_type = $_POST['v_type'];
-//     }
-// }
-//     // Insert data into the child table
-//     try {
-//         $stmt = $conn->prepare('INSERT INTO vaccine (v_type,received_date,ammount,exp_date) VALUES (:v_type,:received_date,:ammount,:exp_date)');
-//         $stmt->bindParam(':v_type', $v_type);
-//         $stmt->bindParam(':received_date', $received_date);
-//         $stmt->bindParam(':ammount', $amount);
-//         $stmt->bindParam(':exp_date', $exp_date);
-//         $stmt->execute();
 
          $today=date('Y-m-d');
                 $sql = "SELECT * FROM vaccine WHERE exp_date < '$today'";
@@ -321,9 +290,7 @@ try {
                     echo '</tr>';
                     // echo $row['v_type'];
                 }
-    // } catch (PDOException $err) {
-    //     echo 'Error: ' . $err->getMessage();
-    // }       
+       
                 // $format= 'y-m-d';
                 $today=date('Y-m-d');
                 if (isset($_POST['delete'])) {
@@ -339,16 +306,16 @@ try {
                 
             </tbody>
         </table>
-    </div>
-    </div>
-    </div>
-    <!-- add vaccine  -->
-    <!-- <div class="col-md-10 fs-1 text-primary text-center font-weight-bold">Vaccine Inventory in  ?></div> -->
 
+    </div>
+
+    </div>
+    </div>
+    </section>
+
+   </section>
 </body>
 <?php @include 'footer.php'; ?>
-
-<!-- use PDO; -->
 
 </html>
 
