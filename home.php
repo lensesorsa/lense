@@ -13,7 +13,8 @@ try {
       if (empty($_POST["name"])) {
          $nameErr = " Name is required";
       } else {
-         $name = $_POST["name"];
+         $name = strtolower($_POST['name']);
+   
          if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
             $nameErr = " Only letters and white space allowed";
          }
@@ -23,39 +24,37 @@ try {
       } else {
          $password = $_POST["password"];
       }
-// //}
-     // session_start();
-      $sq = "SELECT *FROM users WHERE name='" . $name . "' AND password='" . $password . "'";
-      $result = $conn->query($sq);
-      $count = 0;
-      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-         $_SESSION['name'] = $row['name'];
-         $_SESSION['password'] = $row['password'];
-         $_SESSION['role'] = $row['role'];
-         $_SESSION['user_id'] = $row['user_id'];
-
-         $count = $count + 1;
-      }
-      if ($count == 0) {
+      
+      $sql = "SELECT * FROM users WHERE name = LOWER(?) AND password = ?";
+      $stmt = $conn->prepare($sql);
+      $stmt->execute([$name, $password]);
+      $user = $stmt->fetch(PDO::FETCH_ASSOC);
+   
+      if (!$user) {
          $loginErr = "invalid user";
-      } elseif ($_SESSION['name'] == $name && $_SESSION['password'] == $password && $_SESSION['role'] == 'nurse') {
+      } elseif ($user['role'] == 'nurse') {
+         $_SESSION['name'] = $user['name'];
+         $_SESSION['password'] = $user['password'];
+         $_SESSION['role'] = $user['role'];
+         $_SESSION['user_id'] = $user['user_id'];
          header("location:nurse.php");
-      } elseif ($_SESSION['name'] == $name && $_SESSION['password'] == $password && $_SESSION['role'] == 'nurseclerk') {
+      } elseif ($user['role'] == 'nurseclerk') {
+         $_SESSION['name'] = $user['name'];
+         $_SESSION['password'] = $user['password'];
+         $_SESSION['role'] = $user['role'];
+         $_SESSION['user_id'] = $user['user_id'];
          header("location:nurseclerk.php");
-      }elseif($_SESSION['name']==$name&&$_SESSION['role']=='parent'&& $_SESSION['password'] == $password){
-         if($_SESSION['password']==1234)
-         {
+      } elseif ($user['role'] == 'parent') {
+         $_SESSION['name'] = $user['name'];
+         $_SESSION['password'] = $user['password'];
+         $_SESSION['role'] = $user['role'];
+         $_SESSION['user_id'] = $user['user_id'];
+         if ($user['password'] == '1234') {
             header("location:changepassword.php");
-
-         }
-         else{
+         } else {
             header("location:parent.php");
-  
          }
-      } 
-      /*elseif ($_SESSION['name'] == $name && $_SESSION['password'] == $password && $_SESSION['role'] == 'parent') {
-         header("location:changepassword.php");
-      }*/
+      }
    }
    // $conn = null;
 } catch (PDOException $e) {
