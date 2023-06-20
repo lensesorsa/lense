@@ -239,6 +239,7 @@ if ($successful) {
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+   <link rel="shortcut icon" type="image/x-icon" href="image/logo.jpg" />
 
 </head>
 

@@ -19,6 +19,8 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-0J1gK7rmOF/sJbq0RqQrGVAfH3f2z3W5sJy3a3HcL9hJ9yTscN+R6J3k5j3lYwoF2+Gg7WbTn7rQoQf4QV3RlA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link rel="shortcut icon" type="image/x-icon" href="image/logo.jpg" />
+
 </head>
 <style>
    * {
@@ -172,64 +174,26 @@ a:hover {
                $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                
-            //    $stmt = $conn->query("SELECT * FROM symptom");
-            //    while ($row = $stmt->fetch()) { 
+               $stmt = $conn->query("SELECT * FROM symptom");
+               while ($row = $stmt->fetch()) { 
                   
-            //       $session = array(
-            //          "c_id" => $row["c_id"],
-            //          "date" => $row["date"]
-            //      );
-             
+                  $c_id=$row["c_id"];
+                  $date=$row["date"];
 
-
-            //       // $session['c_id']=$row["c_id"];
-            //       // $session['date']=$row["date"];
-
-            //       $stmts = $conn->query("SELECT vaccine_type FROM vaccination_record where c_id='{$session["c_id"]}' AND date='{$session["date"]}' ");
+                  $stmts = $conn->query("SELECT vaccine_type FROM vaccination_record where c_id='$c_id' AND date='$date' ");
               
-            //    echo "<table>";
-            //    echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>Vaccine type</th><th>Action</th><th></th></tr>";
-               
-               
-            //    // Display the results in an HTML table with borders
-            //    while ($rows=$stmts->fetch()) {
-            //          echo "<tr>";
-            //       echo "<td>" . $row["c_id"] . "</td>";
-            //       echo "<td>" . ($row["rash"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
-            //       echo "<td>" . ($row["vomit"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
-            //       echo "<td>" . ($row["fever"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
-            //       echo "<td>" . $rows["vaccine_type"] . "</td>";
-            //       echo "<td>
-            //                <form method='POST' action=''>
-            //                   <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
-            //                   <button type='submit'>Reject</button>
-            //                </form>
-            //             </td>";
-            //      echo "<td>
-            //                <form method='POST' action=''>
-            //                   <input type='hidden' name='accept' value='" . $row["s_id"] . "'>
-            //                   <button type='submit'>Accept</button>
-                              
-            //                </form>
-            //             </td>";
-
-            //       echo "</tr>";
-            //    }
-            // }
-            //    echo "</table>";
-
-
-            $stmt = $conn->query("SELECT * FROM symptom");
-
-               // Display the results in an HTML table with borders
                echo "<table>";
-               echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>date</th><th>Action</th><th></th></tr>";
-               while ($row = $stmt->fetch()) {
+               echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>Vaccine type</th><th>Action</th><th></th></tr>";
+               
+               
+               // Display the results in an HTML table with borders
+               while ($rows=$stmts->fetch()) {
+                     echo "<tr>";
                   echo "<td>" . $row["c_id"] . "</td>";
                   echo "<td>" . ($row["rash"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["vomit"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
                   echo "<td>" . ($row["fever"] == 1 ? "<i class='fas fa-check'></i>" : "<i class='fas fa-times'></i>") . "</td>";
-                  echo "<td>" . $row["date"] . "</td>";
+                  echo "<td>" . $rows["vaccine_type"] . "</td>";
                   echo "<td>
                            <form method='POST' action=''>
                               <input type='hidden' name='reject' value='" . $row["s_id"] . "'>
@@ -245,12 +209,11 @@ a:hover {
                         </td>";
 
                   echo "</tr>";
-
-                  $date = $row["date"];
-                  $c_id = $row["c_id"];
                }
-               echo "</table>";
-
+            
+                  }
+                     echo "</table>";
+            
                if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   if (isset($_POST["reject"])) {
                      $sId = $_POST["reject"];

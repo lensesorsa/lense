@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
   <!-- custom css file link  -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="shortcut icon" href="images/ye.jpg">
+  <link rel="shortcut icon" type="image/x-icon" href="image/logo.jpg" />
 </head>
   <style>
   /* Reset styles */
