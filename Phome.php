@@ -1,3 +1,6 @@
+<!-- <?php 
+
+?> -->
 <section class="header">
 
    <a href="home.php" class="logo"> Jan meda health center</a>

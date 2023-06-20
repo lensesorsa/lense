@@ -52,7 +52,7 @@
    }
 
    .col-3 {
-      width: 20%;
+      width: 30%;
       margin-right: 20px;
    }
 
@@ -147,7 +147,10 @@
          // echo"</tr>";
          $_SESSION["c_id"] = $row["c_id"];
       }
-
+      if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
+         header("location:home.php");
+         
+      }
       $nameErr = $emailErr = $noErr = $passwordErr = $addressErr = $messageErr = $updateErr = $dateErr = $genderErr = $blood_typeErr = $HIVErr = "";
       $name = $email = $number = $date = $address = $password = $gender = $HIV = $blood_type = "";
    } catch (PDOException $e) {
@@ -176,9 +179,8 @@
                <div class="col-9 welcome">
                   <div class="content">
                      <!-- <img src="image/parent.jpg" /> -->
-                     <h1>Welcome to our website!</h1>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis quam. Sed id libero vel elit ornare finibus. Aliquam tincidunt justo id nulla fermentum, in aliquet orci ultrices. Aliquamerat volutpat. Vivamus maximus nisi nisi, a interdum nulla dictum sit amet. Nullam consequat libero ut nibh aliquam, non dapibus enim bibendum. Donec at elit ac urna interdum luctus. Donec sed metus tincidunt, aliquam mauris eget, molestie nunc. Sed sitamet odio vel sapien blandit tincidunt. Fusce vulputate nulla diam, eu consequat sem sagittis vel. Donec et enim eu erat bibendum bibendum. Sed in libero vel elit ornare finibus.</p>
-                     <!-- <a href="#" class="btn">Learn More</a> -->
+                     <h1>Welcome to the website!</h1>
+<p>Welcome to our Children Vaccination Management System! We are committed to ensuring that every child receives the necessary vaccinations to protect against preventable diseases. Our system is designed to streamline the vaccination process, making it easier for parents to see  appointments, keep track of their child's vaccinations,<br> Thank you for choosing our health center.</p>                     <!-- <a href="#" class="btn">Learn More</a> -->
                   </div>
                </div>
             </div>

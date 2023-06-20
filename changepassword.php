@@ -1,5 +1,11 @@
 <?php
-session_start();
+
+  session_start();
+  if (!isset($_SESSION['user_id']) || !isset($_SESSION['name'])) {
+   header("location:home.php");
+   
+}
+
 $host = "localhost";
 $username = "root";
 $password = "";

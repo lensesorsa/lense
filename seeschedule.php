@@ -1,3 +1,10 @@
+<?php                        
+session_start();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
+   header("location:home.php");
+   
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +20,7 @@
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/Style.css">
    <ink rel="shortcut icon" href="images/ye.jpg">
+   <link rel="shortcut icon" type="image/x-icon" href="image/logo.jpg" />
 </head>
 <style>
    table {
@@ -156,7 +164,7 @@
    <div class="container">
       <h1 class="heading">see schedule</h1>
       <section class="footer">
-         <div class="box-container">
+         <!-- <div class="box-container"> -->
             <div class="container">
                <div class="row">
                   <div class="col-3">
@@ -176,38 +184,43 @@
                            try {
                               $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                               $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                              session_start();
-
+                              
                               $c_id =  $_SESSION["c_id"];
 
 
-                              $stmt = $conn->query("SELECT c_id, v_type,date,time FROM schedule where c_id='$c_id'"); //where child is his own child's session
+                              $stmt = $conn->query("SELECT c_id, v_type,date,time,n_id FROM schedule where c_id='$c_id'"); //where child is his own child's session
                               $select = $conn->query("SELECT name from child where c_id='$c_id'");
 
                               //Display the results in an HTML table with borders and clickable rows
                               echo "<table>";
-                              echo "<tr><th>Child Name</th><th>Vaccine Type</th><th>date</th><th>time</th></tr>";
-                              while (($row = $stmt->fetch()) && ($rows = $select->fetch())) {
+                           echo "<tr><th>Child Name</th><th>Nurse Id</th><th>Vaccine Type</th><th>Date</th><th>Time</th></tr>";
+                          
+                           while (($row = $stmt->fetch()) && ($rows = $select->fetch())) {
 
-                                 echo "<td>" . $rows["name"] . "</td>";
-                                 echo "<td>" . $row["v_type"] . "</td>";
-                                 echo "<td>" . $row["date"] . "</td>";
-                                 if ($row["time"] != null) {
-                                    if (strtotime($row["date"]) < time()) {
-                                       // schedule date has passed, show a warning message
-                                       echo "<h2 class=error>The schedule date is passed <hr>come as soon as possible!!</td>";
-                                    } else {
-                                       // schedule date is in the future, show the time
-                                       echo "<td>" . $row["time"] . "</td>";
-                                    }
-                                 } else {
-                                    echo "<h2>The schedule is not yet set!!<hr>please visit later</td>";
-                                 }
+                              echo "<td>" . $rows["name"] . "</td>";
+                              echo "<td>" . $row["n_id"] . "</td>";
+                              echo "<td>" . $row["v_type"] . "</td>";
+                              echo "<td>" . $row["date"] . "</td>";
 
+                              
+                              if ($row["time"] != null) {
+                                 //  if (strtotime($row["date"]) < time()) {
+                                    if (date('Y-m-d', strtotime($row["date"])) < date('Y-m-d')) {
 
-                                 echo "</tr>";
+                                      // schedule date has passed, show a warning message
+                                      echo "<td><div class='error'>The schedule for this event has passed</div></td>";
+                                  } else {
+                                      // schedule date is in the future, show the time
+                                      echo "<td>" . $row["time"] . "</td>";
+                                  }
+                              } else {
+                                  echo "<td><div class='error'>The schedule is not yet set!! Please come later</div></td>";
                               }
-                              echo "</table>";
+                          
+
+                              echo "</tr>";
+                           }
+                           echo "</table>";
                            } catch (PDOException $e) {
                               echo "Error: " . $e->getMessage();
                            }
@@ -215,6 +228,7 @@
                         </fieldset>
                      </div>
                   </div>
+                  
                </div>
 
 
@@ -233,7 +247,7 @@
                   // echo 'Mother Name' . $rows['m_name'] . "<br>";
                   echo '<div class="card bg-success" style="width: 28rem;">';
                   echo '<ul class="list-group list-group-flush">';
-                  echo '<li class="list-group-item " style="list-style-type:none;">' . "Child Info" . '</li>';
+                  echo '<li class="list-group-item " style="list-style-type:none;">' . "<b><h3>Child Info</h3></b>Parent Info" . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Name: ' . $row['name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Date of birth: ' . $row['DOB'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Gender: ' . $row['gender'] . '</li>';
@@ -258,7 +272,7 @@
                   // echo 'Mother Name' . $rows['m_name'] . "<br>";
                   echo '<div class="card bg-success" style="width: 28rem;">';
                   echo '<ul class="list-group list-group-flush">';
-                  echo '<li class="list-group-item " style="list-style-type:none;">' . "Parent Info" . '</li>';
+                  echo '<li class="list-group-item " style="list-style-type:none;">' . "<b><h3>Parent Info</h3></b>Parent Info" . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Father\'s name: ' . $rows['f_name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Mother\'s name: ' . $rows['m_name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Email: ' . $rows['email'] . '</li>';
@@ -273,11 +287,11 @@
 
             </div>
          </div>
-      </div>
-   </div>
-   <?php
+         <div class="col-3 ">
+            <div class="box">
+            <?php
    $select = $conn->query("SELECT vaccine_type from vaccination_record where c_id='$c_id'");
-   echo '<h2 class="text-primary"><mark> Vaccine Administered</mark></h2>';
+   echo '<b><h3>Vaccine Administered</h3></b>';
    echo "<table>";
    echo "<th>Vaccine Type</th>";
    echo "<tr>";
@@ -290,6 +304,11 @@
    echo "</tr>";
    echo "</table>";
    ?>
+            </div>
+         </div>
+      </div>
+   </div>
+   
    </div>
 </div>
 

@@ -1,6 +1,12 @@
 <?php
 
 SESSION_start();
+ 
+  if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurse') {
+   header("location:home.php");
+   
+}
+
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -189,7 +195,7 @@ $conn = null;
               $search = preg_replace("#[^0-9a-z]#i", "", $search); // Sanitize the search query
 
               // SQL query to search for matching records
-              $sql = "SELECT child.*, parent.* FROM child JOIN parent ON child.c_id= parent.c_id WHERE name LIKE :search";
+              $sql = "SELECT child.*, parent.* FROM child JOIN parent ON child.c_id= parent.c_id WHERE name LIKE :search or child.c_id like :search or f_name like :search";
 
               // Prepare the statement
               $stmt = $conn->prepare($sql);

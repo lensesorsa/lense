@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -11,6 +11,10 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+    header("location:home.php");
+    
+ }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["c_name"])) {
         $nameErr = " Name is required";
@@ -140,15 +144,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error inserting data into parent table: " . $e->getMessage();
     }
 
-    try {
-        $stmt = $conn->prepare("INSERT INTO schedule (c_id) VALUES (:c_id)");
-        $stmt->bindParam(':c_id', $c_id);
-        $stmt->execute();
-        //echo "Data inserted successfully"; allert 
-    } catch (PDOException $e) {
-        echo "Error inserting data into parent table: " . $e->getMessage();
-    }
-
     $insert = "INSERT INTO users(name,password,role) VALUES ('$f_name',1234,'parent')";
     $insert1 = "INSERT INTO schedule(c_id,date,v_type)values('$c_id',curdate(),'BCG')";
     $conn->exec($insert);
@@ -257,7 +252,7 @@ a:hover {
 .box {
    background-color: #f2f2f2;
    padding:10px;
-   height: 50%;
+   height: auto;
    position: sticky;
    left: 0;
    top: 0;
@@ -407,20 +402,7 @@ a:hover {
                         <textarea name="kebele" placeholder="enter your kebele" required cols="3" rows="3" style="height: 5.5rem;"></textarea>
                     </div>
                     
-                    <!-- <div class="inputBox">
-                        <span>Gender:</span>
-                        <span class="error" style="color: red;"> <?php echo $genderErr; ?></span>
-                        <span>
-                            <input type="radio" name="gender" value="male">
-                            Male
-                        </span>
-
-                        <span>
-                            <input type="radio" name="gender" value="female">
-                            Female
-                        </span>
-
-                        </div> -->
+                  
                     <div class="inputBox">
                         <span>house number</span>
                         <span class="error" style="color: red;"> <?php echo $housenoErr; ?></span>

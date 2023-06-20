@@ -126,7 +126,13 @@ a:hover {
 </style>
 
 <body style="background-color:lightblue">
-  <?php @include 'header.php'; ?>
+  <?php @include 'header.php'; 
+  session_start();
+   if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+      header("location:home.php");
+      
+   }
+  ?>
 <div class="container">
    <div class="row">
       <div class="col-3">
@@ -136,9 +142,8 @@ a:hover {
       </div>
       <div class="col-9" welcome>
          <div class="content">
-            <h1 class="heading">Welcome to our website!</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed felis quam. Sed id libero vel elit ornare finibus. Aliquam tincidunt justo id nulla fermentum, in aliquet orci ultrices. Aliquamerat volutpat. Vivamus maximus nisi nisi, a interdum nulla dictum sit amet. Nullam consequat libero ut nibh aliquam, non dapibus enim bibendum. Donec at elit ac urna interdum luctus. Donec sed metus tincidunt, aliquam mauris eget, molestie nunc. Sed sitamet odio vel sapien blandit tincidunt. Fusce vulputate nulla diam, eu consequat sem sagittis vel. Donec et enim eu erat bibendum bibendum. Sed in libero vel elit ornare finibus.</p>
-         </div>
+            <h1 class="heading">Welcome to the website!</h1>
+<p>Welcome to our Children Vaccination Management System! As a nurseclerk, you play a vital role in ensuring that children receive the necessary vaccinations to protect against preventable diseases. Our system is designed to streamline the vaccination process, making it easier for you to manage appointments, communicate with parents. </p>         </div>
       </div>
    </div>
 </div>

@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+   <?php session_start();
+    if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurseclerk') {
+      header("location:home.php");
+      
+   }
+ ?>
 
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+   <title>Schedule</title>
 
       <!-- Add the Bootstrap CSS file -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -61,7 +67,7 @@ a:hover {
 }
 
 .col-3 {
-   width: 20%;
+   width: 30%;
    margin-right: 20px;
 }
 
@@ -74,7 +80,8 @@ a:hover {
    background-color: #f2f2f2;
    padding: 20px;
    height: 100;
-   position: sticky;
+   /* position: sticky; */
+   margin-top:15rem;
    left: 0;
    top: 0;
    overflow-y: auto;
@@ -186,7 +193,8 @@ a:hover {
 
 
 <body style="background-color: lightblue;">
-<?php @include 'NKheader.php'; ?>
+<?php @include 'NKhome.php'; ?>
+<section class="footer">
 <div class="container">
       <div class="row">
          <div class="col-3">
@@ -253,6 +261,7 @@ a:hover {
          
       </fieldset>
 
+      </div>
 
       <fieldset>
          <?php
@@ -264,17 +273,10 @@ a:hover {
             $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Select all rows from the "schedule" table
             $stmt = $conn->query("SELECT * FROM schedule where time is  null");
-            //  $stmt=$db->prepare('UPDATE mytable SET time =? WHERE id =?');
 
-            // $stmt = $conn->prepare("SELECT child.name , schedule.time AS time , schedule.date As date 
-            // FROM schedule 
-            // iNNER JOIN child ON schedule.s_id = schedule.c_id");
             $stmt->execute();
             
-            // Display the results in an HTML table with styled buttons
-            // echo "<h4>Please assign a designated appointment time for each child on this list for their next visit</h4>";
             echo "<table>";
             
             echo "<tr><th>Child ID</th><th>Date</th><th>Vaccine Type</th></tr>";
@@ -332,7 +334,7 @@ $conn->exec($update);
          }
          ?>
       </fieldset>
-
+      </section>
       <script>
     $(document).ready(function(){
         $("#myModal").modal('hide');
@@ -342,7 +344,6 @@ $conn->exec($update);
         });
     });
 </script>
-            </div>
          </div>
    
 

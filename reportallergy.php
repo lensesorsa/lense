@@ -1,5 +1,10 @@
 <?php
 SESSION_start();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'parent') {
+    header("location:home.php");
+    
+ }
+
 $c_id =  $_SESSION["c_id"];
 $host = "localhost";
 $username = "root";
@@ -15,7 +20,6 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["rash"]) && empty($_POST["fever"]) && empty($_POST["vomit"])) {
         $symptomErr = "At least one symptom must be selected.";
@@ -66,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Report allergy</title>
     <!-- Add the Bootstrap CSS file -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -119,8 +123,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    }
 
    .col-3 {
-      width: 20%;
-      margin-right: 20px;
+      width: 30%;
+      /* margin-right: 20px; */
    }
 
    .col-9 {
@@ -130,12 +134,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    /* Navigation styles */
    .box {
       background-color: #f2f2f2;
-      /* padding: 10px; */
+      padding: 10px;
       height: 80%;
-      position: sticky;
+      /* position: sticky; */
       left: 0;
       top: 0;
       margin-top: 7rem;
+      /* margin-left:-2rem; */
+/* margin-left:0; */
       overflow-y: auto;
    }
 
@@ -197,10 +203,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <?php @include 'header.php'; ?>
         <section class="contact">
-            <h1 class="heading">Report Allergy</h1>
             <section class="footer">
+            <h1 class="heading">Report Allergy</h1>
+
          <!-- <div class="box-container"> -->
-            <div class="container">
+            <!-- <div class="container"> -->
                <div class="row">
                   <div class="col-3">
                      <div class="box">

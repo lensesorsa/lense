@@ -1,6 +1,9 @@
 <?php 
   session_start();
-
+  if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role'] !== 'nurse') {
+   header("location:home.php");
+   
+}
   $c_id =  $_SESSION["c_id"];
 ?>
 <!DOCTYPE html>
@@ -10,7 +13,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>see schedule</title>
+   <title>Child Profile</title>
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    <!-- swiper css link  -->
@@ -97,11 +100,12 @@
    .box {
       background-color: #f2f2f2;
       padding: 20px;
-      height: 100%;
-      position: sticky;
+      height: auto;
+      /* position: sticky; */
       left: 0;
       top: 0;
       overflow-y: auto;
+      margin-top:10rem;
    }
 
    .box a {
@@ -161,8 +165,8 @@
 <body style="background-color:lightblue">
    <?php @include 'Phome.php'; ?>
    <div class="container">
-      <h1 class="heading">Schedule</h1>
-      <section class="footer">
+      <h1 class="heading">Child Profile</h1>
+      <!-- <section class="footer"> -->
          <!-- <div class="box-container"> -->
             <div class="container">
                <div class="row">
@@ -183,7 +187,6 @@
                            try {
                               $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                               $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
                               $stmt = $conn->query("SELECT name, DOB,gender,HIV_status,blood_type FROM child where c_id='$c_id'"); //where child is his own child's session
 
                               while (($row = $stmt->fetch())) {
@@ -203,6 +206,7 @@
                                     echo '</ul>';
                                     echo '</div>';
                               }
+                              
 
                               // $stmt = $conn->query("SELECT name, blood_type, DOB FROM child where c_id='$c_id'"); //where child is his own child's session
                               $select = $conn->query("SELECT f_name, m_name, email, number from parent where c_id='$c_id'");
