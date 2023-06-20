@@ -18,7 +18,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <!-- custom css file link  -->
     <link rel="stylesheet" href="css/Style.css">
-    <ink rel="shortcut icon" href="images/ye.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="image/logo.jpg" />
 </head>
 <style>
     * {
