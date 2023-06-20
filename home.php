@@ -75,7 +75,7 @@ try {
    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/styles.css">
-   <ink rel="shortcut icon" href="images/ye.jpg">
+   <link rel="shortcut icon" type="image/x-icon" href="image/logo.jpg" />
       <style>
          .contact {
             float: right;
@@ -152,13 +152,6 @@ try {
              }
             
             ?>
-            <!-- <h2>Daily Notifications</h2>
-            <p>Here's some important information for today:</p>
-            <ul>
-               <li>Reminder: All nurses must attend the weekly meeting at 2pm.</li>
-               <li>New vaccine shipment arriving tomorrow.</li>
-               <li>Dr. Smith will be out of the office next week.</li>
-            </ul> -->
          </div>
       </section>
 
