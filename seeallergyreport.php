@@ -175,6 +175,10 @@ a:hover {
                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                
                $stmt = $conn->query("SELECT * FROM symptom");
+               echo "<table>";
+
+               echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>Vaccine type</th><th>Action</th><th></th></tr>";
+
                while ($row = $stmt->fetch()) { 
                   
                   $c_id=$row["c_id"];
@@ -182,8 +186,6 @@ a:hover {
 
                   $stmts = $conn->query("SELECT vaccine_type FROM vaccination_record where c_id='$c_id' AND date='$date' ");
               
-               echo "<table>";
-               echo "<tr><th>#</th><th>rash</th><th>vomit</th><th>fever</th><th>Vaccine type</th><th>Action</th><th></th></tr>";
                
                
                // Display the results in an HTML table with borders
