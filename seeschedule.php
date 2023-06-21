@@ -246,7 +246,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role
                   // echo 'Mother Name' . $rows['m_name'] . "<br>";
                   echo '<div class="card bg-success" style="width: 28rem;">';
                   echo '<ul class="list-group list-group-flush">';
-                  echo '<li class="list-group-item " style="list-style-type:none;">' . "<b><h3>Child Info</h3></b>Parent Info" . '</li>';
+                  echo '<li class="list-group-item " style="list-style-type:none;">' . "<b><h3>Child Info</h3></b>" . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Name: ' . $row['name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Date of birth: ' . $row['DOB'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Gender: ' . $row['gender'] . '</li>';
@@ -271,7 +271,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['name']) || $_SESSION['role
                   // echo 'Mother Name' . $rows['m_name'] . "<br>";
                   echo '<div class="card bg-success" style="width: 28rem;">';
                   echo '<ul class="list-group list-group-flush">';
-                  echo '<li class="list-group-item " style="list-style-type:none;">' . "<b><h3>Parent Info</h3></b>Parent Info" . '</li>';
+                  echo '<li class="list-group-item " style="list-style-type:none;">' . "<b><h3>Parent Info</h3></b>" . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Father\'s name: ' . $rows['f_name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Mother\'s name: ' . $rows['m_name'] . '</li>';
                   echo '<li class="list-group-item" style="list-style-type:none;">' . 'Email: ' . $rows['email'] . '</li>';
