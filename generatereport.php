@@ -379,7 +379,7 @@
                      <table class="table table-bordered table-striped" style='font-size: 22px; padding: 10px'>
                         <tr>
                            <th>Vaccine Type</th>
-                           <th style='padding-left: 30px;'>Vaccines Given</th>
+                           <th style='padding-left: 30px;'>Vaccines Remaining</th>
                         </tr>
                         <?php
                         foreach ($vaccinesGivenWeekly as $row) {
@@ -396,7 +396,7 @@
                      <table class="table table-bordered table-striped" style='font-size: 22px; padding: 10px'>
                         <tr>
                            <th>Vaccine Type</th>
-                           <th style='padding-left: 30px;'>Vaccines Given</th>
+                           <th style='padding-left: 30px;'>Vaccines Remaining</th>
                         </tr>
                         <?php
                         echo "<h3>Month " . date("m M") . " Report</h3>";
