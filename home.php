@@ -197,14 +197,14 @@ try {
                <div class="swiper-slide slide">
                   <img src="image/happy_child.jpg" alt="">
                   <div class="content">
-                     <h3>benefit of vacccination</h3>
+                     <h3>benefit of vaccination</h3>
                      <a href="https://vaccination-info.eu/en/vaccination/benefits-vaccination-community" class="btn">discover more</a>
                   </div>
                </div>
                <div class="swiper-slide slide">
                   <img src="image/syringe.avif" alt="">
                   <div class="content">
-                     <h3>what if i skip vaccianion</h3>
+                     <h3>what if i skip vaccination</h3>
                      <a href="consequence.php" class="btn">discover more</a>
                   </div>
                </div>
