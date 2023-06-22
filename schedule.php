@@ -308,10 +308,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $n_id = $_POST["n_id"];
       
   }
-  if (empty($_POST["time"])) {
-   $timeErr = " time is required";
-} else {
+//   if (empty($_POST["time"]))
+if (!empty($_POST["time"])) {
    $time = $_POST["time"];
+   // $timeErr = " time is required";
+} else {
+   
    
 }
 $registration_is_successful = true;
@@ -333,6 +335,65 @@ $conn->exec($update);
             echo "Error: " . $e->getMessage();
          }
          ?>
+         <?php
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
+// Initialize the PHPMailer object
+$mail = new PHPMailer(true);
+
+// Set the SMTP credentials and configuration
+$mail->isSMTP();
+$mail->Host = 'smtp.gmail.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'aliyahtemam@gmail.com';
+$mail->Password = 'fsajvnkdexzkeukw';
+$mail->SMTPSecure = 'ssl';
+$mail->Port = 465;
+$mail->setFrom('aliyahtemam@gmail.com', 'Jan-meda health center');
+
+// Fetch the email addresses from the database
+try {
+    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->query("SELECT c_id, v_type,date,time,n_id FROM schedule where c_id='$c_id'"); //where child is his own child's session
+    $select = $conn->query("SELECT name from child where c_id='$c_id'");
+
+    //Display the results in an HTML table with borders and clickable rows
+    
+    $sql = "SELECT email FROM parent join schedule on parent.c_id=schedule.c_id where schedule.c_id='$c_id' AND schedule.time IS NOT NULL";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    // Loop through the email addresses and send the email
+    while ($row = $stmt->fetch()) {
+        $to = $row['email'];
+        $subject = 'Your scheduled email';
+        $message = 'your child is scheduled!! go check out on the website';
+        //   'Hello, this is your scheduled email.';
+
+        $mail->addAddress($to);
+        $mail->Subject = $subject;
+        $mail->Body = $message;
+
+        if ($mail->send()) {
+            echo "Email sent to " . $to . "<br>";
+        } else {
+            echo "Email sending failed for " . $to . "<br>";
+            echo "Mailer Error: " . $mail->ErrorInfo . "<br>";
+        }
+
+        $mail->clearAddresses();
+    }
+
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
       </fieldset>
       </section>
       <script>
